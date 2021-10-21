@@ -1,4 +1,6 @@
 package com.example.mappe2_s188886_s344046;
 
-public class FriendActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class FriendActivity extends AppCompatActivity {
 }
