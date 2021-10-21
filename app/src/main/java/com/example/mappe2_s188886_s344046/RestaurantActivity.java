@@ -5,19 +5,46 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class RestaurantActivity extends AppCompatActivity {
+    EditText innNavn, innAdresse, innTelefon, innType;
+    DBHandler db;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         myToolbar.inflateMenu(R.menu.restaurant_menu);
+
+        innNavn = (EditText) findViewById(R.id.innNavn);
+        innAdresse = (EditText) findViewById(R.id.innAdresse);
+        innTelefon = (EditText) findViewById(R.id.innTelefon);
+        innType = (EditText) findViewById(R.id.innType);
+        db = new DBHandler(this);
+    }
+
+    public void lagreRestaurant(View v) {
+        Restaurant restaurant = new Restaurant(innNavn.getText().toString(), innAdresse.getText().toString(), innTelefon.getText().toString(), innType.getText().toString());
+        if(restaurant.getNavn() != null && restaurant.getAdresse() != null && restaurant.getTelefon() != null && restaurant.getType() != null) {
+            db.leggTilRestaurant(restaurant);
+            Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som restaurant!", Toast.LENGTH_SHORT).show();
+            resetInput();
+        }
+    }
+
+    public void resetInput() {
+        innNavn.setText("");
+        innAdresse.setText("");
+        innTelefon.setText("");
+        innType.setText("");
     }
 
     @Override
