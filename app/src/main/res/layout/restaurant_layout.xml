@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:orientation="vertical"
+    tools:context=".FrontPageActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/purple_200"
+        app:title="@string/lagre_restaurant" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/navn" />
+
+    <EditText
+        android:id="@+id/innNavn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/navn"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/adresse" />
+
+    <EditText
+        android:id="@+id/innAdresse"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autofillHints="postalAddress"
+        android:hint="@string/adresse"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/telefon" />
+
+    <EditText
+        android:id="@+id/innTelefon"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autofillHints="phone"
+        android:hint="@string/telefon"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type" />
+
+    <EditText
+        android:id="@+id/innType"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/type"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/lagreRestaurant"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/lagre"
+        app:backgroundTint="@color/purple_200" />
+
+
+</LinearLayout>
