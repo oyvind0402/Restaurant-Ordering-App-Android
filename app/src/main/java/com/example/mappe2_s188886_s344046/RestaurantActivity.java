@@ -23,6 +23,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.restaurant_menu);
+        setSupportActionBar(myToolbar);
 
         innNavn = (EditText) findViewById(R.id.innNavn);
         innAdresse = (EditText) findViewById(R.id.innAdresse);

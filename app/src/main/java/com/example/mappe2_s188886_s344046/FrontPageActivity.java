@@ -18,7 +18,6 @@ public class FrontPageActivity extends AppCompatActivity {
         setContentView(R.layout.frontpage_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         myToolbar.inflateMenu(R.menu.front_menu);
         setSupportActionBar(myToolbar);
     }
@@ -49,7 +48,7 @@ public class FrontPageActivity extends AppCompatActivity {
 
     public void visSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
-        finish();
         startActivity(intent);
+        finish();
     }
 }

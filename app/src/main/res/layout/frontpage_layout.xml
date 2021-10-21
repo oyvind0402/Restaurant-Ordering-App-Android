@@ -22,21 +22,24 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:text="@string/lagre_restaurant" />
+        android:text="@string/restauranter"
+        android:background="@color/purple_200"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/lagre_venn"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:text="@string/lagre_venn" />
+        android:layout_marginTop="10dp"
+        android:text="@string/venner"
+        android:background="@color/purple_200"/>
 
     <ImageButton
         android:id="@+id/settingsbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_gravity="end"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="170dp"
         android:background="@color/white"
         android:contentDescription="@string/settings_desc"
         android:onClick="visSettings"

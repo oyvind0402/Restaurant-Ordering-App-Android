@@ -4,8 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FrontPageActivity">
 
+    android:orientation="vertical"
+    tools:context=".FriendActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/purple_200"
+        app:title="@string/lagre_venn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/navn" />
+
+    <EditText
+        android:id="@+id/innVennNavn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/navn"
+        android:inputType="text" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/telefon" />
+
+    <EditText
+        android:id="@+id/innVennTelefon"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autofillHints="phone"
+        android:hint="@string/telefon"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/lagreRestaurant"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/lagre"
+        app:backgroundTint="@color/purple_200"
+        android:onClick="lagreVenn" />
 
 
 </LinearLayout>
