@@ -37,13 +37,15 @@ public class FrontPageActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String isActivated = sharedPreferences.getString("notifikasjon", "false");
         if(isActivated.equals("true")) {
-            Toast.makeText(this, "TRUE", Toast.LENGTH_SHORT).show();
             startService();
         }
         if(isActivated.equals("false")) {
-            Toast.makeText(this, "FALSE", Toast.LENGTH_SHORT).show();
             stoppService();
         }
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("defaultSmsMessage", "Du har en restaurantbestilling i dag, trykk her for å se dine bestillinger!");
+        editor.apply();
     }
 
     @Override
@@ -56,7 +58,6 @@ public class FrontPageActivity extends AppCompatActivity {
     public void startService() {
         Intent intent = new Intent();
         intent.setAction("com.example.mappe2_s188886_s344046.mybroadcast");
-        Toast.makeText(this, "I STARTSERVICE", Toast.LENGTH_SHORT).show();
         sendBroadcast(intent);
     }
 

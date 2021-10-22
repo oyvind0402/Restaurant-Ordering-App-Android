@@ -12,7 +12,6 @@ import com.example.mappe2_s188886_s344046.PeriodicalService;
 public class SMSBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "I BROADCASTER", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(context, PeriodicalService.class);
         context.startService(i);
     }

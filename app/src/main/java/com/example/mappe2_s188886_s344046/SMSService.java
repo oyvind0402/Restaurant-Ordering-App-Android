@@ -14,6 +14,7 @@ import android.telephony.SmsManager;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+import androidx.preference.PreferenceManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,7 +37,8 @@ public class SMSService extends Service {
 
         if(dato != null && dato.equals(currentDate)) {
         */
-            Toast.makeText(getApplicationContext(), "I SERVICE", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String melding = sharedPreferences.getString("defaultSmsMessage", "");
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
             //For API versions 23 or lower
@@ -47,8 +49,8 @@ public class SMSService extends Service {
             Intent i = new Intent(this, FrontPageActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
             Notification notification = new NotificationCompat.Builder(this, "42")
-                    .setContentTitle("SMS Notification")
-                    .setContentText("An SMS notification for restaurant orders.")
+                    .setContentTitle("Restaurant bestilling")
+                    .setContentText(melding)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentIntent(pendingIntent).build();
             notification.flags |= Notification.FLAG_AUTO_CANCEL;
