@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class FriendActivity extends AppCompatActivity {
+public class VennActivity extends AppCompatActivity {
     EditText innNavn, innTelefon;
     DBHandler db;
 

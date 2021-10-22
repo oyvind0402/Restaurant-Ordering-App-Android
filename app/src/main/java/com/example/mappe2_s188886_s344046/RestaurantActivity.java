@@ -61,7 +61,7 @@ public class RestaurantActivity extends AppCompatActivity {
             Intent i = new Intent(this, FrontPageActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.friend_activity) {
-            Intent i2 = new Intent(this, FriendActivity.class);
+            Intent i2 = new Intent(this, VennActivity.class);
             startActivity(i2);
         } else {
             return super.onOptionsItemSelected(item);

@@ -4,21 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
-import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 public class FrontPageActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "42";
@@ -63,7 +58,7 @@ public class FrontPageActivity extends AppCompatActivity {
             Intent i = new Intent(this, RestaurantActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.friend_activity) {
-            Intent i2 = new Intent(this, FriendActivity.class);
+            Intent i2 = new Intent(this, VennActivity.class);
             startActivity(i2);
         } else {
             return super.onOptionsItemSelected(item);
