@@ -31,6 +31,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String DATO = "dato";
     private static final String TIDSPUNKT = "tidspunkt";
     //Venner vil bli lagret som en liste, men serialisert og deserialisert.
+    //Kan ikke sette den som en foreign key pga dette.
     private static final String VENNER = "venner";
 
     public DBHandler(Context context) {
@@ -41,7 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLENAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME + " TEXT, " + ADDRESS + " TEXT, " + PHONE + " TEXT, " + TYPE + " TEXT);");
         db.execSQL("CREATE TABLE " + TABLENAME2 + " (" + KEY_ID2 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME2 + " TEXT, " + PHONE2 + " TEXT);");
-        db.execSQL("CREATE TABLE " + TABLENAME3 + " (" + KEY_ID3 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + RESTAURANT + " TEXT, " + DATO + " TEXT, " + TIDSPUNKT + " TEXT, " + VENNER + " TEXT, FOREIGN KEY ('restaurantid') REFERENCES restaurant ('_id'));");
+        db.execSQL("CREATE TABLE " + TABLENAME3 + " (" + KEY_ID3 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + RESTAURANT + " INTEGER, " + DATO + " TEXT, " + TIDSPUNKT + " TEXT, " + VENNER + " TEXT, FOREIGN KEY ('restaurantid') REFERENCES restaurant ('_id'));");
     }
 
     @Override
