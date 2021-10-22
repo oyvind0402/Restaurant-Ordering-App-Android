@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
 import android.telephony.SmsManager;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
@@ -35,6 +36,7 @@ public class SMSService extends Service {
 
         if(dato != null && dato.equals(currentDate)) {
         */
+            Toast.makeText(getApplicationContext(), "I SERVICE", Toast.LENGTH_SHORT).show();
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
             //For API versions 23 or lower

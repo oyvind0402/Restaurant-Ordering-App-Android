@@ -22,7 +22,7 @@ public class PeriodicalService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         java.util.Calendar cal = Calendar.getInstance();
         Intent i = new Intent(this, SMSService.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, i, 0);
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         //Once every day the SMSService gets started
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24, pendingIntent);

@@ -13,4 +13,8 @@
     <string name="type">Type restaurant</string>
     <string name="forside">Forside</string>
     <string name="lagre">Lagre</string>
+    <string name="avslutt">Avslutt</string>
+    <string name="notisTittel">Notifikasjoner</string>
+    <string name="notisTekst">Vil du skru notifikasjoner av eller på?</string>
+    <string name="endre_settings">Endre innstillinger</string>
 </resources>

@@ -1,0 +1,12 @@
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory>
+        <ListPreference
+            app:defaultValue="false"
+            app:entries="@array/notifikasjon"
+            app:entryValues="@array/notifikasjonValues"
+            app:key="notifikasjon"
+            app:negativeButtonText="@string/avslutt"
+            app:title="@string/notisTittel"
+            app:summary="@string/notisTekst" />
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>

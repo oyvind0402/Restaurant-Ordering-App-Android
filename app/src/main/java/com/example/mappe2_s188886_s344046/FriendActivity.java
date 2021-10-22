@@ -53,17 +53,14 @@ public class FriendActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.frontpage_activity:
-                Intent i = new Intent(this, FrontPageActivity.class);
-                startActivity(i);
-                break;
-            case R.id.restaurant_activity:
-                Intent i2 = new Intent(this, RestaurantActivity.class);
-                startActivity(i2);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        if(item.getItemId() == R.id.frontpage_activity) {
+            Intent i = new Intent(this, FrontPageActivity.class);
+            startActivity(i);
+        } else if(item.getItemId() == R.id.restaurant_activity) {
+            Intent i2 = new Intent(this, RestaurantActivity.class);
+            startActivity(i2);
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return true;
     }

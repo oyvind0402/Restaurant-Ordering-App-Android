@@ -57,17 +57,14 @@ public class RestaurantActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.frontpage_activity:
-                Intent i = new Intent(this, FrontPageActivity.class);
-                startActivity(i);
-                break;
-            case R.id.friend_activity:
-                Intent i2 = new Intent(this, FriendActivity.class);
-                startActivity(i2);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        if(item.getItemId() == R.id.frontpage_activity) {
+            Intent i = new Intent(this, FrontPageActivity.class);
+            startActivity(i);
+        } else if(item.getItemId() == R.id.friend_activity) {
+            Intent i2 = new Intent(this, FriendActivity.class);
+            startActivity(i2);
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return true;
     }
