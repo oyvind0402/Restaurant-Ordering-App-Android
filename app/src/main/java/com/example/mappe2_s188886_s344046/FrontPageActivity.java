@@ -35,16 +35,8 @@ public class FrontPageActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String isActivated = sharedPreferences.getString("notifikasjon", "false");
-        if(isActivated.equals("true")) {
-            startService();
-        }
-        if(isActivated.equals("false")) {
-            stoppService();
-        }
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("defaultSmsMessage", "Du har en restaurantbestilling i dag, trykk her for å se dine bestillinger!");
+        editor.putString("defaultSmsMessage", "Du har en restaurantbestilling i dag, trykk på notifikasjonen for å se dine bestillinger!");
         editor.apply();
     }
 
@@ -53,22 +45,6 @@ public class FrontPageActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.front_menu, menu);
         return true;
-    }
-
-    public void startService() {
-        Intent intent = new Intent();
-        intent.setAction("com.example.mappe2_s188886_s344046.mybroadcast");
-        sendBroadcast(intent);
-    }
-
-    public void stoppService() {
-        Intent i = new Intent(this, SMSService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, i, 0);
-        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        if(alarm != null) {
-            alarm.cancel(pendingIntent);
-        }
     }
 
     private void createNotificationChannel() {

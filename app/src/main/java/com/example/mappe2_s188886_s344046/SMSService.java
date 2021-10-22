@@ -29,33 +29,25 @@ public class SMSService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
-        /*
-        String dato = sharedPreferences.getString("dato", "");
-        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
-        String currentDate = format.format(Calendar.getInstance().getTime());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String melding = sharedPreferences.getString("defaultSmsMessage", "");
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        if(dato != null && dato.equals(currentDate)) {
-        */
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            String melding = sharedPreferences.getString("defaultSmsMessage", "");
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        //For API versions 23 or lower
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationManager.getNotificationChannel("42") == null) {
+            notificationManager.createNotificationChannel(new NotificationChannel("42", "SMSNotifChannel", NotificationManager.IMPORTANCE_DEFAULT));
+        }
 
-            //For API versions 23 or lower
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationManager.getNotificationChannel("42") == null) {
-                notificationManager.createNotificationChannel(new NotificationChannel("42", "SMSNotifChannel", NotificationManager.IMPORTANCE_DEFAULT));
-            }
-
-            Intent i = new Intent(this, FrontPageActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
-            Notification notification = new NotificationCompat.Builder(this, "42")
-                    .setContentTitle("Restaurant bestilling")
-                    .setContentText(melding)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentIntent(pendingIntent).build();
-            notification.flags |= Notification.FLAG_AUTO_CANCEL;
-            notificationManager.notify(0, notification);
-        //}
+        Intent i = new Intent(this, FrontPageActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
+        Notification notification = new NotificationCompat.Builder(this, "42")
+                .setContentTitle("Restaurant bestilling")
+                .setContentText("Trykk her for å se bestillingen!")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(melding))
+                .setContentIntent(pendingIntent).build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notificationManager.notify(0, notification);
 
         /*
         //Need to check if there is a restaurant booking today, if it is we send the default message that's stored in shared preferences:
