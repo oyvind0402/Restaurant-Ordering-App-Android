@@ -32,6 +32,7 @@ public class BestillingActivity extends AppCompatActivity {
     SimpleCursorAdapter simpleCursorAdapter;
     CheckboxCursorAdapter checkboxCursorAdapter;
     Cursor cursor;
+    List<Venn> venneListe;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class BestillingActivity extends AppCompatActivity {
         innTidspunkt = (EditText) findViewById(R.id.innTidspunkt);
         spinner = (Spinner) findViewById(R.id.restaurant_dropdown);
         db = new DBHandler(getApplicationContext());
+        venneListe = new ArrayList<>();
         populateSpinner();
         populateFriendList();
     }
@@ -82,28 +84,21 @@ public class BestillingActivity extends AppCompatActivity {
         };
         simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.venner_listview_layout, cursor, dataFieldValues, dataFields);
         listView.setAdapter(simpleCursorAdapter);
-    }
 
-    public void bestillRestaurant(View view) {
-        /*
-        List<Venn> venneListe = new ArrayList<>();
-        int[] dataFields = new int[] {
+        int[] dataFields2 = new int[] {
                 R.id.venn_navn,
                 R.id.venn_telefon
         };
-        String[] dataFieldValues = new String[] {
+        String[] dataFieldValues2 = new String[] {
                 "navn",
                 "telefon"
         };
-        checkboxCursorAdapter = new CheckboxCursorAdapter(this, R.layout.venner_listview_layout, cursor, dataFieldValues, dataFields, R.id.venn_checkbox);
-        //long[] vennIdListe = checkboxCursorAdapter.getCheckedVennIdList();
-        CheckBox checkBox = findViewById(R.id.venn_checkbox);
+        checkboxCursorAdapter = new CheckboxCursorAdapter(this, R.layout.venner_listview_layout, cursor, dataFieldValues2, dataFields2, R.id.venn_checkbox);
+        listView.setAdapter(checkboxCursorAdapter);
+    }
 
-            TextView view1 = (TextView) findViewById(R.id.venn_navn);
-            Log.d("TAG", view1.getText().toString());
-
-
-        //TODO sjekke at alt dette funker :D
+    public void bestillRestaurant(View view) {
+        long[] vennIdListe = checkboxCursorAdapter.getCheckedVennIdList();
         for (long l : vennIdListe) {
             Venn venn = db.finnVenn(l);
             venneListe.add(venn);
@@ -111,8 +106,6 @@ public class BestillingActivity extends AppCompatActivity {
         Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
         db.leggTilBestilling(bestilling);
         Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
-
-         */
     }
 
     @Override

@@ -51,8 +51,8 @@ public class CheckboxCursorAdapter extends CursorAdapter {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             final int position = cursor.getPosition();
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean bool) {
-                checkBoxChecked[position] = ((CheckBox) compoundButton).isChecked();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                checkBoxChecked[position] = ((CheckBox) buttonView).isChecked();
                 int restore_cursor_position = cursor.getPosition();
                 cursor.moveToPosition(position);
                 cursor.moveToPosition(restore_cursor_position);
