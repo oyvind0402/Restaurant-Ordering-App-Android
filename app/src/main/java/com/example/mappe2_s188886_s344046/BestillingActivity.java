@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -93,8 +94,14 @@ public class BestillingActivity extends AppCompatActivity {
         };
         checkboxCursorAdapter = new CheckboxCursorAdapter(this, R.layout.venner_listview_layout, cursor, dataFieldValues, dataFields, R.id.venn_checkbox);
         long[] vennIdListe = checkboxCursorAdapter.getCheckedVennIdList();
-        //TODO ta hver ID fra vennIdListe og hent alle venner med de ID'ene fra DB og legg de til i venneListe
+        //TODO sjekke at alt dette funker :D
+        for(int i = 0; i < vennIdListe.length; i++) {
+            Venn venn = db.finnVenn(vennIdListe[i]);
+            venneListe.add(venn);
+        }
         Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
+        db.leggTilBestilling(bestilling);
+        Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
     }
 
     @Override

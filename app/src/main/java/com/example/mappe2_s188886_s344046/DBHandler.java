@@ -148,6 +148,23 @@ public class DBHandler extends SQLiteOpenHelper {
         return venneListe;
     }
 
+    public Venn finnVenn(long _id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLENAME2 + " WHERE " + KEY_ID2 + " = " + _id + ";";
+        Cursor cursor = db.rawQuery(sql, null);
+        Venn venn = new Venn();
+        if(cursor.moveToFirst()) {
+            do {
+                venn.set_id(cursor.getLong(0));
+                venn.setNavn(cursor.getString(1));
+                venn.setTelefon(cursor.getString(2));
+
+            } while (cursor.moveToNext());
+            return venn;
+        }
+        return null;
+    }
+
     public Cursor finnVenner() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.query(TABLENAME2, null, null, null, null, null, null);
