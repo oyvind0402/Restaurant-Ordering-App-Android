@@ -65,6 +65,7 @@ public class BestillingActivity extends AppCompatActivity {
         });
     }
 
+    //Løsning basert på: https://stackoverflow.com/questions/47533503/how-to-make-a-checkbox-from-information-found-in-database/47540946
     public void populateFriendList() {
         cursor = db.finnVenner();
         listView = (ListView) findViewById(R.id.venneListe);

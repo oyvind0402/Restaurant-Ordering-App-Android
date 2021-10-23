@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+//Klasse basert på: https://stackoverflow.com/a/47540946
 public class CheckboxCursorAdapter extends CursorAdapter {
     private final Cursor cursor;
     private final String[] columns;
