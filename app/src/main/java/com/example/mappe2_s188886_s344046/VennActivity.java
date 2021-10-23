@@ -19,7 +19,7 @@ public class VennActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.friend_layout);
+        setContentView(R.layout.venn_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.friend_menu);
@@ -54,7 +54,7 @@ public class VennActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.frontpage_activity) {
-            Intent i = new Intent(this, FrontPageActivity.class);
+            Intent i = new Intent(this, ForsideActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.restaurant_activity) {
             Intent i2 = new Intent(this, RestaurantActivity.class);

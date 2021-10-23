@@ -15,13 +15,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-public class FrontPageActivity extends AppCompatActivity {
+public class ForsideActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "42";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frontpage_layout);
+        setContentView(R.layout.forside_layout);
 
         createNotificationChannel();
 

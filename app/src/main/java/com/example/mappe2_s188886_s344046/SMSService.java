@@ -5,21 +5,13 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
-import android.telephony.SmsManager;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 public class SMSService extends Service {
     @Override
@@ -38,7 +30,7 @@ public class SMSService extends Service {
             notificationManager.createNotificationChannel(new NotificationChannel("42", "SMSNotifChannel", NotificationManager.IMPORTANCE_DEFAULT));
         }
 
-        Intent i = new Intent(this, FrontPageActivity.class);
+        Intent i = new Intent(this, ForsideActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
         Notification notification = new NotificationCompat.Builder(this, "42")
                 .setContentTitle("Restaurant bestilling")

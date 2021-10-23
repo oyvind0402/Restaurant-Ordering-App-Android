@@ -58,7 +58,7 @@ public class RestaurantActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.frontpage_activity) {
-            Intent i = new Intent(this, FrontPageActivity.class);
+            Intent i = new Intent(this, ForsideActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.friend_activity) {
             Intent i2 = new Intent(this, VennActivity.class);
