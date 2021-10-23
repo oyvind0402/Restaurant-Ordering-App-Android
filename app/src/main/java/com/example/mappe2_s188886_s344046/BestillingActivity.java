@@ -95,8 +95,8 @@ public class BestillingActivity extends AppCompatActivity {
         checkboxCursorAdapter = new CheckboxCursorAdapter(this, R.layout.venner_listview_layout, cursor, dataFieldValues, dataFields, R.id.venn_checkbox);
         long[] vennIdListe = checkboxCursorAdapter.getCheckedVennIdList();
         //TODO sjekke at alt dette funker :D
-        for(int i = 0; i < vennIdListe.length; i++) {
-            Venn venn = db.finnVenn(vennIdListe[i]);
+        for (long l : vennIdListe) {
+            Venn venn = db.finnVenn(l);
             venneListe.add(venn);
         }
         Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);

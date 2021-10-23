@@ -36,7 +36,7 @@ public class SMSService extends Service {
         List<Bestilling> bestillingsListe = db.finnALleBestillinger();
         String dagensDato = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-        if(orderIsToday(bestillingsListe, dagensDato, db)) {
+        /*if(orderIsToday(bestillingsListe, dagensDato, db)) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("smsMessage", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venner + ".");
@@ -70,13 +70,15 @@ public class SMSService extends Service {
             }
 
         }
+
+         */
         return super.onStartCommand(intent, flags, startId);
     }
 
     public boolean orderIsToday(List<Bestilling> bestillingsListe, String dato, DBHandler db) {
         for (Bestilling bestilling : bestillingsListe) {
             if (bestilling.getDato().equals(dato)) {
-                restaurantNavn = db.finnRestaurant(bestilling.get_id()).getNavn();
+                restaurantNavn = db.finnRestaurant(bestilling.getRestaurantid()).getNavn();
                 tidspunkt = bestilling.getTidspunkt();
                 venner = bestilling.getVenner();
                 return true;
