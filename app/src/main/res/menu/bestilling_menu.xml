@@ -4,9 +4,9 @@
         android:id="@+id/frontpage_activity"
         android:title="@string/forside" />
     <item
+        android:id="@+id/restaurant_activity"
+        android:title="@string/restauranter" />
+    <item
         android:id="@+id/friend_activity"
         android:title="@string/venner" />
-    <item
-        android:id="@+id/order_activity"
-        android:title="@string/restaurant_order" />
 </menu>

@@ -26,20 +26,8 @@ public class ForsideActivity extends AppCompatActivity {
         createNotificationChannel();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        myToolbar.inflateMenu(R.menu.front_menu);
+        myToolbar.inflateMenu(R.menu.forside_menu);
         setSupportActionBar(myToolbar);
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("defaultSmsMessage", "Du har en restaurantbestilling i dag, trykk på notifikasjonen for å se dine bestillinger!");
-        editor.apply();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.front_menu, menu);
-        return true;
     }
 
     private void createNotificationChannel() {
@@ -53,6 +41,13 @@ public class ForsideActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.forside_menu, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.restaurant_activity) {
             Intent i = new Intent(this, RestaurantActivity.class);
@@ -60,10 +55,23 @@ public class ForsideActivity extends AppCompatActivity {
         } else if(item.getItemId() == R.id.friend_activity) {
             Intent i2 = new Intent(this, VennActivity.class);
             startActivity(i2);
+        } else if(item.getItemId() == R.id.order_activity) {
+            Intent i3 = new Intent(this, BestillingActivity.class);
+            startActivity(i3);
         } else {
             return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    public void visRestauranter(View view) {
+        Intent intent = new Intent(this, RestaurantActivity.class);
+        startActivity(intent);
+    }
+
+    public void visVenner(View view) {
+        Intent intent = new Intent(this, VennActivity.class);
+        startActivity(intent);
     }
 
     public void visSettings(View view) {

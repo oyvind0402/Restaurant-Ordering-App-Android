@@ -17,4 +17,8 @@
     <string name="notisTittel">Notifikasjoner</string>
     <string name="notisTekst">Vil du skru notifikasjoner av eller på?</string>
     <string name="endre_settings">Endre innstillinger</string>
+    <string name="dato">Dato</string>
+    <string name="tidspunkt">Tidspunkt</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="bestill">Bestill</string>
 </resources>

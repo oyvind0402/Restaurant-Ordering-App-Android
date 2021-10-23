@@ -22,7 +22,7 @@ public class VennActivity extends AppCompatActivity {
         setContentView(R.layout.venn_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        myToolbar.inflateMenu(R.menu.friend_menu);
+        myToolbar.inflateMenu(R.menu.venn_menu);
         setSupportActionBar(myToolbar);
 
         innNavn = (EditText) findViewById(R.id.innVennNavn);
@@ -47,7 +47,7 @@ public class VennActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.friend_menu, menu);
+        inflater.inflate(R.menu.venn_menu, menu);
         return true;
     }
 
@@ -59,6 +59,9 @@ public class VennActivity extends AppCompatActivity {
         } else if(item.getItemId() == R.id.restaurant_activity) {
             Intent i2 = new Intent(this, RestaurantActivity.class);
             startActivity(i2);
+        } else if(item.getItemId() == R.id.order_activity) {
+            Intent i3 = new Intent(this, BestillingActivity.class);
+            startActivity(i3);
         } else {
             return super.onOptionsItemSelected(item);
         }

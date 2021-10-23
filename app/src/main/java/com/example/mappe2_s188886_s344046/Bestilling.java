@@ -1,15 +1,17 @@
 package com.example.mappe2_s188886_s344046;
 
+import java.util.List;
+
 public class Bestilling {
     private long _id;
     private long restaurantid;
     private String dato;
     private String tidspunkt;
-    private String venner;
+    private List<Venn> venner;
 
     public Bestilling() {}
 
-    public Bestilling(long restaurantid, String dato, String tidspunkt, String venner) {
+    public Bestilling(long restaurantid, String dato, String tidspunkt, List<Venn> venner) {
         this.restaurantid = restaurantid;
         this.dato = dato;
         this.tidspunkt = tidspunkt;
@@ -48,11 +50,11 @@ public class Bestilling {
         this.tidspunkt = tidspunkt;
     }
 
-    public String getVenner() {
+    public List<Venn> getVenner() {
         return venner;
     }
 
-    public void setVenner(String venner) {
+    public void setVenner(List<Venn> venner) {
         this.venner = venner;
     }
 }

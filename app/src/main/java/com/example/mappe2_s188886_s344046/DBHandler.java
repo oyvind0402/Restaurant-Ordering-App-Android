@@ -84,6 +84,24 @@ public class DBHandler extends SQLiteOpenHelper {
         return restaurantListe;
     }
 
+    public Restaurant finnRestaurant(Long _id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLENAME + " WHERE " + KEY_ID + " = " + _id + ";";
+        Cursor cursor = db.rawQuery(sql, null);
+        Restaurant restaurant = new Restaurant();
+        if(cursor.moveToFirst()) {
+            do {
+                restaurant.set_id(cursor.getLong(0));
+                restaurant.setNavn(cursor.getString(1));
+                restaurant.setAdresse(cursor.getString(2));
+                restaurant.setTelefon(cursor.getString(3));
+                restaurant.setType(cursor.getString(4));
+            } while (cursor.moveToNext());
+            return restaurant;
+        }
+        return null;
+    }
+
     public void slettRestaurant(Long _id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLENAME, KEY_ID + " = ?", new String[]{Long.toString(_id)});
@@ -130,6 +148,11 @@ public class DBHandler extends SQLiteOpenHelper {
         return venneListe;
     }
 
+    public Cursor finnVenner() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.query(TABLENAME2, null, null, null, null, null, null);
+    }
+
     public void slettVenn(Long _id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLENAME2, KEY_ID2 + " = ?", new String[]{Long.toString(_id)});
@@ -149,10 +172,29 @@ public class DBHandler extends SQLiteOpenHelper {
     public void leggTilBestilling(Bestilling bestilling) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put(RESTAURANT, bestilling.getRestaurantid());
         values.put(DATO, bestilling.getDato());
         values.put(TIDSPUNKT, bestilling.getTidspunkt());
-        values.put(VENNER, bestilling.getVenner());
+        //Appender hver venneid til en stringbuilder for å kunne hente alle id'ene igjen med en split metode senere.
+        //Slik at de blir på en måte lagret som en liste av venner, slik at hver bestilling kan ha flere venner.
+        //Kunne ha laget en ny tabell mellom venn og bestilling men valgte å ikke gjøre det.
+        List<Venn> venneListe = bestilling.getVenner();
+        StringBuilder venner = new StringBuilder();
+        //Hvis det er den første verdien skal vi ikke appende et kommategn.
+        boolean ikkeMellomrom = true;
+        for(Venn venn: venneListe) {
+            if(ikkeMellomrom) {
+                ikkeMellomrom = false;
+            } else {
+                venner.append(",");
+            }
+            venner.append(venn.get_id());
+        }
+
+        values.put(VENNER, venner.toString());
+        db.insert(TABLENAME3, null, values);
+        db.close();
     }
 
     public List<Bestilling> finnALleBestillinger() {
@@ -167,7 +209,25 @@ public class DBHandler extends SQLiteOpenHelper {
                 bestilling.setRestaurantid(cursor.getLong(1));
                 bestilling.setDato(cursor.getString(2));
                 bestilling.setTidspunkt(cursor.getString(3));
-                bestilling.setVenner(cursor.getString(4));
+                String venner = cursor.getString(4);
+                List<Long> venneIdListe = new ArrayList<>();
+                List<Venn> venneListe = new ArrayList<>();
+                //Splitter opp stringen for å legge alle id'ene i en liste:
+                for(String s : venner.split(",")) {
+                    venneIdListe.add(Long.valueOf(s));
+                }
+                //Finner hver venn i databasen og legger de til i vennelisten som skal legges til i bestillingen:
+                for(int i = 0; i < venneIdListe.size(); i++) {
+                    String sql2 = "SELECT * FROM " + TABLENAME2 + " WHERE " + KEY_ID2 + " = " + venneIdListe.get(i) + ";";
+                    Cursor cursor2 = db.rawQuery(sql2, null);
+                    Venn venn = new Venn();
+                    venn.set_id(cursor2.getLong(0));
+                    venn.setNavn(cursor2.getString(1));
+                    venn.setTelefon(cursor2.getString(2));
+                    venneListe.add(venn);
+                    cursor2.close();
+                }
+                bestilling.setVenner(venneListe);
                 bestillingsListe.add(bestilling);
             } while (cursor.moveToNext());
             cursor.close();

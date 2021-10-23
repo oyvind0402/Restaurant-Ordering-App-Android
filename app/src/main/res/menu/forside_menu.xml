@@ -6,4 +6,7 @@
     <item
         android:id="@+id/friend_activity"
         android:title="@string/venner" />
+    <item
+        android:id="@+id/order_activity"
+        android:title="@string/restaurant_order" />
 </menu>

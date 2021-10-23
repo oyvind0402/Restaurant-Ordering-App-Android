@@ -9,11 +9,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
+import android.telephony.SmsManager;
 
 import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 public class SMSService extends Service {
+    private String restaurantNavn;
+    private String tidspunkt;
+    private List<Venn> venner;
+
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
@@ -21,40 +32,56 @@ public class SMSService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String melding = sharedPreferences.getString("defaultSmsMessage", "");
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        DBHandler db = new DBHandler(getApplicationContext());
+        List<Bestilling> bestillingsListe = db.finnALleBestillinger();
+        String dagensDato = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-        //For API versions 23 or lower
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationManager.getNotificationChannel("42") == null) {
-            notificationManager.createNotificationChannel(new NotificationChannel("42", "SMSNotifChannel", NotificationManager.IMPORTANCE_DEFAULT));
+        if(orderIsToday(bestillingsListe, dagensDato, db)) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("smsMessage", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venner + ".");
+            editor.apply();
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            //For API versjoner 23 eller lavere
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationManager.getNotificationChannel("42") == null) {
+                notificationManager.createNotificationChannel(new NotificationChannel("42", "SMSNotifChannel", NotificationManager.IMPORTANCE_DEFAULT));
+            }
+
+            Intent i = new Intent(this, ForsideActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
+            Notification notification = new NotificationCompat.Builder(this, "42")
+                    .setContentTitle("Restaurant bestilling")
+                    .setContentText("Trykk her for å se bestillingen!")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Du har en restaurantbestilling i dag, trykk på notifikasjonen for å se dine bestillinger!"))
+                    .setContentIntent(pendingIntent).build();
+            notification.flags |= Notification.FLAG_AUTO_CANCEL;
+            notificationManager.notify(0, notification);
+
+            //Sender sms
+            SmsManager sms = SmsManager.getDefault();
+            String message = sharedPreferences.getString("smsMessage", "");
+            for(int j = 0; j < bestillingsListe.size() ; j++) {
+                if(venner.size() > 0) {
+                    sms.sendTextMessage(venner.get(j).getTelefon(), null, message, null, null);
+                }
+            }
+
         }
-
-        Intent i = new Intent(this, ForsideActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
-        Notification notification = new NotificationCompat.Builder(this, "42")
-                .setContentTitle("Restaurant bestilling")
-                .setContentText("Trykk her for å se bestillingen!")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(melding))
-                .setContentIntent(pendingIntent).build();
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notificationManager.notify(0, notification);
-
-        /*
-        //Need to check if there is a restaurant booking today, if it is we send the default message that's stored in shared preferences:
-        DBHandler db = new DBHandler(context);
-        //Noe som det her men med bestillinger og ikke restauranter
-        List<Restaurant> restaurantListe = db.finnAlleRestauranter();
-
-        SmsManager sms = SmsManager.getDefault();
-        SharedPreferences sharedPrefs =  context.getSharedPreferences("com.example.mappe2_s188886_s344046", Context.MODE_PRIVATE);
-        String message = sharedPrefs.getString("smsMessage", "");
-        for(int j = 0; j < restaurantListe.size() ; j++) {
-            sms.sendTextMessage(restaurantListe.get(j).getTelefon(), null, message, null, null);
-        }
-         */
-
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    public boolean orderIsToday(List<Bestilling> bestillingsListe, String dato, DBHandler db) {
+        for (Bestilling bestilling : bestillingsListe) {
+            if (bestilling.getDato().equals(dato)) {
+                restaurantNavn = db.finnRestaurant(bestilling.get_id()).getNavn();
+                tidspunkt = bestilling.getTidspunkt();
+                venner = bestilling.getVenner();
+                return true;
+            }
+        }
+        return false;
     }
 }
