@@ -26,4 +26,8 @@
     <string name="lagre_bestilling">Lagre Bestilling</string>
     <string name="endre_bestilling">Endre Bestilling</string>
     <string name="lagre_venner">Lagre Venner</string>
+    <string name="endre_venner">Endre Venn</string>
+    <string name="slett_venner">Slett Venn</string>
+    <string name="endre">Endre</string>
+    <string name="ny_venn">Ny Venn</string>
 </resources>

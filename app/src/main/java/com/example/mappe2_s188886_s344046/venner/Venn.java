@@ -1,5 +1,7 @@
 package com.example.mappe2_s188886_s344046.venner;
 
+import androidx.annotation.NonNull;
+
 public class Venn {
     private long _id;
     private String navn;
@@ -34,5 +36,11 @@ public class Venn {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Navn: " + this.navn + ", Telefon: " + this.telefon;
     }
 }

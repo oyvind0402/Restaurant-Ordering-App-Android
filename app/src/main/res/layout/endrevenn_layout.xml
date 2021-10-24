@@ -11,37 +11,40 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@color/purple_200"
-        app:title="@string/venner" />
+        app:title="@string/slett_venner" />
 
-    <ListView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/venneListView" />
+        android:text="@string/navn" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/innEndreVennNavn"
+        android:hint="@string/navn"
+        android:inputType="text"
+        android:autofillHints="name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/telefon" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/innEndreVennTelefon"
+        android:hint="@string/telefon"
+        android:inputType="text"
+        android:autofillHints="phone" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/endre_venn"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:text="@string/endre_venner"
+        android:layout_marginTop="10dp"
+        android:text="@string/endre"
         android:background="@color/purple_200"
         android:onClick="endreVenn" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:text="@string/slett_venner"
-        android:background="@color/purple_200"
-        android:onClick="slettVenn" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:text="@string/ny_venn"
-        android:background="@color/purple_200"
-        android:onClick="lagreVenn" />
 
 </LinearLayout>

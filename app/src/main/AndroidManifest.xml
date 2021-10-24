@@ -29,6 +29,7 @@
         <activity android:name=".bestillinger.AlleBestillingerActivity" />
         <activity android:name=".venner.AlleVennerActivity" />
         <activity android:name=".venner.LagreVennActivity" />
+        <activity android:name=".venner.EndreVennActivity" />
         <service android:name=".broadcast.PeriodicalService" />
         <service android:name=".broadcast.SMSService" />
         <receiver android:name=".broadcast.SMSBroadcastReceiver"

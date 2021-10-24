@@ -1,5 +1,6 @@
 package com.example.mappe2_s188886_s344046.venner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -43,5 +44,10 @@ public class LagreVennActivity extends AppCompatActivity {
         innTelefon.setText("");
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, AlleVennerActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
