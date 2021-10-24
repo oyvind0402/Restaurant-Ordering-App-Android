@@ -34,10 +34,12 @@ public class LagreRestaurantActivity extends AppCompatActivity {
 
     public void lagreRestaurant(View v) {
         Restaurant restaurant = new Restaurant(innNavn.getText().toString(), innAdresse.getText().toString(), innTelefon.getText().toString(), innType.getText().toString());
-        if(restaurant.getNavn() != null && restaurant.getAdresse() != null && restaurant.getTelefon() != null && restaurant.getType() != null) {
+        if(!restaurant.getNavn().isEmpty() && !restaurant.getAdresse().isEmpty() && !restaurant.getTelefon().isEmpty() && !restaurant.getType().isEmpty()) {
             db.leggTilRestaurant(restaurant);
             Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som restaurant!", Toast.LENGTH_SHORT).show();
             resetInput();
+        } else {
+            Toast.makeText(this, "Du må skrive noe inn i alle feltene for å lagre en restaurant!", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -93,6 +93,8 @@ public class LagreBestillingActivity extends AppCompatActivity {
             Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
             db.leggTilBestilling(bestilling);
             Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Du må velge både dato og tidspunkt!", Toast.LENGTH_SHORT).show();
         }
     }
 }

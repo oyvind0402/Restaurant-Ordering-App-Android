@@ -32,7 +32,7 @@ public class LagreVennActivity extends AppCompatActivity {
 
     public void lagreVenn(View v) {
         Venn venn = new Venn(innNavn.getText().toString(), innTelefon.getText().toString());
-        if(venn.getNavn() != null && venn.getTelefon() != null) {
+        if(!venn.getNavn().isEmpty() && !venn.getTelefon().isEmpty()) {
             db.leggTilVenn(venn);
             Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som venn!", Toast.LENGTH_SHORT).show();
             resetInput();
