@@ -48,14 +48,6 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         textView.setText(ut.toString());
     }
 
-    public void endreBestilling(View view) {
-
-    }
-
-    public void slettBestilling(View view) {
-
-    }
-
     public void lagreBestilling(View view) {
         Intent intent = new Intent(this, LagreBestillingActivity.class);
         startActivity(intent);

@@ -49,7 +49,7 @@ public class SMSService extends Service {
                 notificationManager.createNotificationChannel(new NotificationChannel("42", "SMSNotifChannel", NotificationManager.IMPORTANCE_DEFAULT));
             }
 
-            Intent i = new Intent(this, ForsideActivity.class);
+            Intent i = new Intent(this, AlleBestillingerActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
             Notification notification = new NotificationCompat.Builder(this, "42")
                     .setContentTitle("Restaurant bestilling")
