@@ -2,12 +2,10 @@ package com.example.mappe2_s188886_s344046;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.preference.PreferenceManager;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -50,13 +48,13 @@ public class ForsideActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.restaurant_activity) {
-            Intent i = new Intent(this, RestaurantActivity.class);
+            Intent i = new Intent(this, LagreRestaurantActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.friend_activity) {
-            Intent i2 = new Intent(this, VennActivity.class);
+            Intent i2 = new Intent(this, LagreVennActivity.class);
             startActivity(i2);
         } else if(item.getItemId() == R.id.order_activity) {
-            Intent i3 = new Intent(this, BestillingActivity.class);
+            Intent i3 = new Intent(this, AlleBestillingerActivity.class);
             startActivity(i3);
         } else {
             return super.onOptionsItemSelected(item);
@@ -65,12 +63,12 @@ public class ForsideActivity extends AppCompatActivity {
     }
 
     public void visRestauranter(View view) {
-        Intent intent = new Intent(this, RestaurantActivity.class);
+        Intent intent = new Intent(this, LagreRestaurantActivity.class);
         startActivity(intent);
     }
 
     public void visVenner(View view) {
-        Intent intent = new Intent(this, VennActivity.class);
+        Intent intent = new Intent(this, LagreVennActivity.class);
         startActivity(intent);
     }
 
@@ -78,5 +76,10 @@ public class ForsideActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void visBestillinger(View view) {
+        Intent intent = new Intent(this, AlleBestillingerActivity.class);
+        startActivity(intent);
     }
 }

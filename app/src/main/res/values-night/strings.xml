@@ -21,4 +21,9 @@
     <string name="tidspunkt">Tidspunkt</string>
     <string name="restaurant">Restaurant</string>
     <string name="bestill">Bestill</string>
+    <string name="alle_bestillinger">Alle Bestillinger</string>
+    <string name="slett_bestilling">Slett Bestillinger</string>
+    <string name="bestillinger">Bestillinger</string>
+    <string name="lagre_bestilling">Lagre Bestilling</string>
+    <string name="endre_bestilling">Endre Bestilling</string>
 </resources>

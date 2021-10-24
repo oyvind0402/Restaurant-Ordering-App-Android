@@ -23,10 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RestaurantActivity" />
+        <activity android:name=".LagreRestaurantActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".BestillingActivity" />
-        <activity android:name=".VennActivity" />
+        <activity android:name=".LagreBestillingActivity" />
+        <activity android:name=".AlleBestillingerActivity" />
+        <activity android:name=".LagreVennActivity" />
         <service android:name=".PeriodicalService" />
         <service android:name=".SMSService" />
         <receiver android:name=".mybroadcast.SMSBroadcastReceiver"

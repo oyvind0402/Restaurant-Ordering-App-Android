@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".ForsideActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,43 +13,39 @@
         android:background="@color/purple_200"
         app:title="@string/restaurant_order" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:text="@string/restauranter"
-        android:background="@color/purple_200"
-        android:onClick="visRestauranter" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/alle_bestillinger" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bestillinger" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/venner"
+        android:text="@string/lagre_bestilling"
         android:background="@color/purple_200"
-        android:onClick="visVenner" />
+        android:onClick="lagreBestilling" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/bestillinger"
+        android:layout_marginTop="5dp"
+        android:text="@string/endre_bestilling"
         android:background="@color/purple_200"
-        android:onClick="visBestillinger" />
+        android:onClick="endreBestilling" />
 
-    <ImageButton
-        android:id="@+id/settingsbtn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="170dp"
-        android:background="@color/white"
-        android:contentDescription="@string/settings_desc"
-        android:onClick="visSettings"
-        android:src="@drawable/settingsicon" />
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="@string/slett_bestilling"
+        android:background="@color/purple_200"
+        android:onClick="slettBestilling" />
 
 </LinearLayout>

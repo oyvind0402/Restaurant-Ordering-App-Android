@@ -198,17 +198,18 @@ public class DBHandler extends SQLiteOpenHelper {
         //Kunne ha laget en ny tabell mellom venn og bestilling men valgte å ikke gjøre det.
         List<Venn> venneListe = bestilling.getVenner();
         StringBuilder venner = new StringBuilder();
-        //Hvis det er den første verdien skal vi ikke appende et kommategn.
-        boolean ikkeMellomrom = true;
-        for(Venn venn: venneListe) {
-            if(ikkeMellomrom) {
-                ikkeMellomrom = false;
-            } else {
-                venner.append(",");
+        if(venneListe.size() > 0) {
+            //Hvis det er den første verdien skal vi ikke appende et kommategn.
+            boolean ikkeMellomrom = true;
+            for(Venn venn: venneListe) {
+                if(ikkeMellomrom) {
+                    ikkeMellomrom = false;
+                } else {
+                    venner.append(",");
+                }
+                venner.append(venn.get_id());
             }
-            venner.append(venn.get_id());
         }
-
         values.put(VENNER, venner.toString());
         db.insert(TABLENAME3, null, values);
         db.close();
@@ -229,20 +230,16 @@ public class DBHandler extends SQLiteOpenHelper {
                 String venner = cursor.getString(4);
                 List<Long> venneIdListe = new ArrayList<>();
                 List<Venn> venneListe = new ArrayList<>();
-                //Splitter opp stringen for å legge alle id'ene i en liste:
-                for(String s : venner.split(",")) {
-                    venneIdListe.add(Long.valueOf(s));
-                }
-                //Finner hver venn i databasen og legger de til i vennelisten som skal legges til i bestillingen:
-                for(int i = 0; i < venneIdListe.size(); i++) {
-                    String sql2 = "SELECT * FROM " + TABLENAME2 + " WHERE " + KEY_ID2 + " = " + venneIdListe.get(i) + ";";
-                    Cursor cursor2 = db.rawQuery(sql2, null);
-                    Venn venn = new Venn();
-                    venn.set_id(cursor2.getLong(0));
-                    venn.setNavn(cursor2.getString(1));
-                    venn.setTelefon(cursor2.getString(2));
-                    venneListe.add(venn);
-                    cursor2.close();
+                if(!venner.isEmpty()) {
+                    //Splitter opp stringen for å legge alle id'ene i en liste:
+                    for(String s : venner.split(",")) {
+                        venneIdListe.add(Long.valueOf(s));
+                    }
+                    //Finner hver venn i databasen og legger de til i vennelisten som skal legges til i bestillingen:
+                    for(int i = 0; i < venneIdListe.size(); i++) {
+                        Venn venn = finnVenn(venneIdListe.get(i));
+                        venneListe.add(venn);
+                    }
                 }
                 bestilling.setVenner(venneListe);
                 bestillingsListe.add(bestilling);

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class RestaurantActivity extends AppCompatActivity {
+public class LagreRestaurantActivity extends AppCompatActivity {
     EditText innNavn, innAdresse, innTelefon, innType;
     DBHandler db;
 
@@ -61,10 +61,10 @@ public class RestaurantActivity extends AppCompatActivity {
             Intent i = new Intent(this, ForsideActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.friend_activity) {
-            Intent i2 = new Intent(this, VennActivity.class);
+            Intent i2 = new Intent(this, LagreVennActivity.class);
             startActivity(i2);
         } else if(item.getItemId() == R.id.order_activity) {
-            Intent i3 = new Intent(this, BestillingActivity.class);
+            Intent i3 = new Intent(this, AlleBestillingerActivity.class);
             startActivity(i3);
         } else {
             return super.onOptionsItemSelected(item);
