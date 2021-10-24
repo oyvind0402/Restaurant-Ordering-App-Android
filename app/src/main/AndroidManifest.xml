@@ -27,6 +27,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".LagreBestillingActivity" />
         <activity android:name=".AlleBestillingerActivity" />
+        <activity android:name=".AlleVennerActivity" />
         <activity android:name=".LagreVennActivity" />
         <service android:name=".PeriodicalService" />
         <service android:name=".SMSService" />

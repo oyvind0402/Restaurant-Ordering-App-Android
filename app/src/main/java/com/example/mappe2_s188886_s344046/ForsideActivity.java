@@ -51,7 +51,7 @@ public class ForsideActivity extends AppCompatActivity {
             Intent i = new Intent(this, LagreRestaurantActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.friend_activity) {
-            Intent i2 = new Intent(this, LagreVennActivity.class);
+            Intent i2 = new Intent(this, AlleVennerActivity.class);
             startActivity(i2);
         } else if(item.getItemId() == R.id.order_activity) {
             Intent i3 = new Intent(this, AlleBestillingerActivity.class);
@@ -68,7 +68,7 @@ public class ForsideActivity extends AppCompatActivity {
     }
 
     public void visVenner(View view) {
-        Intent intent = new Intent(this, LagreVennActivity.class);
+        Intent intent = new Intent(this, AlleVennerActivity.class);
         startActivity(intent);
     }
 

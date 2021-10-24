@@ -44,27 +44,5 @@ public class LagreVennActivity extends AppCompatActivity {
         innTelefon.setText("");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.venn_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.frontpage_activity) {
-            Intent i = new Intent(this, ForsideActivity.class);
-            startActivity(i);
-        } else if(item.getItemId() == R.id.restaurant_activity) {
-            Intent i2 = new Intent(this, LagreRestaurantActivity.class);
-            startActivity(i2);
-        } else if(item.getItemId() == R.id.order_activity) {
-            Intent i3 = new Intent(this, AlleBestillingerActivity.class);
-            startActivity(i3);
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
 }
