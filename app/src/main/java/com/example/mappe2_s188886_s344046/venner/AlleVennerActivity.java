@@ -1,4 +1,4 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.venner;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +12,12 @@ import android.widget.SimpleCursorAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
+import com.example.mappe2_s188886_s344046.utils.DBHandler;
+import com.example.mappe2_s188886_s344046.ForsideActivity;
+import com.example.mappe2_s188886_s344046.restauranter.LagreRestaurantActivity;
+import com.example.mappe2_s188886_s344046.R;
 
 public class AlleVennerActivity extends AppCompatActivity {
     private DBHandler db;

@@ -1,4 +1,4 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.bestillinger;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,6 +13,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mappe2_s188886_s344046.utils.CheckboxCursorAdapter;
+import com.example.mappe2_s188886_s344046.utils.DBHandler;
+import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
+import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.util.ArrayList;
 import java.util.List;

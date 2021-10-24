@@ -23,15 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LagreRestaurantActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".LagreBestillingActivity" />
-        <activity android:name=".AlleBestillingerActivity" />
-        <activity android:name=".AlleVennerActivity" />
-        <activity android:name=".LagreVennActivity" />
-        <service android:name=".PeriodicalService" />
-        <service android:name=".SMSService" />
-        <receiver android:name=".mybroadcast.SMSBroadcastReceiver"
+        <activity android:name=".restauranter.LagreRestaurantActivity" />
+        <activity android:name=".settings.SettingsActivity" />
+        <activity android:name=".bestillinger.LagreBestillingActivity" />
+        <activity android:name=".bestillinger.AlleBestillingerActivity" />
+        <activity android:name=".venner.AlleVennerActivity" />
+        <activity android:name=".venner.LagreVennActivity" />
+        <service android:name=".broadcast.PeriodicalService" />
+        <service android:name=".broadcast.SMSService" />
+        <receiver android:name=".broadcast.SMSBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.example.mappe2_s188886_s344046.mybroadcast" />

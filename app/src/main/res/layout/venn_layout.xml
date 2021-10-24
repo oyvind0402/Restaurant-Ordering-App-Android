@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context=".LagreVennActivity">
+    tools:context=".venner.LagreVennActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

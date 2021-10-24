@@ -1,4 +1,4 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.bestillinger;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.mappe2_s188886_s344046.utils.DBHandler;
+import com.example.mappe2_s188886_s344046.ForsideActivity;
+import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.restauranter.LagreRestaurantActivity;
+import com.example.mappe2_s188886_s344046.venner.LagreVennActivity;
 
 import java.util.List;
 

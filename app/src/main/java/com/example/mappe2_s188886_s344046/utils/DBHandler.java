@@ -1,10 +1,14 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
+import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
+import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.util.ArrayList;
 import java.util.List;

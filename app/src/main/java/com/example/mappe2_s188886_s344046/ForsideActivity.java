@@ -13,6 +13,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
+import com.example.mappe2_s188886_s344046.restauranter.LagreRestaurantActivity;
+import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
+import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
+
 public class ForsideActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "42";
 

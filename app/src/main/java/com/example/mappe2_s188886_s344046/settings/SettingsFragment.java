@@ -1,4 +1,4 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.settings;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -9,7 +9,9 @@ import android.os.Bundle;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
+
+import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.broadcast.SMSService;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener {
     @Override

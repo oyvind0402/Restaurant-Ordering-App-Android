@@ -1,4 +1,6 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.bestillinger;
+
+import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.util.List;
 

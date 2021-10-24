@@ -1,4 +1,4 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.broadcast;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

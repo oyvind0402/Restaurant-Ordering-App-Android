@@ -1,21 +1,14 @@
-package com.example.mappe2_s188886_s344046;
+package com.example.mappe2_s188886_s344046.broadcast;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.IBinder;
-import android.telephony.SmsManager;
 
-import androidx.core.app.NotificationCompat;
-import androidx.preference.PreferenceManager;
+import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
+import com.example.mappe2_s188886_s344046.utils.DBHandler;
+import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
