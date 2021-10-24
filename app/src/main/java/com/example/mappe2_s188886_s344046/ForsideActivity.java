@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
-import com.example.mappe2_s188886_s344046.restauranter.LagreRestaurantActivity;
+import com.example.mappe2_s188886_s344046.restauranter.AlleRestauranterActivity;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
 
@@ -53,7 +53,7 @@ public class ForsideActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.restaurant_activity) {
-            Intent i = new Intent(this, LagreRestaurantActivity.class);
+            Intent i = new Intent(this, AlleRestauranterActivity.class);
             startActivity(i);
         } else if(item.getItemId() == R.id.friend_activity) {
             Intent i2 = new Intent(this, AlleVennerActivity.class);
@@ -68,7 +68,7 @@ public class ForsideActivity extends AppCompatActivity {
     }
 
     public void visRestauranter(View view) {
-        Intent intent = new Intent(this, LagreRestaurantActivity.class);
+        Intent intent = new Intent(this, AlleRestauranterActivity.class);
         startActivity(intent);
     }
 

@@ -1,5 +1,7 @@
 package com.example.mappe2_s188886_s344046.restauranter;
 
+import androidx.annotation.NonNull;
+
 public class Restaurant {
     private long _id;
     private String navn;
@@ -55,4 +57,11 @@ public class Restaurant {
     public void setType(String type) {
         this.type = type;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Navn: " + this.navn + "\nAdresse: " + this.adresse + "\nTelefon: " + this.telefon + "\nType: " + this.type;
+    }
+
 }

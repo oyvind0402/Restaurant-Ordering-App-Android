@@ -28,6 +28,9 @@
     <string name="lagre_venner">Lagre Venner</string>
     <string name="endre_venner">Endre Venn</string>
     <string name="slett_venner">Slett Venn</string>
+    <string name="endre_restaurant">Endre Restaurant</string>
+    <string name="slett_restaurant">Slett Restaurant</string>
+    <string name="ny_restaurant">Ny Restaurant</string>
     <string name="endre">Endre</string>
     <string name="ny_venn">Ny Venn</string>
 </resources>
