@@ -19,7 +19,7 @@ public class LagreVennActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.venn_layout);
+        setContentView(R.layout.lagrevenn_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.venn_menu);

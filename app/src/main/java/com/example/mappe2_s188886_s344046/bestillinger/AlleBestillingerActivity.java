@@ -2,6 +2,7 @@ package com.example.mappe2_s188886_s344046.bestillinger;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;

@@ -82,10 +82,10 @@ public class LagreBestillingActivity extends AppCompatActivity {
                 "navn",
                 "telefon"
         };
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.venner_listview_layout, cursor, dataFieldValues, dataFields);
+        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.bestillinger_vennerlistview_layout, cursor, dataFieldValues, dataFields);
         listView.setAdapter(simpleCursorAdapter);
 
-        checkboxCursorAdapter = new CheckboxCursorAdapter(this, R.layout.venner_listview_layout, cursor, dataFieldValues, dataFields, R.id.venn_checkbox);
+        checkboxCursorAdapter = new CheckboxCursorAdapter(this, R.layout.bestillinger_vennerlistview_layout, cursor, dataFieldValues, dataFields, R.id.venn_checkbox);
         listView.setAdapter(checkboxCursorAdapter);
     }
 

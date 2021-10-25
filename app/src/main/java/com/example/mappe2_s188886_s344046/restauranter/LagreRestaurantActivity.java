@@ -25,7 +25,7 @@ public class LagreRestaurantActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.restaurant_layout);
+        setContentView(R.layout.lagrerestaurant_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.restaurant_menu);
