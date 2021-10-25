@@ -47,5 +47,6 @@
     <string name="settings_desc">Knapp for instillinger</string>
     <string name="endre_settings">Endre innstillinger</string>
     <string name="notisTittel">Notifikasjoner</string>
+    <string name="settings">Instillinger</string>
     <string name="notisTekst">Vil du skru notifikasjoner av eller på?</string>
 </resources>
