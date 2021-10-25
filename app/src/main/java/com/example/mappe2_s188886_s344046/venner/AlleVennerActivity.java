@@ -67,7 +67,9 @@ public class AlleVennerActivity extends AppCompatActivity {
     public void slettVenn(View view) {
         if(venn != null) {
             db.slettVenn(venn.getId());
-            recreate();
+            Intent intent = new Intent(this, AlleVennerActivity.class);
+            startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "Du må velge en venn for å slette!", Toast.LENGTH_SHORT).show();
         }
