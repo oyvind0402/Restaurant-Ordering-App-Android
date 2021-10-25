@@ -78,6 +78,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
     public void lagreBestilling(View view) {
         Intent intent = new Intent(this, LagreBestillingActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

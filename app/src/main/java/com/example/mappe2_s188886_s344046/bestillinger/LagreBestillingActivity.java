@@ -3,7 +3,7 @@ package com.example.mappe2_s188886_s344046.bestillinger;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
-import com.example.mappe2_s188886_s344046.utils.CheckboxCursorAdapter;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
@@ -37,10 +35,9 @@ public class LagreBestillingActivity extends AppCompatActivity {
     private long restaurantid;
     EditText innDato, innTidspunkt;
     ListView listView;
-    SimpleCursorAdapter simpleCursorAdapter;
-    CheckboxCursorAdapter checkboxCursorAdapter;
     Cursor cursor;
     List<Venn> venneListe;
+    List<Long> vennIdListe;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +54,10 @@ public class LagreBestillingActivity extends AppCompatActivity {
         db = new DBHandler(getApplicationContext());
         venneListe = new ArrayList<>();
         populateSpinner();
+
+        vennIdListe = new ArrayList<>();
+        listView = (ListView) findViewById(R.id.venneListe);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         populateFriendList();
     }
 
@@ -90,27 +91,20 @@ public class LagreBestillingActivity extends AppCompatActivity {
         });
     }
 
-    //Løsning basert på: https://stackoverflow.com/questions/47533503/how-to-make-a-checkbox-from-information-found-in-database/47540946
     public void populateFriendList() {
-        cursor = db.finnVenner();
-        listView = (ListView) findViewById(R.id.venneListe);
-        int[] dataFields = new int[] {
-                R.id.venn_navn,
-                R.id.venn_telefon
-        };
-        String[] dataFieldValues = new String[] {
-                "navn",
-                "telefon"
-        };
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.bestillinger_vennerlistview_layout, cursor, dataFieldValues, dataFields);
-        listView.setAdapter(simpleCursorAdapter);
-
-        checkboxCursorAdapter = new CheckboxCursorAdapter(this, R.layout.bestillinger_vennerlistview_layout, cursor, dataFieldValues, dataFields, R.id.venn_checkbox);
-        listView.setAdapter(checkboxCursorAdapter);
+        List<Venn> venneListe2 = db.finnAlleVenner();
+        ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, venneListe2);
+        listView.setAdapter(vennAdapter);
     }
 
     public void bestillRestaurant(View view) {
-        long[] vennIdListe = checkboxCursorAdapter.getCheckedVennIdList();
+        SparseBooleanArray checkedItemPositions = listView.getCheckedItemPositions();
+        for (int i = 0; i < checkedItemPositions.size(); i++) {
+            if(checkedItemPositions.valueAt(i)) {
+                Venn venn = (Venn) listView.getItemAtPosition(i);
+                vennIdListe.add(venn.getId());
+            }
+        }
         for (long l : vennIdListe) {
             Venn venn = db.finnVenn(l);
             venneListe.add(venn);
@@ -123,6 +117,13 @@ public class LagreBestillingActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Du må velge både dato og tidspunkt!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, AlleBestillingerActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
