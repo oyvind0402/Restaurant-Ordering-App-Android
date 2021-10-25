@@ -43,16 +43,5 @@
         android:background="@color/purple_200"
         android:onClick="visBestillinger" />
 
-    <ImageButton
-        android:id="@+id/settingsbtn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="170dp"
-        android:background="@color/white"
-        android:contentDescription="@string/settings_desc"
-        android:onClick="visSettings"
-        android:src="@drawable/settingsicon" />
-
 
 </LinearLayout>
