@@ -19,15 +19,33 @@
         android:text="@string/alle_bestillinger" />
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:id="@+id/bestillinger"
         android:orientation="vertical" />
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text="@string/endre_bestilling"-->
+<!--        android:background="@color/purple_200"-->
+<!--        android:onClick="endreBestilling" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:text="@string/slett_bestilling"-->
+<!--        android:background="@color/purple_200"-->
+<!--        android:onClick="slettBestilling" />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:text="@string/lagre_bestilling"
+        android:layout_marginTop="5dp"
+        android:text="@string/ny_bestilling"
         android:background="@color/purple_200"
         android:onClick="lagreBestilling" />
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@color/purple_200"
-        app:title="@string/restaurant_order" />
+        app:title="@string/endre_bestilling" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
-        android:id="@+id/restaurant_dropdown"
+        android:id="@+id/innEndreBestillingRestaurant_dropdown"
         android:spinnerMode="dropdown" />
 
     <TextView
@@ -32,8 +32,9 @@
         android:text="@string/venner" />
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:id="@+id/venneListe"
+        android:layout_height="wrap_content"
+        android:maxHeight="115dp"
+        android:id="@+id/innEndreBestillingVenneListe"
         />
 
     <TextView
@@ -43,7 +44,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/innDato"
+        android:id="@+id/innEndreBestillingDato"
         android:hint="@string/dato"
         android:inputType="text"
         android:importantForAutofill="no" />
@@ -55,7 +56,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/innTidspunkt"
+        android:id="@+id/innEndreBestillingTidspunkt"
         android:hint="@string/tidspunkt"
         android:inputType="text"
         android:importantForAutofill="no" />
@@ -68,6 +69,6 @@
         android:layout_marginTop="10dp"
         android:text="@string/bestill"
         android:background="@color/purple_200"
-        android:onClick="lagreBestilling" />
+        android:onClick="endreBestilling" />
 
 </LinearLayout>

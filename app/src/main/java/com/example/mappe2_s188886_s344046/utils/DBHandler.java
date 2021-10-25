@@ -5,13 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -112,7 +115,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public int oppdaterRestaurant(Restaurant restaurant) {
+    public void oppdaterRestaurant(Restaurant restaurant) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(NAME, restaurant.getNavn());
@@ -121,7 +124,6 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(TYPE, restaurant.getType());
         int endret = db.update(TABLENAME, values, KEY_ID + " = ?", new String[]{String.valueOf(restaurant.getId())});
         db.close();
-        return endret;
     }
 
     public void leggTilVenn(Venn venn) {
@@ -169,25 +171,19 @@ public class DBHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    public Cursor finnVenner() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.query(TABLENAME2, null, null, null, null, null, null);
-    }
-
     public void slettVenn(Long _id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLENAME2, KEY_ID2 + " = ?", new String[]{Long.toString(_id)});
         db.close();
     }
 
-    public int oppdaterVenn(Venn venn) {
+    public void oppdaterVenn(Venn venn) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(NAME2, venn.getNavn());
         values.put(PHONE2, venn.getTelefon());
         int endret = db.update(TABLENAME2, values, KEY_ID2 + " = ?", new String[]{String.valueOf(venn.getId())});
         db.close();
-        return endret;
     }
 
     public void leggTilBestilling(Bestilling bestilling) {
@@ -219,6 +215,25 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Bestilling finnBestilling(long _id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLENAME3 + " WHERE " + KEY_ID3 + " = " + _id + ";";
+        Cursor cursor = db.rawQuery(sql, null);
+        Bestilling bestilling = new Bestilling();
+        if(cursor.moveToFirst()) {
+            do {
+                bestilling.setId(cursor.getLong(0));
+                bestilling.setRestaurantid(cursor.getLong(1));
+                bestilling.setDato(cursor.getString(2));
+                bestilling.setTidspunkt(cursor.getString(3));
+                String venner = cursor.getString(4);
+                bestilling.setVenner(finnVenner(venner));
+            } while (cursor.moveToNext());
+            return bestilling;
+        }
+        return null;
+    }
+
     public List<Bestilling> finnALleBestillinger() {
         List<Bestilling> bestillingsListe = new ArrayList<>();
         String sql = "SELECT * FROM " + TABLENAME3 + ";";
@@ -232,25 +247,46 @@ public class DBHandler extends SQLiteOpenHelper {
                 bestilling.setDato(cursor.getString(2));
                 bestilling.setTidspunkt(cursor.getString(3));
                 String venner = cursor.getString(4);
-                List<Long> venneIdListe = new ArrayList<>();
-                List<Venn> venneListe = new ArrayList<>();
-                if(!venner.isEmpty()) {
-                    //Splitter opp stringen for å legge alle id'ene i en liste:
-                    for(String s : venner.split(",")) {
-                        venneIdListe.add(Long.valueOf(s));
-                    }
-                    //Finner hver venn i databasen og legger de til i vennelisten som skal legges til i bestillingen:
-                    for(int i = 0; i < venneIdListe.size(); i++) {
-                        Venn venn = finnVenn(venneIdListe.get(i));
-                        venneListe.add(venn);
-                    }
-                }
-                bestilling.setVenner(venneListe);
+                bestilling.setVenner(finnVenner(venner));
                 bestillingsListe.add(bestilling);
             } while (cursor.moveToNext());
             cursor.close();
             db.close();
         }
         return bestillingsListe;
+    }
+
+    public List<Venn> finnVenner(String venner) {
+        List<Venn> venneListe = new ArrayList<>();
+        if (!venner.isEmpty()) {
+            //Splitter opp strengen for å legge alle id'ene i en liste:
+            for (String s : venner.split(",")) {
+                // Hvis s inneholder en gyldig Long, legg entry til i map
+                try {
+                    long vennId = Long.parseLong(s);
+                    Venn venn;
+                    // Sjekk om venn med id definert i s er gyldig
+                    try {
+                        venn = finnVenn(vennId);
+                    }
+                    // Ellers sett verdien som null
+                    catch (NullPointerException e) {
+                        venn = null;
+                    }
+                    venneListe.add(venn);
+                }
+                // Ellers, logge den som feil og ikke legg dem til listen
+                catch (NullPointerException e) {
+                    Log.w("VENN_WARN", "Kunne ikke parse \"" + s + "\" som long.");
+                }
+            }
+        }
+        return venneListe;
+    }
+
+    public void slettBestilling(Long _id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLENAME3, KEY_ID3 + " = ?", new String[]{Long.toString(_id)});
+        db.close();
     }
 }

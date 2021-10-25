@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.mappe2_s188886_s344046.restauranter.AlleRestauranterActivity;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.ForsideActivity;
@@ -60,12 +61,25 @@ public class AlleBestillingerActivity extends AppCompatActivity {
                         }
                     }
                 }
+                textView.setOnClickListener((View view) -> {
+                    Intent intent = new Intent(getApplicationContext(), EndreBestillingActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("bestillingId", bestilling.getId());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    finish();
+                });
             } catch (NullPointerException e) {
                 if (db.finnRestaurant(bestilling.getRestaurantid()) == null) {
                     ut.append("Bestilling #").append(bestilling.getId()).append(" er ugyldig. \n");
                 }
                 textView.setOnClickListener((View view) -> {
-                    Toast.makeText(this, "Restauranten har blitt slettet", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, "Restauranten har blitt slettet", Toast.LENGTH_SHORT).show();
+                //TODO Move this out
+                    db.slettBestilling(bestilling.getId());
+                    Intent intent = new Intent(this, AlleBestillingerActivity.class);
+                    startActivity(intent);
+                    finish();
                 });
             }
 

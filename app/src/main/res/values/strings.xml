@@ -3,6 +3,7 @@
     <string name="app_name">mappe2_s188886_s344046</string>
 
     <!--    Delte ressurser-->
+    <string name="fortsett">Fortsett</string>
     <string name="avslutt">Avslutt</string>
     <string name="lagre">Lagre</string>
     <string name="endre">Endre</string>

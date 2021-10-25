@@ -97,7 +97,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
         listView.setAdapter(vennAdapter);
     }
 
-    public void bestillRestaurant(View view) {
+    public void lagreBestilling(View view) {
         SparseBooleanArray checkedItemPositions = listView.getCheckedItemPositions();
         for (int i = 0; i < checkedItemPositions.size(); i++) {
             if(checkedItemPositions.valueAt(i)) {
