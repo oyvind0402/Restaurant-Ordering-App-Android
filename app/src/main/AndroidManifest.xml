@@ -37,7 +37,7 @@
         <receiver android:name=".broadcast.SMSBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.example.mappe2_s188886_s344046.mybroadcast" />
+                <action android:name="com.example.mappe2_s188886_s344046.broadcast" />
             </intent-filter>
         </receiver>
     </application>
