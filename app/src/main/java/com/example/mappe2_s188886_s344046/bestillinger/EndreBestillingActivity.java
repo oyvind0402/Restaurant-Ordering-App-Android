@@ -45,6 +45,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
         innEndreVenner = (ListView) findViewById(R.id.innEndreBestillingVenneListe);
         innEndreDato = (EditText) findViewById(R.id.innEndreBestillingDato);
         innEndreTidspunkt = (EditText) findViewById(R.id.innEndreBestillingTidspunkt);
+        innEndreVenner.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         Bundle bundle = getIntent().getExtras();
         bestillingId = bundle.getLong("bestillingId");
@@ -88,11 +89,10 @@ public class EndreBestillingActivity extends AppCompatActivity {
                 innEndreVenner.setAdapter(vennAdapter);
 
                 for (int i = 0; i < vennAdapter.getCount(); i++) {
-                    View curVenn = vennAdapter.getView(i, null, innEndreVenner);
-                    for (Venn venn : venneListe) {
-                        if (curVenn.getTransitionName().equals(venn.toString())) {
-                            Log.w("ANA", "TRUE");
-                            //TODO Make this work
+                    Venn curVenn = vennAdapter.getItem(i);
+                    for(Venn venn: venneListe) {
+                        if(curVenn.getNavn().equals(venn.getNavn())) {
+                            innEndreVenner.setItemChecked(i, true);
                         }
                     }
                 }
