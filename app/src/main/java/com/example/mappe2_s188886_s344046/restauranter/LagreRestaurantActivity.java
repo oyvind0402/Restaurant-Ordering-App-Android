@@ -20,6 +20,8 @@ import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
 import com.example.mappe2_s188886_s344046.venner.LagreVennActivity;
 
+import java.util.List;
+
 public class LagreRestaurantActivity extends AppCompatActivity {
     EditText innNavn, innAdresse, innTelefon, innType;
     DBHandler db;
@@ -43,6 +45,13 @@ public class LagreRestaurantActivity extends AppCompatActivity {
     public void lagreRestaurant(View v) {
         Restaurant restaurant = new Restaurant(innNavn.getText().toString(), innAdresse.getText().toString(), innTelefon.getText().toString(), innType.getText().toString());
         if(!restaurant.getNavn().isEmpty() && !restaurant.getAdresse().isEmpty() && !restaurant.getTelefon().isEmpty() && !restaurant.getType().isEmpty()) {
+            List<Restaurant> restaurantListe = db.finnAlleRestauranter();
+            for(Restaurant r : restaurantListe) {
+                if(r.getNavn().equals(innNavn.getText().toString())) {
+                    Toast.makeText(this, "Det finnes allerede en restaurant med det navnet, prøv igjen!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
             db.leggTilRestaurant(restaurant);
             Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som restaurant!", Toast.LENGTH_SHORT).show();
             resetInput();
@@ -56,6 +65,13 @@ public class LagreRestaurantActivity extends AppCompatActivity {
         innAdresse.setText("");
         innTelefon.setText("");
         innType.setText("");
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, AlleRestauranterActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
