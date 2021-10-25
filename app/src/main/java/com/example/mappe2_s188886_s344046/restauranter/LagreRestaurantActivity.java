@@ -13,9 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
+import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.ForsideActivity;
 import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
 import com.example.mappe2_s188886_s344046.venner.LagreVennActivity;
 
 public class LagreRestaurantActivity extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class LagreRestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.lagrerestaurant_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        myToolbar.inflateMenu(R.menu.restaurant_menu);
+        myToolbar.inflateMenu(R.menu.menu);
         setSupportActionBar(myToolbar);
 
         innNavn = (EditText) findViewById(R.id.innNavn);
@@ -59,23 +61,15 @@ public class LagreRestaurantActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.restaurant_menu, menu);
+        inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.frontpage_activity) {
-            Intent i = new Intent(this, ForsideActivity.class);
+        if(item.getItemId() == R.id.settings_activity) {
+            Intent i = new Intent(this, SettingsActivity.class);
             startActivity(i);
-        } else if(item.getItemId() == R.id.friend_activity) {
-            Intent i2 = new Intent(this, LagreVennActivity.class);
-            startActivity(i2);
-        } else if(item.getItemId() == R.id.order_activity) {
-            Intent i3 = new Intent(this, AlleBestillingerActivity.class);
-            startActivity(i3);
-        } else {
-            return super.onOptionsItemSelected(item);
         }
         return true;
     }
