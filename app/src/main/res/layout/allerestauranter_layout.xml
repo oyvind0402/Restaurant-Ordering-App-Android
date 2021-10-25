@@ -15,13 +15,14 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="225dp"
         android:id="@+id/restaurantListView" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:text="@string/endre_restaurant"
         android:background="@color/purple_200"
         android:onClick="endreRestaurant" />

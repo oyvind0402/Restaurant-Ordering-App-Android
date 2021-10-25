@@ -32,8 +32,9 @@
         android:text="@string/venner" />
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/venneListe" />
+        android:layout_height="115dp"
+        android:id="@+id/venneListe"
+        />
 
     <TextView
         android:layout_width="wrap_content"
