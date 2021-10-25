@@ -1,7 +1,6 @@
 package com.example.mappe2_s188886_s344046.venner;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,14 +10,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
-import com.example.mappe2_s188886_s344046.utils.CheckboxCursorAdapter;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.ForsideActivity;
 import com.example.mappe2_s188886_s344046.restauranter.LagreRestaurantActivity;
@@ -68,7 +65,7 @@ public class AlleVennerActivity extends AppCompatActivity {
 
     public void slettVenn(View view) {
         if(venn != null) {
-            db.slettVenn(venn.get_id());
+            db.slettVenn(venn.getId());
             recreate();
         } else {
             Toast.makeText(this, "Du må velge en venn for å slette!", Toast.LENGTH_SHORT).show();
@@ -79,7 +76,7 @@ public class AlleVennerActivity extends AppCompatActivity {
         if(venn != null) {
             Intent intent = new Intent(this, EndreVennActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putLong("vennId", venn.get_id());
+            bundle.putLong("vennId", venn.getId());
             intent.putExtras(bundle);
             startActivity(intent);
             finish();

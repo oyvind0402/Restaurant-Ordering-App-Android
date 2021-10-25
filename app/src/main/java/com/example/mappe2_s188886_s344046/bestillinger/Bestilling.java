@@ -20,11 +20,11 @@ public class Bestilling {
         this.venner = venner;
     }
 
-    public long get_id() {
+    public long getId() {
         return _id;
     }
 
-    public void set_id(long _id) {
+    public void setId(long _id) {
         this._id = _id;
     }
 

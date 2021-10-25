@@ -75,7 +75,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 Restaurant restaurant = new Restaurant();
-                restaurant.set_id(cursor.getLong(0));
+                restaurant.setId(cursor.getLong(0));
                 restaurant.setNavn(cursor.getString(1));
                 restaurant.setAdresse(cursor.getString(2));
                 restaurant.setTelefon(cursor.getString(3));
@@ -95,7 +95,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Restaurant restaurant = new Restaurant();
         if(cursor.moveToFirst()) {
             do {
-                restaurant.set_id(cursor.getLong(0));
+                restaurant.setId(cursor.getLong(0));
                 restaurant.setNavn(cursor.getString(1));
                 restaurant.setAdresse(cursor.getString(2));
                 restaurant.setTelefon(cursor.getString(3));
@@ -119,7 +119,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(ADDRESS, restaurant.getAdresse());
         values.put(PHONE, restaurant.getTelefon());
         values.put(TYPE, restaurant.getType());
-        int endret = db.update(TABLENAME, values, KEY_ID + " = ?", new String[]{String.valueOf(restaurant.get_id())});
+        int endret = db.update(TABLENAME, values, KEY_ID + " = ?", new String[]{String.valueOf(restaurant.getId())});
         db.close();
         return endret;
     }
@@ -141,7 +141,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 Venn venn = new Venn();
-                venn.set_id(cursor.getLong(0));
+                venn.setId(cursor.getLong(0));
                 venn.setNavn(cursor.getString(1));
                 venn.setTelefon(cursor.getString(2));
                 venneListe.add(venn);
@@ -159,7 +159,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Venn venn = new Venn();
         if(cursor.moveToFirst()) {
             do {
-                venn.set_id(cursor.getLong(0));
+                venn.setId(cursor.getLong(0));
                 venn.setNavn(cursor.getString(1));
                 venn.setTelefon(cursor.getString(2));
 
@@ -185,7 +185,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NAME2, venn.getNavn());
         values.put(PHONE2, venn.getTelefon());
-        int endret = db.update(TABLENAME2, values, KEY_ID2 + " = ?", new String[]{String.valueOf(venn.get_id())});
+        int endret = db.update(TABLENAME2, values, KEY_ID2 + " = ?", new String[]{String.valueOf(venn.getId())});
         db.close();
         return endret;
     }
@@ -211,7 +211,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 } else {
                     venner.append(",");
                 }
-                venner.append(venn.get_id());
+                venner.append(venn.getId());
             }
         }
         values.put(VENNER, venner.toString());
@@ -227,7 +227,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 Bestilling bestilling = new Bestilling();
-                bestilling.set_id(cursor.getLong(0));
+                bestilling.setId(cursor.getLong(0));
                 bestilling.setRestaurantid(cursor.getLong(1));
                 bestilling.setDato(cursor.getString(2));
                 bestilling.setTidspunkt(cursor.getString(3));

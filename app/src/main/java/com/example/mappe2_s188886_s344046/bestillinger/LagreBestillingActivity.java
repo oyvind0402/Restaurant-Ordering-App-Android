@@ -21,7 +21,9 @@ import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LagreBestillingActivity extends AppCompatActivity {
     private Spinner spinner;
@@ -49,8 +51,12 @@ public class LagreBestillingActivity extends AppCompatActivity {
 
     public void populateSpinner() {
         List<Restaurant> restaurantListe = db.finnAlleRestauranter();
+
+        // Valgte en Map + Liste løsning, slik at nøkkel-verdiene er alltid paret (ingen fare for unsync)
+        Map<String, Long> map = new HashMap<>();
         List<String> liste = new ArrayList<>();
         for (int i = 0; i < restaurantListe.size(); i++) {
+            map.put(restaurantListe.get(i).getNavn(), restaurantListe.get(i).getId());
             liste.add(restaurantListe.get(i).getNavn());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(LagreBestillingActivity.this, android.R.layout.simple_spinner_item, liste);
@@ -59,8 +65,11 @@ public class LagreBestillingActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                restaurantid = Long.valueOf(i + 1);
-                Log.d("TAG", String.valueOf(restaurantid));
+                try {
+                    restaurantid = map.get(liste.get(i));
+                } catch (NullPointerException e) {
+                    Toast.makeText(getApplicationContext(), "Feil ved å velge restaurant", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

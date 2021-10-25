@@ -36,7 +36,7 @@ public class EndreVennActivity extends AppCompatActivity {
     public void endreVenn(View view) {
         if(!innEndreTelefon.getText().toString().isEmpty() && !innEndreNavn.getText().toString().isEmpty()) {
             Venn venn = new Venn();
-            venn.set_id(vennId);
+            venn.setId(vennId);
             venn.setNavn(innEndreNavn.getText().toString());
             venn.setTelefon(innEndreTelefon.getText().toString());
             db.oppdaterVenn(venn);

@@ -18,11 +18,11 @@ public class Restaurant {
         this.type = type;
     }
 
-    public long get_id() {
+    public long getId() {
         return _id;
     }
 
-    public void set_id(long _id) {
+    public void setId(long _id) {
         this._id = _id;
     }
 

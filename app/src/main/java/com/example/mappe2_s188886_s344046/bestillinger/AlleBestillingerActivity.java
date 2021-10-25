@@ -2,12 +2,13 @@ package com.example.mappe2_s188886_s344046.bestillinger;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -31,28 +32,46 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         myToolbar.inflateMenu(R.menu.bestilling_menu);
         setSupportActionBar(myToolbar);
 
-        TextView textView = (TextView) findViewById(R.id.bestillinger);
+        LinearLayout container = (LinearLayout) findViewById(R.id.bestillinger);
         DBHandler db = new DBHandler(this);
-        StringBuilder ut = new StringBuilder();
         List<Bestilling> allebestillinger = db.finnALleBestillinger();
         for (Bestilling bestilling: allebestillinger) {
-            ut.append("Restaurant: ")
-                    .append(db.finnRestaurant(bestilling.getRestaurantid()).getNavn())
+            TextView textView = new TextView(this);
+            StringBuilder ut = new StringBuilder();
+            try {
+            ut.append("Restaurant: " + db.finnRestaurant(bestilling.getRestaurantid()).getNavn())
                     .append("\n")
                     .append("Dato: ")
                     .append(bestilling.getDato())
                     .append("\n").append("Tidpunkt: ")
                     .append(bestilling.getTidspunkt())
-                    .append("\n")
-                    .append("Venner: ");
-            for(int i = 0; i < bestilling.getVenner().size(); i++) {
-                if(bestilling.getVenner().size() > 0) {
-                    ut.append(db.finnVenn(bestilling.getVenner().get(i).get_id()).getNavn()).append(" ");
+                    .append("\n");
+                if (bestilling.getVenner().size() > 0) {
+                    ut.append("Venner: ");
+                    for (int i = 0; i < bestilling.getVenner().size(); i++) {
+                        try {
+                            ut.append(db.finnVenn(bestilling.getVenner().get(i).getId()).getNavn());
+                        } catch (NullPointerException e) {
+                            ut.append("Venn har blitt slettet");
+                        }
+                        if (i < bestilling.getVenner().size() - 1) {
+                            ut.append("; ");
+                        }
+                    }
                 }
+            } catch (NullPointerException e) {
+                if (db.finnRestaurant(bestilling.getRestaurantid()) == null) {
+                    ut.append("Bestilling #").append(bestilling.getId()).append(" er ugyldig. \n");
+                }
+                textView.setOnClickListener((View view) -> {
+                    Toast.makeText(this, "Restauranten har blitt slettet", Toast.LENGTH_SHORT).show();
+                });
             }
+
             ut.append("\n\n");
+            textView.setText(ut.toString());
+            container.addView(textView);
         }
-        textView.setText(ut.toString());
     }
 
     public void lagreBestilling(View view) {

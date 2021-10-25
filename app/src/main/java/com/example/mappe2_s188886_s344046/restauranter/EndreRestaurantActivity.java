@@ -44,7 +44,7 @@ public class EndreRestaurantActivity extends AppCompatActivity {
                 !innEndreType.getText().toString().isEmpty()
         ) {
             Restaurant restaurant = new Restaurant();
-            restaurant.set_id(restaurantId);
+            restaurant.setId(restaurantId);
             restaurant.setNavn(innEndreNavn.getText().toString());
             restaurant.setAdresse(innEndreAdresse.getText().toString());
             restaurant.setTelefon(innEndreTelefon.getText().toString());

@@ -65,7 +65,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
 
    public void slettRestaurant(View view){
         if (restaurant != null) {
-            db.slettRestaurant(restaurant.get_id());
+            db.slettRestaurant(restaurant.getId());
             recreate();
         } else {
             Toast.makeText(this, "Du må velge en restaurant for å slette", Toast.LENGTH_SHORT).show();
@@ -76,7 +76,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
         if (restaurant != null) {
             Intent intent = new Intent(this, EndreRestaurantActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putLong("restaurantId", restaurant.get_id());
+            bundle.putLong("restaurantId", restaurant.getId());
             intent.putExtras(bundle);
             startActivity(intent);
             finish();
