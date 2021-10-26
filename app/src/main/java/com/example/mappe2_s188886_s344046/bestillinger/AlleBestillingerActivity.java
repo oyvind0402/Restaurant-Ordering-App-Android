@@ -41,7 +41,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
             TextView textView = new TextView(this);
             StringBuilder ut = new StringBuilder();
             try {
-            ut.append("Restaurant: " + db.finnRestaurant(bestilling.getRestaurantid()).getNavn())
+                ut.append(String.format("Restaurant: %s", db.finnRestaurant(bestilling.getRestaurantid()).getNavn()))
                     .append("\nDato: ")
                     .append(bestilling.getDato())
                     .append("\nTidpunkt: ")

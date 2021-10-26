@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -14,12 +13,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.mappe2_s188886_s344046.ForsideActivity;
 import com.example.mappe2_s188886_s344046.R;
-import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
-import com.example.mappe2_s188886_s344046.venner.LagreVennActivity;
 
 import java.util.List;
 
@@ -42,12 +38,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.restaurantListView);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                restaurant = (Restaurant) listView.getItemAtPosition(i);
-            }
-        });
+        listView.setOnItemClickListener((parent, view, i, id) -> restaurant = (Restaurant) listView.getItemAtPosition(i));
 
         populateRestaurantList();
    }

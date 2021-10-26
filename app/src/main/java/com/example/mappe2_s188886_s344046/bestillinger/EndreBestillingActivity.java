@@ -1,20 +1,16 @@
 package com.example.mappe2_s188886_s344046.bestillinger;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -74,44 +70,29 @@ public class EndreBestillingActivity extends AppCompatActivity {
         tidspunktKalender = Calendar.getInstance();
         datoKalender = Calendar.getInstance();
 
-        tidspunktDialogLytter = new TimePickerDialog.OnTimeSetListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                DecimalFormat format = new DecimalFormat("00");
-                String minuttFormat = format.format(minute);
-                String timeFormat = format.format(hourOfDay);
-                innEndreTidspunkt.setText(timeFormat + ":" + minuttFormat);
-            }
+        tidspunktDialogLytter = (view, hourOfDay, minute) -> {
+            DecimalFormat format = new DecimalFormat("00");
+            String minuttFormat = format.format(minute);
+            String timeFormat = format.format(hourOfDay);
+            innEndreTidspunkt.setText(String.format("%s:%s", timeFormat, minuttFormat));
         };
 
-        innEndreTidspunkt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int time = tidspunktKalender.get(Calendar.HOUR_OF_DAY);
-                int minutt = tidspunktKalender.get(Calendar.MINUTE);
-                TimePickerDialog dialog = new TimePickerDialog(EndreBestillingActivity.this, tidspunktDialogLytter, time, minutt, true);
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
-                dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
-                dialog.show();
-            }
+        innEndreTidspunkt.setOnClickListener(view -> {
+            int time = tidspunktKalender.get(Calendar.HOUR_OF_DAY);
+            int minutt = tidspunktKalender.get(Calendar.MINUTE);
+            TimePickerDialog dialog = new TimePickerDialog(EndreBestillingActivity.this, tidspunktDialogLytter, time, minutt, true);
+            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
+            dialog.show();
         });
 
-        datoDialogLytter = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                oppdaterDato(year, month, day);
-            }
-        };
+        datoDialogLytter = (view, year, month, day) -> oppdaterDato(year, month, day);
 
-        innEndreDato.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog dialog = new DatePickerDialog(EndreBestillingActivity.this, datoDialogLytter, datoKalender.get(Calendar.YEAR), datoKalender.get(Calendar.MONTH), datoKalender.get(Calendar.DAY_OF_MONTH));
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
-                dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
-                dialog.show();
-            }
+        innEndreDato.setOnClickListener(view -> {
+            DatePickerDialog dialog = new DatePickerDialog(EndreBestillingActivity.this, datoDialogLytter, datoKalender.get(Calendar.YEAR), datoKalender.get(Calendar.MONTH), datoKalender.get(Calendar.DAY_OF_MONTH));
+            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
+            dialog.show();
         });
 
     }
@@ -191,19 +172,13 @@ public class EndreBestillingActivity extends AppCompatActivity {
             }
 
 
-            if (displayAlert) {
-                new AlertDialog.Builder(this)
+            if (displayAlert) new AlertDialog.Builder(this)
                         .setTitle("Denne ordren inkluderer venner som har blitt slettet")
                         .setMessage("Hvis du fortsetter med å endre bestillingen, alle referanser til disse venner vil bli fjernet.")
                         .setPositiveButton(R.string.fortsett, null)
-                        .setNegativeButton(R.string.avslutt, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        })
+                        .setNegativeButton(R.string.avslutt, (dialog, which) -> onBackPressed())
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-            }
         }
     }
 

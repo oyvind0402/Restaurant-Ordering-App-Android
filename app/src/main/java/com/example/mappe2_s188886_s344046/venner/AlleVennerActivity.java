@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,12 +14,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
+import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
-import com.example.mappe2_s188886_s344046.ForsideActivity;
-import com.example.mappe2_s188886_s344046.restauranter.LagreRestaurantActivity;
-import com.example.mappe2_s188886_s344046.R;
 
 import java.util.List;
 
@@ -42,19 +38,16 @@ public class AlleVennerActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.venneListView);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                venn = (Venn) listView.getItemAtPosition(i);
-                Log.d("TAG", "Venn: " + venn);
-            }
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            venn = (Venn) listView.getItemAtPosition(i);
+            Log.d("TAG", "Venn: " + venn);
         });
         populateFriendList();
     }
 
     public void populateFriendList() {
         List<Venn> venneListe = db.finnAlleVenner();
-        ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<Venn>(this, android.R.layout.simple_list_item_single_choice, venneListe);
+        ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, venneListe);
         listView.setAdapter(vennAdapter);
     }
 
