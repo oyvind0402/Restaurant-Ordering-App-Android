@@ -54,7 +54,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
 
    public void populateRestaurantList(){
        List<Restaurant> restaurantListe = db.finnAlleRestauranter();
-       ArrayAdapter<Restaurant> restaurantAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, restaurantListe);
+       ArrayAdapter<Restaurant> restaurantAdapter = new ArrayAdapter<>(this, R.layout.restaurant_listview_layout, restaurantListe);
        listView.setAdapter(restaurantAdapter);
    }
 
