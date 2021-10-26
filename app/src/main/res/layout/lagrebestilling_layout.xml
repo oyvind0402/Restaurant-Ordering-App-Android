@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="115dp"
         android:id="@+id/venneListe"
-        />
+        android:fadeScrollbars="false" />
 
     <TextView
         android:layout_width="wrap_content"
