@@ -24,12 +24,16 @@ import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
+import com.example.mappe2_s188886_s344046.utils.Formatters;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -58,6 +62,9 @@ public class LagreBestillingActivity extends AppCompatActivity {
 
         innDato = (EditText) findViewById(R.id.innDato);
         innTidspunkt = (EditText) findViewById(R.id.innTidspunkt);
+        innTidspunkt.setHint("Dato må velges først");
+        innTidspunkt.setEnabled(false);
+
         spinner = (Spinner) findViewById(R.id.restaurant_dropdown);
         db = new DBHandler(getApplicationContext());
         venneListe = new ArrayList<>();
@@ -70,28 +77,14 @@ public class LagreBestillingActivity extends AppCompatActivity {
         tidspunktKalender = Calendar.getInstance();
         datoKalender = Calendar.getInstance();
 
-        tidspunktDialogLytter = (view, hourOfDay, minute) -> {
-            DecimalFormat format = new DecimalFormat("00");
-            String minuttFormat = format.format(minute);
-            String timeFormat = format.format(hourOfDay);
-            innTidspunkt.setText(String.format("%s:%s", timeFormat, minuttFormat));
-        };
-
-        innTidspunkt.setOnClickListener(view -> {
-            int time = tidspunktKalender.get(Calendar.HOUR_OF_DAY);
-            int minutt = tidspunktKalender.get(Calendar.MINUTE);
-            TimePickerDialog dialog = new TimePickerDialog(LagreBestillingActivity.this, tidspunktDialogLytter, time, minutt, true);
-            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
-            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
-            dialog.show();
-        });
-
         datoDialogLytter = (view, year, month, day) -> oppdaterDato(year, month, day);
 
         innDato.setOnClickListener(view -> {
             DatePickerDialog dialog = new DatePickerDialog(LagreBestillingActivity.this, datoDialogLytter, datoKalender.get(Calendar.YEAR), datoKalender.get(Calendar.MONTH), datoKalender.get(Calendar.DAY_OF_MONTH));
             dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
             dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
+            Calendar dagensDato = Calendar.getInstance(Locale.getDefault());
+            dialog.getDatePicker().setMinDate(dagensDato.getTimeInMillis());
             dialog.show();
         });
     }
@@ -104,6 +97,38 @@ public class LagreBestillingActivity extends AppCompatActivity {
         SimpleDateFormat datoFormat = new SimpleDateFormat(format, Locale.getDefault());
 
         innDato.setText(datoFormat.format(datoKalender.getTime()));
+        aktivereTid(year, month, day);
+    }
+
+    public void aktivereTid(int year, int month, int day) {
+        innTidspunkt.setEnabled(true);
+        innTidspunkt.setHint("Tidspunkt");
+
+        tidspunktDialogLytter = (view, hourOfDay, minute) -> {
+            Calendar dagensDato = Calendar.getInstance(Locale.getDefault());
+            Calendar valgtDato = Calendar.getInstance(Locale.getDefault());
+            Formatters.formatDate(valgtDato, year, month, day, hourOfDay, minute);
+
+            if (valgtDato.after(dagensDato)){
+                DecimalFormat format = new DecimalFormat("00");
+                String minuttFormat = format.format(minute);
+                String timeFormat = format.format(hourOfDay);
+                innTidspunkt.setText(String.format("%s:%s", timeFormat, minuttFormat));
+            } else {
+                innTidspunkt.setText("");
+                Toast.makeText(this, "Valgt tid må være i fremtiden", Toast.LENGTH_LONG).show();
+                innTidspunkt.setHint("Tidspunkt i FREMTIDEN");
+            }
+        };
+
+        innTidspunkt.setOnClickListener(view -> {
+            int time = tidspunktKalender.get(Calendar.HOUR_OF_DAY);
+            int minutt = tidspunktKalender.get(Calendar.MINUTE);
+            TimePickerDialog dialog = new TimePickerDialog(LagreBestillingActivity.this, tidspunktDialogLytter, time, minutt, true);
+            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
+            dialog.show();
+        });
     }
 
     public void populateSpinner() {
