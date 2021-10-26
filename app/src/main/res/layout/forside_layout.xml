@@ -12,33 +12,33 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="@dimen/margin_sm"
         android:background="@color/purple_200"
         app:title="@string/restaurant_order" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/txt_width_lg"
+        android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/margin_xl"
         android:text="@string/restauranter"
         android:background="@color/purple_200"
         android:onClick="visRestauranter" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/txt_width_lg"
+        android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_md"
         android:text="@string/venner"
         android:background="@color/purple_200"
         android:onClick="visVenner" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/txt_width_lg"
+        android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_md"
         android:text="@string/bestillinger"
         android:background="@color/purple_200"
         android:onClick="visBestillinger" />

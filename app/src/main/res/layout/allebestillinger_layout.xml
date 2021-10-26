@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="@dimen/margin_sm"
         android:background="@color/purple_200"
         app:title="@string/restaurant_order" />
 
@@ -19,8 +19,8 @@
         android:text="@string/alle_bestillinger" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxHeight="325dp"
+        android:layout_height="@dimen/txt_height_lg"
+        android:maxHeight="@dimen/txt_height_md"
         android:fadeScrollbars="false">
 
         <LinearLayout
@@ -34,7 +34,7 @@
 
 <!--    <androidx.appcompat.widget.AppCompatButton-->
 <!--        android:layout_width="250dp"-->
-<!--        android:layout_height="60dp"-->
+<!--        android:layout_height="@dimen/btn_height"-->
 <!--        android:layout_gravity="center"-->
 <!--        android:text="@string/endre_bestilling"-->
 <!--        android:background="@color/purple_200"-->
@@ -42,7 +42,7 @@
 
 <!--    <androidx.appcompat.widget.AppCompatButton-->
 <!--        android:layout_width="250dp"-->
-<!--        android:layout_height="60dp"-->
+<!--        android:layout_height="@dimen/btn_height"-->
 <!--        android:layout_gravity="center"-->
 <!--        android:layout_marginTop="5dp"-->
 <!--        android:text="@string/slett_bestilling"-->
@@ -50,10 +50,10 @@
 <!--        android:onClick="slettBestilling" />-->
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/txt_width_lg"
+        android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_md"
         android:text="@string/ny_bestilling"
         android:background="@color/purple_200"
         android:onClick="lagreBestilling" />

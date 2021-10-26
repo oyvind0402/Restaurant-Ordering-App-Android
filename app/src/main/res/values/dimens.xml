@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btn_height">60dp</dimen>
+    <dimen name="txt_height_sm">50dp</dimen>
+    <dimen name="txt_height_md">225dp</dimen>
+    <dimen name="txt_height_lg">400dp</dimen>
+    <dimen name="txt_width_sm">150dp</dimen>
+    <dimen name="txt_width_lg">250dp</dimen>
+    <dimen name="margin_sm">5dp</dimen>
+    <dimen name="margin_md">10dp</dimen>
+    <dimen name="margin_xl">100dp</dimen>
+</resources>

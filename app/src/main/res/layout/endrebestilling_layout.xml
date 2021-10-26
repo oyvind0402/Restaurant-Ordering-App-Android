@@ -72,7 +72,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/lagre_bestilling"
         android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="@string/endre"
