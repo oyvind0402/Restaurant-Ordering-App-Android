@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bestillinger.LagreBestillingActivity"
+    tools:context=".bestillinger.EndreBestillingActivity"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -46,7 +46,11 @@
         android:layout_height="50dp"
         android:id="@+id/innEndreBestillingDato"
         android:hint="@string/dato"
-        android:inputType="text"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="none"
         android:importantForAutofill="no" />
 
     <TextView
@@ -58,7 +62,11 @@
         android:layout_height="50dp"
         android:id="@+id/innEndreBestillingTidspunkt"
         android:hint="@string/tidspunkt"
-        android:inputType="text"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="none"
         android:importantForAutofill="no" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -67,7 +75,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="@string/bestill"
+        android:text="@string/endre"
         android:background="@color/purple_200"
         android:onClick="endreBestilling" />
 

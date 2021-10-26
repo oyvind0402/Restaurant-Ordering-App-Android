@@ -45,7 +45,11 @@
         android:layout_height="50dp"
         android:id="@+id/innDato"
         android:hint="@string/dato"
-        android:inputType="text"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="none"
         android:importantForAutofill="no" />
 
     <TextView
@@ -55,9 +59,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:id="@+id/innTidspunkt"
         android:hint="@string/tidspunkt"
-        android:inputType="text"
+        android:inputType="none"
         android:importantForAutofill="no" />
 
     <androidx.appcompat.widget.AppCompatButton

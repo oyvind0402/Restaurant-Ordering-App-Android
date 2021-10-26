@@ -17,11 +17,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/alle_bestillinger" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:id="@+id/bestillinger"
-        android:orientation="vertical" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="325dp"
+        android:fadeScrollbars="false">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bestillinger"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
 
 <!--    <androidx.appcompat.widget.AppCompatButton-->
 <!--        android:layout_width="250dp"-->
@@ -44,7 +53,7 @@
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="@string/ny_bestilling"
         android:background="@color/purple_200"
         android:onClick="lagreBestilling" />

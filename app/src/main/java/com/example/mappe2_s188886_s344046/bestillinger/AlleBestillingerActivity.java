@@ -42,14 +42,12 @@ public class AlleBestillingerActivity extends AppCompatActivity {
             StringBuilder ut = new StringBuilder();
             try {
             ut.append("Restaurant: " + db.finnRestaurant(bestilling.getRestaurantid()).getNavn())
-                    .append("\n")
-                    .append("Dato: ")
+                    .append("\nDato: ")
                     .append(bestilling.getDato())
-                    .append("\n").append("Tidpunkt: ")
-                    .append(bestilling.getTidspunkt())
-                    .append("\n");
+                    .append("\nTidpunkt: ")
+                    .append(bestilling.getTidspunkt());
                 if (bestilling.getVenner().size() > 0) {
-                    ut.append("Venner: ");
+                    ut.append("\nVenner: ");
                     for (int i = 0; i < bestilling.getVenner().size(); i++) {
                         try {
                             ut.append(db.finnVenn(bestilling.getVenner().get(i).getId()).getNavn());
@@ -83,7 +81,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
                 });
             }
 
-            ut.append("\n\n");
+            ut.append("\n");
             textView.setText(ut.toString());
             container.addView(textView);
         }

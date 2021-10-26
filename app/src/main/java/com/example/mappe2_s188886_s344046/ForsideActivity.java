@@ -69,11 +69,6 @@ public class ForsideActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void visSettings(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
-
     public void visBestillinger(View view) {
         Intent intent = new Intent(this, AlleBestillingerActivity.class);
         startActivity(intent);

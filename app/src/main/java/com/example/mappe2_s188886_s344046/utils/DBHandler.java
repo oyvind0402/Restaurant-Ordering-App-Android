@@ -12,9 +12,7 @@ import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -104,8 +102,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 restaurant.setTelefon(cursor.getString(3));
                 restaurant.setType(cursor.getString(4));
             } while (cursor.moveToNext());
+            cursor.close();
             return restaurant;
         }
+        cursor.close();
         return null;
     }
 
@@ -122,7 +122,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(ADDRESS, restaurant.getAdresse());
         values.put(PHONE, restaurant.getTelefon());
         values.put(TYPE, restaurant.getType());
-        int endret = db.update(TABLENAME, values, KEY_ID + " = ?", new String[]{String.valueOf(restaurant.getId())});
+        db.update(TABLENAME, values, KEY_ID + " = ?", new String[]{String.valueOf(restaurant.getId())});
         db.close();
     }
 
@@ -166,8 +166,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 venn.setTelefon(cursor.getString(2));
 
             } while (cursor.moveToNext());
+            cursor.close();
             return venn;
         }
+        cursor.close();
         return null;
     }
 
@@ -182,7 +184,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NAME2, venn.getNavn());
         values.put(PHONE2, venn.getTelefon());
-        int endret = db.update(TABLENAME2, values, KEY_ID2 + " = ?", new String[]{String.valueOf(venn.getId())});
+        db.update(TABLENAME2, values, KEY_ID2 + " = ?", new String[]{String.valueOf(venn.getId())});
         db.close();
     }
 
@@ -229,8 +231,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 String venner = cursor.getString(4);
                 bestilling.setVenner(finnVenner(venner));
             } while (cursor.moveToNext());
+            cursor.close();
             return bestilling;
         }
+        cursor.close();
         return null;
     }
 
@@ -254,6 +258,31 @@ public class DBHandler extends SQLiteOpenHelper {
             db.close();
         }
         return bestillingsListe;
+    }
+
+    public void oppdaterBestilling(Bestilling bestilling) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(RESTAURANT, bestilling.getRestaurantid());
+        values.put(DATO, bestilling.getDato());
+        values.put(TIDSPUNKT, bestilling.getTidspunkt());
+        StringBuilder venner = new StringBuilder();
+        List<Venn> venneListe = bestilling.getVenner();
+        if(venneListe.size() > 0) {
+            //Hvis det er den første verdien skal vi ikke appende et kommategn.
+            boolean ikkeMellomrom = true;
+            for(Venn venn: venneListe) {
+                if(ikkeMellomrom) {
+                    ikkeMellomrom = false;
+                } else {
+                    venner.append(",");
+                }
+                venner.append(venn.getId());
+            }
+        }
+        values.put(VENNER, venner.toString());
+        db.update(TABLENAME3, values, KEY_ID3 + " = ?", new String[]{String.valueOf(bestilling.getId())});
+        db.close();
     }
 
     public List<Venn> finnVenner(String venner) {
