@@ -2,10 +2,13 @@ package com.example.mappe2_s188886_s344046;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +23,8 @@ import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
 
 public class ForsideActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "42";
+    private int MY_PERMISSIONS_REQUEST_SEND_SMS;
+    private int MY_PHONE_STATE_PERMISSION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class ForsideActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu);
         setSupportActionBar(myToolbar);
+        giTilgang();
     }
 
     private void createNotificationChannel() {
@@ -40,6 +46,15 @@ public class ForsideActivity extends AppCompatActivity {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void giTilgang() {
+        MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+
+        if(MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_DENIED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE}, 0);
         }
     }
 

@@ -19,7 +19,7 @@
         android:text="@string/alle_bestillinger" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_lg"
+        android:layout_height="wrap_content"
         android:maxHeight="@dimen/txt_height_md"
         android:fadeScrollbars="false">
 

@@ -1,9 +1,21 @@
-package com.example.mappe2_s188886_s344046.broadcast;
+package com.example.mappe2_s188886_s344046.services;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.IBinder;
+import android.telephony.SmsManager;
 
+import androidx.core.app.NotificationCompat;
+import androidx.preference.PreferenceManager;
+
+import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
 import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.venner.Venn;
@@ -29,7 +41,7 @@ public class SMSService extends Service {
         List<Bestilling> bestillingsListe = db.finnALleBestillinger();
         String dagensDato = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-        /*if(orderIsToday(bestillingsListe, dagensDato, db)) {
+        if(orderIsToday(bestillingsListe, dagensDato, db)) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("smsMessage", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venner + ".");
@@ -57,14 +69,14 @@ public class SMSService extends Service {
             SmsManager sms = SmsManager.getDefault();
             String message = sharedPreferences.getString("smsMessage", "");
             for(int j = 0; j < bestillingsListe.size() ; j++) {
-                if(venner.size() > 0) {
-                    sms.sendTextMessage(venner.get(j).getTelefon(), null, message, null, null);
+                if(bestillingsListe.get(j).getDato().equals(dagensDato)) {
+                    if(venner.size() > 0) {
+                        sms.sendTextMessage(venner.get(j).getTelefon(), null, message, null, null);
+                    }
                 }
             }
 
         }
-
-         */
         return super.onStartCommand(intent, flags, startId);
     }
 

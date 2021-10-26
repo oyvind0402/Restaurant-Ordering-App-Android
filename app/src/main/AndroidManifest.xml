@@ -33,8 +33,8 @@
         <activity android:name=".venner.AlleVennerActivity" />
         <activity android:name=".venner.LagreVennActivity" />
         <activity android:name=".venner.EndreVennActivity" />
-        <service android:name=".broadcast.PeriodicalService" />
-        <service android:name=".broadcast.SMSService" />
+        <service android:name=".services.PeriodicalService" />
+        <service android:name=".services.SMSService" />
         <receiver android:name=".broadcast.SMSBroadcastReceiver"
             android:exported="true">
             <intent-filter>

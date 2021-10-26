@@ -11,7 +11,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.example.mappe2_s188886_s344046.R;
-import com.example.mappe2_s188886_s344046.broadcast.SMSService;
+import com.example.mappe2_s188886_s344046.services.SMSService;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener {
     @Override
@@ -52,7 +52,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     public void startService() {
         Intent intent = new Intent();
-        intent.setAction("com.example.mappe2_s188886_s344046.mybroadcast");
+        intent.setAction("com.example.mappe2_s188886_s344046.broadcast");
         getContext().sendBroadcast(intent);
     }
 
