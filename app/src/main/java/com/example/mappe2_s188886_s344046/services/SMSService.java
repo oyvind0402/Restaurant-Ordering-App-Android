@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
 import android.telephony.SmsManager;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
@@ -44,7 +45,14 @@ public class SMSService extends Service {
         if(orderIsToday(bestillingsListe, dagensDato, db)) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("smsMessage", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venner + ".");
+            StringBuilder venneString = new StringBuilder();
+            if(venner.size() > 0) {
+                for(Venn venn: venner) {
+                    venneString.append(venn.getNavn()).append(", ");
+                }
+                venneString.delete(venneString.length()-2, venneString.length());
+            }
+            editor.putString("smsMessage", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venneString.toString() + ".");
             editor.apply();
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
