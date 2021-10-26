@@ -25,6 +25,7 @@ public class ForsideActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "42";
     private int MY_PERMISSIONS_REQUEST_SEND_SMS;
     private int MY_PHONE_STATE_PERMISSION;
+    private int MY_PHONE_BOOT_COMPLETED;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,10 @@ public class ForsideActivity extends AppCompatActivity {
     private void giTilgang() {
         MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+        MY_PHONE_BOOT_COMPLETED = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_BOOT_COMPLETED);
 
-        if(MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_DENIED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE}, 0);
+        if(MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_DENIED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_DENIED && MY_PHONE_BOOT_COMPLETED == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.RECEIVE_BOOT_COMPLETED}, 0);
         }
     }
 

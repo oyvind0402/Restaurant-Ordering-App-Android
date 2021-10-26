@@ -3,6 +3,7 @@
     package="com.example.mappe2_s188886_s344046">
     <uses-permission android:name="com.example.mappe2_s188886_s344046.permission" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -36,9 +37,11 @@
         <service android:name=".services.PeriodicalService" />
         <service android:name=".services.SMSService" />
         <receiver android:name=".broadcast.SMSBroadcastReceiver"
-            android:exported="true">
+            android:exported="true"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="com.example.mappe2_s188886_s344046.broadcast" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
     </application>
