@@ -1,5 +1,6 @@
 package com.example.mappe2_s188886_s344046.bestillinger;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -9,6 +10,7 @@ import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,6 +52,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener datoDialogLytter;
     Calendar tidspunktKalender;
     Calendar datoKalender;
+    Toast toastMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -141,14 +144,32 @@ public class LagreBestillingActivity extends AppCompatActivity {
             map.put(restaurantListe.get(i).getNavn(), restaurantListe.get(i).getId());
             liste.add(restaurantListe.get(i).getNavn());
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(LagreBestillingActivity.this, android.R.layout.simple_spinner_item, liste);
+        liste.add("Velg Restaurant");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(LagreBestillingActivity.this, android.R.layout.simple_spinner_item, liste) {
+            @Override
+            public int getCount() {
+                //Gjør så den siste verdien i listen ikke vises i dropdownlisten etter man har valgt noe annet
+                return liste.size() - 1;
+            }
+        };
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
-                    restaurantid = map.get(liste.get(i));
+                    //Hvis det ikke er placeholder verdien så initialiserer vi noen variabler
+                    if(spinner.getSelectedItemPosition() != liste.size() - 1) {
+                        restaurantid = map.get(liste.get(i));
+                        Restaurant restaurant = db.finnRestaurant(restaurantid);
+
+                        if(toastMessage != null) {
+                            toastMessage.cancel();
+                        }
+
+                        toastMessage = Toast.makeText(getApplicationContext(), restaurant.toString(), Toast.LENGTH_LONG);
+                        toastMessage.show();
+                    }
                 } catch (NullPointerException e) {
                     Toast.makeText(getApplicationContext(), "Feil ved å velge restaurant", Toast.LENGTH_SHORT).show();
                 }
@@ -159,6 +180,8 @@ public class LagreBestillingActivity extends AppCompatActivity {
 
             }
         });
+        //Setter Velg Restaurant som første valg i dropdown'en
+        spinner.setSelection(liste.size() - 1);
     }
 
     public void populateFriendList() {

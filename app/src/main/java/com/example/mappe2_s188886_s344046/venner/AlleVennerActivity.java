@@ -1,5 +1,6 @@
 package com.example.mappe2_s188886_s344046.venner;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -59,10 +61,12 @@ public class AlleVennerActivity extends AppCompatActivity {
 
     public void slettVenn(View view) {
         if(venn != null) {
-            db.slettVenn(venn.getId());
-            Intent intent = new Intent(this, AlleVennerActivity.class);
-            startActivity(intent);
-            finish();
+            new AlertDialog.Builder(this).setTitle("Sletting av " + venn.getNavn()).setMessage("Er du sikker på at du vil slette " + venn.getNavn() + "?").setPositiveButton("Ja", (dialogInterface, i) -> {
+                db.slettVenn(venn.getId());
+                Intent intent = new Intent(getApplicationContext(), AlleVennerActivity.class);
+                startActivity(intent);
+                finish();
+            }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + venn.getNavn() + " ikke vellykket.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
             Toast.makeText(this, "Du må velge en venn for å slette!", Toast.LENGTH_SHORT).show();
         }
