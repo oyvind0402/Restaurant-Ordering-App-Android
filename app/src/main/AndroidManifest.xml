@@ -30,6 +30,7 @@
         <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".bestillinger.LagreBestillingActivity" />
         <activity android:name=".bestillinger.AlleBestillingerActivity" />
+        <activity android:name=".bestillinger.InaktiveBestillingerActivity" />
         <activity android:name=".bestillinger.EndreBestillingActivity" />
         <activity android:name=".venner.AlleVennerActivity" />
         <activity android:name=".venner.LagreVennActivity" />

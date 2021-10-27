@@ -20,7 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
-import com.example.mappe2_s188886_s344046.utils.Formatters;
+import com.example.mappe2_s188886_s344046.utils.Utilities;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.text.DecimalFormat;
@@ -80,6 +80,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
             dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
             Date dagensDato = new Date();
             dialog.getDatePicker().setMinDate(dagensDato.getTime());
+            dialog.setTitle("");
             dialog.show();
         });
 
@@ -92,7 +93,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
 
                 Calendar dagensDato = Calendar.getInstance(Locale.getDefault());
                 Calendar valgtDato = Calendar.getInstance(Locale.getDefault());
-                Formatters.formatDate(valgtDato, year, month - 1, day, hourOfDay, minute);
+                Utilities.formatDate(valgtDato, year, month - 1, day, hourOfDay, minute);
 
                 if (valgtDato.after(dagensDato)) {
                     DecimalFormat format = new DecimalFormat("00");

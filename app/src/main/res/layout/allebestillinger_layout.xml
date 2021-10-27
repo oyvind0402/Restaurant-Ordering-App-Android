@@ -13,38 +13,17 @@
         android:background="@color/purple_200"
         app:title="@string/bestillinger" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="@dimen/txt_height_md"
-        android:fadeScrollbars="false"
-        android:orientation="vertical">
+        android:text="@string/aktive_bestillinger" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/aktive_bestillinger" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/txt_height_md"
+        android:id="@+id/aktiveBestillinger"
+        android:fadeScrollbars="false" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/aktiveBestillinger"
-            android:orientation="vertical" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/inaktiveBestillingerTxt"
-            />
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/inaktiveBestillinger"
-            android:orientation="vertical" />
-
-    </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
@@ -70,5 +49,14 @@
         android:text="@string/ny_bestilling"
         android:background="@color/purple_200"
         android:onClick="lagreBestilling" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:id="@+id/til_inaktive"
+        android:onClick="tilInaktive"
+        android:text="@string/til_inaktive_bestillinger"
+        />
 
 </LinearLayout>

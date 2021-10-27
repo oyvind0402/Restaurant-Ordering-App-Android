@@ -1,6 +1,5 @@
 package com.example.mappe2_s188886_s344046.bestillinger;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -10,7 +9,6 @@ import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,16 +24,13 @@ import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
-import com.example.mappe2_s188886_s344046.utils.Formatters;
+import com.example.mappe2_s188886_s344046.utils.Utilities;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
-import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -112,7 +107,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
         tidspunktDialogLytter = (view, hourOfDay, minute) -> {
             Calendar dagensDato = Calendar.getInstance(Locale.getDefault());
             Calendar valgtDato = Calendar.getInstance(Locale.getDefault());
-            Formatters.formatDate(valgtDato, year, month, day, hourOfDay, minute);
+            Utilities.formatDate(valgtDato, year, month, day, hourOfDay, minute);
 
             if (valgtDato.after(dagensDato)){
                 DecimalFormat format = new DecimalFormat("00");
