@@ -53,6 +53,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
     Calendar tidspunktKalender;
     Calendar datoKalender;
     Toast toastMessage;
+    List<String> liste;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,7 +141,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
 
         // Valgte en Map + Liste løsning, slik at nøkkel-verdiene er alltid paret (ingen fare for unsync)
         Map<String, Long> map = new HashMap<>();
-        List<String> liste = new ArrayList<>();
+        liste = new ArrayList<>();
         for (int i = 0; i < restaurantListe.size(); i++) {
             map.put(restaurantListe.get(i).getNavn(), restaurantListe.get(i).getId());
             liste.add(restaurantListe.get(i).getNavn());
@@ -200,7 +201,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
             }
         }
 
-        if(!innDato.getText().toString().isEmpty() && !innTidspunkt.getText().toString().isEmpty() && restaurantid > 0) {
+        if(!innDato.getText().toString().isEmpty() && !innTidspunkt.getText().toString().isEmpty() && spinner.getSelectedItemPosition() != liste.size() -1) {
             Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
             db.leggTilBestilling(bestilling);
             Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
