@@ -17,6 +17,8 @@ import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LagreRestaurantActivity extends AppCompatActivity {
     EditText innNavn, innAdresse, innTelefon, innType;
@@ -41,19 +43,36 @@ public class LagreRestaurantActivity extends AppCompatActivity {
     public void lagreRestaurant(View v) {
         Restaurant restaurant = new Restaurant(innNavn.getText().toString(), innAdresse.getText().toString(), innTelefon.getText().toString(), innType.getText().toString());
         if(!restaurant.getNavn().isEmpty() && !restaurant.getAdresse().isEmpty() && !restaurant.getTelefon().isEmpty() && !restaurant.getType().isEmpty()) {
-            List<Restaurant> restaurantListe = db.finnAlleRestauranter();
-            for(Restaurant r : restaurantListe) {
-                if(r.getNavn().equals(innNavn.getText().toString())) {
-                    Toast.makeText(this, "Det finnes allerede en restaurant med det navnet, prøv igjen!", Toast.LENGTH_SHORT).show();
-                    return;
+            if(validerInput()) {
+                List<Restaurant> restaurantListe = db.finnAlleRestauranter();
+                for(Restaurant r : restaurantListe) {
+                    if(r.getNavn().equals(innNavn.getText().toString())) {
+                        Toast.makeText(this, "Det finnes allerede en restaurant med det navnet, prøv igjen!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
+                db.leggTilRestaurant(restaurant);
+                Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som restaurant!", Toast.LENGTH_SHORT).show();
+                resetInput();
+            } else {
+                Toast.makeText(this, "Feil input, prøv igjen med andre input som er gyldige!", Toast.LENGTH_LONG).show();
             }
-            db.leggTilRestaurant(restaurant);
-            Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som restaurant!", Toast.LENGTH_SHORT).show();
-            resetInput();
+
         } else {
             Toast.makeText(this, "Du må skrive noe inn i alle feltene for å lagre en restaurant!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public boolean validerInput() {
+        Pattern telefonPattern = Pattern.compile("[0-9 \\-()+]{5,25}");
+        Pattern navnPattern = Pattern.compile("[a-zA-ZÆØÅæøå \\-.]{2,50}");
+        Pattern adressePattern = Pattern.compile("[0-9a-zA-ZøæåØÆÅ. \\-]{2,50}");
+        Pattern typePattern = Pattern.compile("[0-9a-zA-ZøæåØÆÅ. \\-]{2,50}");
+
+        return telefonPattern.matcher(innTelefon.getText().toString()).matches()
+                && navnPattern.matcher(innNavn.getText().toString()).matches()
+                && adressePattern.matcher(innAdresse.getText().toString()).matches()
+                && typePattern.matcher(innType.getText().toString()).matches();
     }
 
     public void resetInput() {

@@ -16,6 +16,8 @@ import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
+import java.util.regex.Pattern;
+
 public class EndreVennActivity extends AppCompatActivity {
     DBHandler db;
     long vennId;
@@ -44,15 +46,27 @@ public class EndreVennActivity extends AppCompatActivity {
 
     public void endreVenn(View view) {
         if(!innEndreTelefon.getText().toString().isEmpty() && !innEndreNavn.getText().toString().isEmpty()) {
-            Venn venn = new Venn();
-            venn.setId(vennId);
-            venn.setNavn(innEndreNavn.getText().toString());
-            venn.setTelefon(innEndreTelefon.getText().toString());
-            db.oppdaterVenn(venn);
-            Toast.makeText(this, venn.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
+            if(validerInput()) {
+                Venn venn = new Venn();
+                venn.setId(vennId);
+                venn.setNavn(innEndreNavn.getText().toString());
+                venn.setTelefon(innEndreTelefon.getText().toString());
+                db.oppdaterVenn(venn);
+                Toast.makeText(this, venn.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Feil input, prøv igjen med andre input som er gyldige!", Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(this, "Du må skrive inn både navn og telefon for å oppdatere!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public boolean validerInput() {
+        Pattern telefonPattern = Pattern.compile("[0-9 \\-()+]{5,25}");
+        Pattern navnPattern = Pattern.compile("[a-zA-ZÆØÅæøå \\-.]{2,50}");
+
+        return telefonPattern.matcher(innEndreTelefon.getText().toString()).matches()
+                && navnPattern.matcher(innEndreNavn.getText().toString()).matches();
     }
 
     @Override

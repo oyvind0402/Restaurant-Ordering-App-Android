@@ -16,6 +16,8 @@ import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
+import java.util.regex.Pattern;
+
 public class EndreRestaurantActivity extends AppCompatActivity {
     DBHandler db;
     long restaurantId;
@@ -52,17 +54,33 @@ public class EndreRestaurantActivity extends AppCompatActivity {
                 !innEndreTelefon.getText().toString().isEmpty() &&
                 !innEndreType.getText().toString().isEmpty()
         ) {
-            Restaurant restaurant = new Restaurant();
-            restaurant.setId(restaurantId);
-            restaurant.setNavn(innEndreNavn.getText().toString());
-            restaurant.setAdresse(innEndreAdresse.getText().toString());
-            restaurant.setTelefon(innEndreTelefon.getText().toString());
-            restaurant.setType(innEndreType.getText().toString());
-            db.oppdaterRestaurant(restaurant);
-            Toast.makeText(this, restaurant.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
+            if(validerInput()) {
+                Restaurant restaurant = new Restaurant();
+                restaurant.setId(restaurantId);
+                restaurant.setNavn(innEndreNavn.getText().toString());
+                restaurant.setAdresse(innEndreAdresse.getText().toString());
+                restaurant.setTelefon(innEndreTelefon.getText().toString());
+                restaurant.setType(innEndreType.getText().toString());
+                db.oppdaterRestaurant(restaurant);
+                Toast.makeText(this, restaurant.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Feil input, prøv igjen med andre input som er gyldige!", Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(this, "Du må fylle inn alle feltene for å oppdatere!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public boolean validerInput() {
+        Pattern telefonPattern = Pattern.compile("[0-9 \\-()+]{5,25}");
+        Pattern navnPattern = Pattern.compile("[a-zA-ZÆØÅæøå \\-.]{2,50}");
+        Pattern adressePattern = Pattern.compile("[0-9a-zA-ZøæåØÆÅ. \\-]{2,50}");
+        Pattern typePattern = Pattern.compile("[0-9a-zA-ZøæåØÆÅ. \\-]{2,50}");
+
+        return telefonPattern.matcher(innEndreTelefon.getText().toString()).matches()
+                && navnPattern.matcher(innEndreNavn.getText().toString()).matches()
+                && adressePattern.matcher(innEndreAdresse.getText().toString()).matches()
+                && typePattern.matcher(innEndreType.getText().toString()).matches();
     }
 
     @Override
