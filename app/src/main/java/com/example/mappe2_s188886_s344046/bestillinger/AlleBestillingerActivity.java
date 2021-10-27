@@ -66,8 +66,6 @@ public class AlleBestillingerActivity extends AppCompatActivity {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
                 valgtDato.setTime(Objects.requireNonNull(df.parse(bestilling.getDato() + " " + bestilling.getTidspunkt())));
 
-                Log.w("ANA_DD", ""+dagensDato.getTime().toString());
-                Log.w("ANA_VD", ""+valgtDato.getTime().toString());
                 if (valgtDato.before(dagensDato)){
                     inaktiveBestillingerList.add(bestilling);
                 } else {
@@ -176,8 +174,8 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         SimpleAdapter adapter = new SimpleAdapter(this, data,
                 R.layout.simple_list_item_2_single_choice,
                 new String[] {"item", "subitem"},
-                new int[] {android.R.id.text1,
-                        android.R.id.text2});
+                new int[] {R.id.text1,
+                        R.id.text2});
         lv.setAdapter(adapter);
     }
 }
