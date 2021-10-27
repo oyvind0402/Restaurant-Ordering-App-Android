@@ -88,6 +88,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
             dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
             Calendar dagensDato = Calendar.getInstance(Locale.getDefault());
             dialog.getDatePicker().setMinDate(dagensDato.getTimeInMillis());
+            dialog.setTitle("");
             dialog.show();
         });
     }
@@ -199,13 +200,13 @@ public class LagreBestillingActivity extends AppCompatActivity {
             }
         }
 
-        if(!innDato.getText().toString().isEmpty() && !innTidspunkt.getText().toString().isEmpty()) {
+        if(!innDato.getText().toString().isEmpty() && !innTidspunkt.getText().toString().isEmpty() && restaurantid > 0) {
             Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
             db.leggTilBestilling(bestilling);
             Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
             venneListe.clear();
         } else {
-            Toast.makeText(this, "Du må velge både dato og tidspunkt!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Du må velge dato, tidspunkt og restaurant!", Toast.LENGTH_SHORT).show();
         }
     }
 
