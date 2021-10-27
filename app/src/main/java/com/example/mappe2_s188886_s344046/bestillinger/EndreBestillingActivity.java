@@ -20,12 +20,14 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
+import com.example.mappe2_s188886_s344046.utils.Formatters;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -70,26 +72,50 @@ public class EndreBestillingActivity extends AppCompatActivity {
         tidspunktKalender = Calendar.getInstance();
         datoKalender = Calendar.getInstance();
 
+        datoDialogLytter = (view, year, month, day) -> oppdaterDato(year, month, day);
+
+        innEndreDato.setOnClickListener(view -> {
+            DatePickerDialog dialog = new DatePickerDialog(EndreBestillingActivity.this, datoDialogLytter, datoKalender.get(Calendar.YEAR), datoKalender.get(Calendar.MONTH), datoKalender.get(Calendar.DAY_OF_MONTH));
+            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
+            Date dagensDato = new Date();
+            dialog.getDatePicker().setMinDate(dagensDato.getTime());
+            dialog.show();
+        });
+
         tidspunktDialogLytter = (view, hourOfDay, minute) -> {
-            DecimalFormat format = new DecimalFormat("00");
-            String minuttFormat = format.format(minute);
-            String timeFormat = format.format(hourOfDay);
-            innEndreTidspunkt.setText(String.format("%s:%s", timeFormat, minuttFormat));
+            String[] valgt = innEndreDato.getText().toString().split("-");
+            try {
+                int day = Integer.parseInt(valgt[0]);
+                int month = Integer.parseInt(valgt[1]);
+                int year = Integer.parseInt(valgt[2]);
+
+                Calendar dagensDato = Calendar.getInstance(Locale.getDefault());
+                Calendar valgtDato = Calendar.getInstance(Locale.getDefault());
+                Formatters.formatDate(valgtDato, year, month - 1, day, hourOfDay, minute);
+
+                if (valgtDato.after(dagensDato)) {
+                    DecimalFormat format = new DecimalFormat("00");
+                    String minuttFormat = format.format(minute);
+                    String timeFormat = format.format(hourOfDay);
+                    innEndreTidspunkt.setText(String.format("%s:%s", timeFormat, minuttFormat));
+                } else {
+                    innEndreTidspunkt.setText("");
+                    Toast.makeText(this, "Valgt tid må være i fremtiden", Toast.LENGTH_LONG).show();
+                    innEndreTidspunkt.setHint("Tidspunkt i FREMTIDEN");
+                }
+            } catch (NumberFormatException e){
+                innEndreTidspunkt.setText("");
+                Toast.makeText(this, "Feil med dato", Toast.LENGTH_LONG).show();
+                innEndreTidspunkt.setHint("Velg en ny dato");
+                innEndreTidspunkt.setEnabled(false);
+            }
         };
 
         innEndreTidspunkt.setOnClickListener(view -> {
             int time = tidspunktKalender.get(Calendar.HOUR_OF_DAY);
             int minutt = tidspunktKalender.get(Calendar.MINUTE);
             TimePickerDialog dialog = new TimePickerDialog(EndreBestillingActivity.this, tidspunktDialogLytter, time, minutt, true);
-            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
-            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
-            dialog.show();
-        });
-
-        datoDialogLytter = (view, year, month, day) -> oppdaterDato(year, month, day);
-
-        innEndreDato.setOnClickListener(view -> {
-            DatePickerDialog dialog = new DatePickerDialog(EndreBestillingActivity.this, datoDialogLytter, datoKalender.get(Calendar.YEAR), datoKalender.get(Calendar.MONTH), datoKalender.get(Calendar.DAY_OF_MONTH));
             dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
             dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Avslutt", dialog);
             dialog.show();
@@ -105,6 +131,8 @@ public class EndreBestillingActivity extends AppCompatActivity {
         SimpleDateFormat datoFormat = new SimpleDateFormat(format, Locale.getDefault());
 
         innEndreDato.setText(datoFormat.format(datoKalender.getTime()));
+        innEndreTidspunkt.setText("");
+        innEndreTidspunkt.setEnabled(true);
     }
 
     public void endreBestilling(View view){
