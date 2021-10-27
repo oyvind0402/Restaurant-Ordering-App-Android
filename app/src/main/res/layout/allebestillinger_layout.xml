@@ -11,43 +11,56 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_sm"
         android:background="@color/purple_200"
-        app:title="@string/restaurant_order" />
+        app:title="@string/bestillinger" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/alle_bestillinger" />
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="@dimen/txt_height_md"
-        android:fadeScrollbars="false">
+        android:fadeScrollbars="false"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bestillinger"
+            android:text="@string/aktive_bestillinger" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/aktiveBestillinger"
             android:orientation="vertical" />
 
-    </ScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inaktiveBestillingerTxt"
+            />
 
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/inaktiveBestillinger"
+            android:orientation="vertical" />
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:layout_width="250dp"-->
-<!--        android:layout_height="@dimen/btn_height"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:text="@string/endre_bestilling"-->
-<!--        android:background="@color/purple_200"-->
-<!--        android:onClick="endreBestilling" />-->
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="@dimen/txt_width_lg"
+        android:layout_height="@dimen/btn_height"
+        android:layout_gravity="center"
+        android:text="@string/endre_bestilling"
+        android:background="@color/purple_200"
+        android:onClick="endreBestilling" />
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:layout_width="250dp"-->
-<!--        android:layout_height="@dimen/btn_height"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:text="@string/slett_bestilling"-->
-<!--        android:background="@color/purple_200"-->
-<!--        android:onClick="slettBestilling" />-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="@dimen/txt_width_lg"
+        android:layout_height="@dimen/btn_height"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_sm"
+        android:text="@string/slett_bestilling"
+        android:background="@color/purple_200"
+        android:onClick="slettBestilling" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="@dimen/txt_width_lg"
