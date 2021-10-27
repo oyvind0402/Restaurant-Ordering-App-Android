@@ -8,7 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
-public class TestProvider extends ContentProvider{
+public class DBProvider extends ContentProvider{
     private static final int alleRestauranter = 2;
     private static final int enRestaurant = 1;
     private static final int alleVenner = 100;

@@ -46,7 +46,7 @@
         </receiver>
         <provider
             android:authorities="com.example.mappe2_s188886_s344046"
-            android:name="com.example.mappe2_s188886_s344046.utils.TestProvider"
+            android:name="com.example.mappe2_s188886_s344046.utils.DBProvider"
             android:enabled="true"
             android:exported="true"
             android:readPermission="com.example.mappe2_s188886_s344046.permission"
