@@ -8,5 +8,13 @@
             app:negativeButtonText="@string/avslutt"
             app:title="@string/notisTittel"
             app:summary="@string/notisTekst" />
+        <ListPreference
+            app:defaultValue="false"
+            app:entries="@array/sms"
+            app:entryValues="@array/smsValues"
+            app:key="sms"
+            app:negativeButtonText="@string/avslutt"
+            app:title="@string/sms"
+            app:summary="@string/smsTekst" />
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>
