@@ -32,6 +32,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 startService();
             }
             if(isActivated.equals("false")) {
+                String smsIsActivated = sharedPreferences.getString("sms", "false");
+                if (smsIsActivated.equals("true")) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("sms", "false");
+                    editor.apply();
+                }
                 stoppService();
             }
         }

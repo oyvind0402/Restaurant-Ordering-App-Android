@@ -48,5 +48,7 @@
     <string name="endre_settings">Endre innstillinger</string>
     <string name="notisTittel">Notifikasjoner</string>
     <string name="settings">Instillinger</string>
-    <string name="notisTekst">Vil du skru notifikasjoner av eller på?</string>
+    <string name="notisTekst">Vil du skru notifikasjoner av eller på? NB! Dette skrur også av SMS-sending!</string>
+    <string name="sms">SMS</string>
+    <string name="smsTekst">Vil du skru SMS-sending av eller på?</string>
 </resources>

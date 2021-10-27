@@ -37,6 +37,7 @@ public class ForsideActivity extends AppCompatActivity {
         myToolbar.inflateMenu(R.menu.menu);
         setSupportActionBar(myToolbar);
         giTilgang();
+        startService();
     }
 
     private void createNotificationChannel() {
@@ -49,12 +50,18 @@ public class ForsideActivity extends AppCompatActivity {
         }
     }
 
+    public void startService() {
+        Intent intent = new Intent();
+        intent.setAction("com.example.mappe2_s188886_s344046.broadcast");
+        sendBroadcast(intent);
+    }
+
     private void giTilgang() {
         MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
 
         if(MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_DENIED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE}, 0);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.RECEIVE_BOOT_COMPLETED}, 0);
         }
     }
 
