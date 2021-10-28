@@ -30,6 +30,7 @@ public class EndreRestaurantActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu);
+        myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
         db = new DBHandler(this);

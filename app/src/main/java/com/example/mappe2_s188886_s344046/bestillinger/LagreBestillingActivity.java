@@ -57,12 +57,12 @@ public class LagreBestillingActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu);
+        myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
         innDato = (EditText) findViewById(R.id.innDato);
         innTidspunkt = (EditText) findViewById(R.id.innTidspunkt);
         innTidspunkt.setHint("Dato må velges først");
-        innTidspunkt.setEnabled(false);
 
         spinner = (Spinner) findViewById(R.id.restaurant_dropdown);
         db = new DBHandler(getApplicationContext());
@@ -101,7 +101,6 @@ public class LagreBestillingActivity extends AppCompatActivity {
     }
 
     public void aktivereTid(int year, int month, int day) {
-        innTidspunkt.setEnabled(true);
         innTidspunkt.setHint("Tidspunkt");
 
         tidspunktDialogLytter = (view, hourOfDay, minute) -> {

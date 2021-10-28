@@ -31,6 +31,7 @@ public class LagreRestaurantActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu);
+        myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
         innNavn = (EditText) findViewById(R.id.innNavn);

@@ -45,6 +45,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu);
+        myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
         endreBestilling = (Button) findViewById(R.id.endre_bestilling_btn);

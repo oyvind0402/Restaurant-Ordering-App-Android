@@ -37,6 +37,7 @@ public class AlleVennerActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu);
+        myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
         endreVenn = (Button) findViewById(R.id.endre_venn_btn);
