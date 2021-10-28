@@ -20,6 +20,7 @@
         android:fadeScrollbars="false" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/endre_restaurant_btn"
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
@@ -29,6 +30,7 @@
         android:onClick="endreRestaurant" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/slett_restaurant_btn"
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
@@ -38,6 +40,7 @@
         android:onClick="slettRestaurant" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lagre_restaurant_btn"
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"

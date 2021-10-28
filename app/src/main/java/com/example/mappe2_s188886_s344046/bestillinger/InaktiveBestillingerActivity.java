@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,9 +30,9 @@ import java.util.List;
 public class InaktiveBestillingerActivity extends AppCompatActivity {
     DBHandler db;
     ListView inaktiveBestillinger;
-    TextView tomListe;
     boolean[] valgteIndekser;
     int antallValgte = 0;
+    Button slettInaktive;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,10 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
         myToolbar.inflateMenu(R.menu.menu);
         setSupportActionBar(myToolbar);
 
+        slettInaktive = (Button) findViewById(R.id.slett_inaktive_btn);
+
         db = new DBHandler(this);
         inaktiveBestillinger = (ListView) findViewById(R.id.inaktiveBestillinger);
-        tomListe = (TextView) findViewById(R.id.inaktiveBestillinger_tom);
 
         populateBestilling();
     }
@@ -55,9 +57,7 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
 
         Utilities.populateBestillingList(db, allebestillinger, null, inaktiveBestillingerList);
         if (inaktiveBestillingerList.size() > 0) {
-            inaktiveBestillinger.setVisibility(View.VISIBLE);
-            tomListe.setVisibility(View.GONE);
-
+            slettInaktive.setEnabled(true);
             Utilities.populateBestillingListView(this, db, inaktiveBestillinger, inaktiveBestillingerList, R.layout.simple_list_item_2_multiple_choice);
             valgteIndekser = new boolean[inaktiveBestillingerList.size()];
             Arrays.fill(valgteIndekser, false);
@@ -72,8 +72,11 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
                 }
             });
         } else {
-            inaktiveBestillinger.setVisibility(View.GONE);
-            tomListe.setVisibility(View.VISIBLE);
+            List<String> placeholderListe = new ArrayList<>();
+            placeholderListe.add("Ingen inaktive bestillinger lagt til enda!");
+            slettInaktive.setEnabled(false);
+            ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderListe);
+            inaktiveBestillinger.setAdapter(placeholderAdapter);
         }
 
     }

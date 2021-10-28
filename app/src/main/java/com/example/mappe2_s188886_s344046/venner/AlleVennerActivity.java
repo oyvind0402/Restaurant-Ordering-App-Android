@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,12 +21,14 @@ import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlleVennerActivity extends AppCompatActivity {
     private DBHandler db;
     ListView listView;
     Venn venn;
+    Button endreVenn, slettVenn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,21 +39,33 @@ public class AlleVennerActivity extends AppCompatActivity {
         myToolbar.inflateMenu(R.menu.menu);
         setSupportActionBar(myToolbar);
 
+        endreVenn = (Button) findViewById(R.id.endre_venn_btn);
+        slettVenn = (Button) findViewById(R.id.slett_venn_btn);
+
         db = new DBHandler(getApplicationContext());
         listView = (ListView) findViewById(R.id.venneListView);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            venn = (Venn) listView.getItemAtPosition(i);
-            Log.d("TAG", "Venn: " + venn);
-        });
         populateFriendList();
     }
 
     public void populateFriendList() {
         List<Venn> venneListe = db.finnAlleVenner();
-        ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, venneListe);
-        listView.setAdapter(vennAdapter);
+        if (venneListe.size() > 0) {
+            endreVenn.setEnabled(true);
+            slettVenn.setEnabled(true);
+            ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, venneListe);
+            listView.setAdapter(vennAdapter);
+            listView.setOnItemClickListener((adapterView, view, i, l) -> {
+                venn = (Venn) listView.getItemAtPosition(i);
+            });
+        } else {
+             endreVenn.setEnabled(false);
+             slettVenn.setEnabled(false);
+             List<String> placeholderList = new ArrayList<>();
+             placeholderList.add("Ingen venner lagt til enda!");
+             ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderList);
+             listView.setAdapter(placeholderAdapter);
+        }
     }
 
     public void lagreVenn(View view) {

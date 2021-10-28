@@ -20,11 +20,12 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_md"
+        android:layout_height="@dimen/txt_height_mmd"
         android:id="@+id/aktiveBestillinger"
         android:fadeScrollbars="false" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/endre_bestilling_btn"
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
@@ -33,6 +34,7 @@
         android:onClick="endreBestilling" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/slett_bestilling_btn"
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
@@ -42,10 +44,11 @@
         android:onClick="slettBestilling" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/lagre_bestilling_btn"
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_md"
+        android:layout_marginTop="@dimen/margin_sm"
         android:text="@string/ny_bestilling"
         android:background="@color/purple_200"
         android:onClick="lagreBestilling" />

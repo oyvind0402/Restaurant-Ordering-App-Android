@@ -58,8 +58,8 @@ public class SMSService extends Service {
             editor.putString("smsMessage", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venneString.toString() + ".");
             editor.apply();
 
-            String notificationIsActivated = sharedPreferences.getString("notifikasjon", "true");
-            //Sender notifikasjon hvis den ikke er skrudd av av brukeren i settings: (true default value)
+            String notificationIsActivated = sharedPreferences.getString("notifikasjon", "false");
+            //Sender notifikasjon hvis den ikke er skrudd av av brukeren i settings:
             if(notificationIsActivated.equals("true")) {
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 

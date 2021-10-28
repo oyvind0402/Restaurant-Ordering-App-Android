@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlleRestauranterActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
     private DBHandler db;
     ListView listView;
     Restaurant restaurant;
+    Button endreRestaurant, slettRestaurant;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -36,19 +39,32 @@ public class AlleRestauranterActivity extends AppCompatActivity {
         myToolbar.inflateMenu(R.menu.menu);
         setSupportActionBar(myToolbar);
 
+        endreRestaurant = (Button) findViewById(R.id.endre_restaurant_btn);
+        slettRestaurant = (Button) findViewById(R.id.slett_restaurant_btn);
+
         db = new DBHandler(getApplicationContext());
 
         listView = (ListView) findViewById(R.id.restaurantListView);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setOnItemClickListener((parent, view, i, id) -> restaurant = (Restaurant) listView.getItemAtPosition(i));
-
         populateRestaurantList();
    }
 
    public void populateRestaurantList(){
        List<Restaurant> restaurantListe = db.finnAlleRestauranter();
-       ArrayAdapter<Restaurant> restaurantAdapter = new ArrayAdapter<>(this, R.layout.restaurant_listview_layout, restaurantListe);
-       listView.setAdapter(restaurantAdapter);
+       if(restaurantListe.size() > 0) {
+           endreRestaurant.setEnabled(true);
+           slettRestaurant.setEnabled(true);
+           ArrayAdapter<Restaurant> restaurantAdapter = new ArrayAdapter<>(this, R.layout.restaurant_listview_layout, restaurantListe);
+           listView.setAdapter(restaurantAdapter);
+           listView.setOnItemClickListener((parent, view, i, id) -> restaurant = (Restaurant) listView.getItemAtPosition(i));
+       } else {
+           endreRestaurant.setEnabled(false);
+           slettRestaurant.setEnabled(false);
+           List<String> placeholderList = new ArrayList<>();
+           placeholderList.add("Ingen restauranter lagt til enda!");
+           ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderList);
+           listView.setAdapter(placeholderAdapter);
+       }
    }
 
    public void lagreRestaurant(View view){

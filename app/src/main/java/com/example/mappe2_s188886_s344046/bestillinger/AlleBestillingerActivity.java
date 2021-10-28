@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
     ListView aktiveBestillinger;
     TextView tilinaktiveBestillinger;
     Bestilling bestilling;
+    Button endreBestilling, slettBestilling;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,9 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.inflateMenu(R.menu.menu);
         setSupportActionBar(myToolbar);
+
+        endreBestilling = (Button) findViewById(R.id.endre_bestilling_btn);
+        slettBestilling = (Button) findViewById(R.id.slett_bestilling_btn);
         tilinaktiveBestillinger = (TextView) findViewById(R.id.til_inaktive) ;
 
         db = new DBHandler(this);
@@ -58,18 +64,30 @@ public class AlleBestillingerActivity extends AppCompatActivity {
 
         Utilities.populateBestillingList(db, allebestillinger, aktiveBestillingerList, inaktiveBestillingerList);
         Utilities.populateBestillingListView(this, db, aktiveBestillinger, aktiveBestillingerList, R.layout.simple_list_item_2_single_choice);
-        aktiveBestillinger.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        aktiveBestillinger.setOnItemClickListener((parent, view, position, id) -> {
-            HashMap<String, String> hm = (HashMap<String, String>) aktiveBestillinger.getItemAtPosition(position);
-            try {
-                long bestillingId = Utilities.extractId(hm.get("title"));
-                bestilling = db.finnBestilling(bestillingId);
-            } catch (Exception e) {
-                Toast.makeText(this, "Feil ved henting av bestilling data", Toast.LENGTH_LONG).show();
-                bestilling = null;
-                aktiveBestillinger.setItemChecked(position, false);
-            }
-        });
+        if(aktiveBestillingerList.size() > 0) {
+            endreBestilling.setEnabled(true);
+            slettBestilling.setEnabled(true);
+            aktiveBestillinger.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            aktiveBestillinger.setOnItemClickListener((parent, view, position, id) -> {
+                HashMap<String, String> hm = (HashMap<String, String>) aktiveBestillinger.getItemAtPosition(position);
+                try {
+                    long bestillingId = Utilities.extractId(hm.get("item"));
+                    bestilling = db.finnBestilling(bestillingId);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Feil ved henting av bestilling data", Toast.LENGTH_LONG).show();
+                    bestilling = null;
+                    aktiveBestillinger.setItemChecked(position, false);
+                }
+            });
+
+        } else {
+            endreBestilling.setEnabled(false);
+            slettBestilling.setEnabled(false);
+            List<String> placeholderListe = new ArrayList<>();
+            placeholderListe.add("Ingen aktive bestillinger for øyeblikket!");
+            ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderListe);
+            aktiveBestillinger.setAdapter(placeholderAdapter);
+        }
 
         if (inaktiveBestillingerList.size() > 0 ){
             tilinaktiveBestillinger.setVisibility(View.VISIBLE);
