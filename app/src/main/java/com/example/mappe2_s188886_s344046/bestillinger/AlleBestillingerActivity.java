@@ -7,13 +7,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -29,13 +27,13 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
 public class AlleBestillingerActivity extends AppCompatActivity {
     DBHandler db;
     ListView aktiveBestillinger;
     TextView tilinaktiveBestillinger;
+    Bestilling bestilling;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,39 +56,19 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         List<Bestilling> aktiveBestillingerList = new ArrayList<>();
         List<Bestilling> inaktiveBestillingerList = new ArrayList<>();
 
-        for (Bestilling bestilling: allebestillinger) {
-            try {
-                Calendar dagensDato = Calendar.getInstance(Locale.getDefault());
-                Calendar valgtDato = Calendar.getInstance(Locale.getDefault());
-                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
-                valgtDato.setTime(Objects.requireNonNull(df.parse(bestilling.getDato() + " " + bestilling.getTidspunkt())));
-
-                if (valgtDato.before(dagensDato)){
-                    inaktiveBestillingerList.add(bestilling);
-                } else {
-                    if (db.finnRestaurant(bestilling.getRestaurantid()).getNavn() == null){
-                        inaktiveBestillingerList.add(bestilling);
-                    } else {
-                        aktiveBestillingerList.add(bestilling);
-                    }
-                }
-            } catch (NullPointerException | ParseException e) {
-                Log.w("BESTILLING_ERR", "Kunne ikke parse en bestilling");
-            }
-        }
-        Utilities.populateListView(this, db, aktiveBestillinger, aktiveBestillingerList, R.layout.simple_list_item_2_single_choice);
+        Utilities.populateBestillingList(db, allebestillinger, aktiveBestillingerList, inaktiveBestillingerList);
+        Utilities.populateBestillingListView(this, db, aktiveBestillinger, aktiveBestillingerList, R.layout.simple_list_item_2_single_choice);
         aktiveBestillinger.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         aktiveBestillinger.setOnItemClickListener((parent, view, position, id) -> {
-            //TODO Handle checkbox not enabling
-            //TODO Handle action
-//          CheckedTextView btn = (CheckedTextView) view.getTag(R.id.text2);
-//            btn.setChecked(!btn.isChecked());
-//            HashMap<String, String> hm = (HashMap<String, String>) aktiveBestillinger.getItemAtPosition(position);
-//
-//            Log.w("ANA", aktiveBestillinger.getTag(android.R.id.text2) + "");
-//            aktiveBestillinger.setItemChecked(position, true);
-////            Toast.makeText(this, "" + parent.getTag().getClass().toString(), Toast.LENGTH_LONG).show();
-////            Toast.makeText(this, hm.get("item"), Toast.LENGTH_LONG).show();
+            HashMap<String, String> hm = (HashMap<String, String>) aktiveBestillinger.getItemAtPosition(position);
+            try {
+                long bestillingId = Utilities.extractId(hm.get("title"));
+                bestilling = db.finnBestilling(bestillingId);
+            } catch (Exception e) {
+                Toast.makeText(this, "Feil ved henting av bestilling data", Toast.LENGTH_LONG).show();
+                bestilling = null;
+                aktiveBestillinger.setItemChecked(position, false);
+            }
         });
 
         if (inaktiveBestillingerList.size() > 0 ){
@@ -104,6 +82,32 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LagreBestillingActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void endreBestilling(View view){
+        if (bestilling != null) {
+            Intent intent = new Intent(this, EndreBestillingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putLong("bestillingId", bestilling.getId());
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
+        }  else {
+            Toast.makeText(this, "Må velge en bestilling", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void slettBestilling(View view){
+        if (bestilling != null) {
+            new AlertDialog.Builder(this).setTitle("Sletting av bestilling #" + bestilling.getId()).setMessage("Er du sikker på at du vil slette bestilling #" + bestilling.getId() + "?").setPositiveButton("Ja", (dialogInterface, i) -> {
+                db.slettBestilling(bestilling.getId());
+                Intent intent = new Intent(getApplicationContext(), AlleBestillingerActivity.class);
+                startActivity(intent);
+                finish();
+            }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av bestilling #" + bestilling.getId() + " ikke vellykket.", Toast.LENGTH_SHORT).show()).create().show();
+        } else {
+            Toast.makeText(this, "Du må velge en bestilling for å slette", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void tilInaktive(View view){

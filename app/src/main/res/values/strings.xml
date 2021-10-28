@@ -9,6 +9,7 @@
     <string name="endre">Endre</string>
     <string name="navn">Navn</string>
     <string name="telefon">Telefon</string>
+    <string name="tom">Listen er tom</string>
 
     <!--    Forside ressurser-->
     <string name="forside">Forside</string>

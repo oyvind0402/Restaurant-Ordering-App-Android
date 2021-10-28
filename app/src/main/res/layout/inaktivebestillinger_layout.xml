@@ -19,6 +19,13 @@
         android:id="@+id/inaktiveBestillinger"
         android:orientation="vertical" />
 
+    <TextView
+        android:text="@string/tom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inaktiveBestillinger_tom"/>
+
+
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"

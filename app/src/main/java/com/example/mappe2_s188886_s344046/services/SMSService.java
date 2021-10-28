@@ -104,10 +104,14 @@ public class SMSService extends Service {
     public boolean orderIsToday(List<Bestilling> bestillingsListe, String dato, DBHandler db) {
         for (Bestilling bestilling : bestillingsListe) {
             if (bestilling.getDato().equals(dato)) {
-                restaurantNavn = db.finnRestaurant(bestilling.getRestaurantid()).getNavn();
-                tidspunkt = bestilling.getTidspunkt();
-                venner = bestilling.getVenner();
-                return true;
+                try {
+                    restaurantNavn = db.finnRestaurant(bestilling.getRestaurantid()).getNavn();
+                    tidspunkt = bestilling.getTidspunkt();
+                    venner = bestilling.getVenner();
+                    return true;
+                } catch (NullPointerException e) {
+                    return false;
+                }
             }
         }
         return false;
