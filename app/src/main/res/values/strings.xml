@@ -18,7 +18,6 @@
     <string name="venner">Venner</string>
     <string name="ny_venn">Ny Venn</string>
     <string name="lagre_venn">Lagre Venn</string>
-    <string name="lagre_venner">Lagre Venner</string>
     <string name="endre_venner">Endre Venn</string>
     <string name="slett_venner">Slett Venn</string>
 
@@ -45,7 +44,7 @@
     <string name="ny_bestilling">Ny Bestilling</string>
     <string name="lagre_bestilling">Lagre Bestilling</string>
     <string name="endre_bestilling">Endre Bestilling</string>
-    <string name="slett_bestilling">Slett Bestillinger</string>
+    <string name="slett_bestilling">Slett Bestilling</string>
     <string name="bestill">Bestill</string>
 
     <!--    Instillinger ressurser-->
