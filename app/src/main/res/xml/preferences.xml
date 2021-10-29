@@ -19,6 +19,7 @@
             app:defaultValue="17:00"/>
         <EditTextPreference
             app:key="smsMelding"
-            app:title="@string/velgSms" />
+            app:title="@string/velgSms"
+            android:defaultValue="@string/smsMelding"/>
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>

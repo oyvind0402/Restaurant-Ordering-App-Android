@@ -57,4 +57,5 @@
     <string name="velgTidspunkt">Påminnelse om bestilling sendes klokken</string>
     <string name="velgSms">Velg standard SMS som skal sendes</string>
     <string name="tidOgMelding">Velg tidspunkt og standardmelding</string>
+    <string name="smsMelding">Du har en bestilling i dag!</string>
 </resources>

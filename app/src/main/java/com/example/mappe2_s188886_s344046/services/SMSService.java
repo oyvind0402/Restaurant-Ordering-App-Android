@@ -12,12 +12,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.preference.PreferenceManager;
 
+import com.example.mappe2_s188886_s344046.ForsideActivity;
 import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
 import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
@@ -25,6 +27,7 @@ import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -64,7 +67,7 @@ public class SMSService extends Service {
                     notificationManager.createNotificationChannel(new NotificationChannel("42", "SMSNotifChannel", NotificationManager.IMPORTANCE_DEFAULT));
                 }
 
-                Intent i = new Intent(this, AlleBestillingerActivity.class);
+                Intent i = new Intent(this, ForsideActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
                 Notification notification = new NotificationCompat.Builder(this, "42")
                         .setContentTitle("Restaurant bestilling")
@@ -80,11 +83,13 @@ public class SMSService extends Service {
             //Sender sms hvis SMS er aktivert i settings og du har fått permissions av brukeren:
             if(smsIsActivated && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                 SmsManager sms = SmsManager.getDefault();
-                String melding = sharedPreferences.getString("smsMelding", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venneString.toString() + ".");
+                String melding = sharedPreferences.getString("smsMelding", "Du har en bestilling i dag!");
                 for(int j = 0; j < bestillingsListe.size() ; j++) {
                     if(bestillingsListe.get(j).getDato().equals(dagensDato)) {
-                        if(venner.size() > 0) {
-                            sms.sendTextMessage(venner.get(j).getTelefon(), null, melding, null, null);
+                        if(bestillingsListe.get(j).getVenner().size() > 0) {
+                            for(int i = 0; i < bestillingsListe.get(j).getVenner().size(); i++) {
+                                sms.sendTextMessage(bestillingsListe.get(j).getVenner().get(i).getTelefon(), null, melding, null, null);
+                            }
                         }
                     }
                 }
@@ -101,6 +106,7 @@ public class SMSService extends Service {
                     tidspunkt = bestilling.getTidspunkt();
                     venner = bestilling.getVenner();
                     return true;
+
                 } catch (NullPointerException e) {
                     return false;
                 }

@@ -50,7 +50,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
         smsMelding = (EditTextPreference) findPreference("smsMelding");
         SharedPreferences sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String melding = sharedPreferences.getString("smsMelding", "");
+        String melding = sharedPreferences.getString("smsMelding", "Du har en bestilling i dag!");
         String tid = sharedPreferences.getString("velgTidspunkt", "17:00");
         smsMelding.setSummary(melding);
         velgTidspunkt.setSummary(tid);
@@ -63,10 +63,26 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        boolean pushIsActivated = sharedPreferences.getBoolean("notifikasjon", false);
+        boolean smsIsActivated = sharedPreferences.getBoolean("sms", false);
         if(key.equals("notifikasjon")) {
-            boolean pushIsActivated = sharedPreferences.getBoolean("notifikasjon", false);
-            if(pushIsActivated) {
+            //Hvis sms er av og push akkurat ble satt til true - restarter vi service:
+            if(!smsIsActivated && pushIsActivated) {
                 startService();
+            }
+            //Hvis push akkurat ble satt til false og sms er av - slår vi av service:
+            if(!pushIsActivated && !smsIsActivated) {
+                stoppService();
+            }
+        }
+        if(key.equals("sms")) {
+            //Hvis push er av og sms akkurat ble slått på - restarter vi service:
+            if(!pushIsActivated && smsIsActivated) {
+                startService();
+            }
+            //Hvis push er av og sms akkurat ble satt til av - slår vi av service:
+            if(!smsIsActivated && !pushIsActivated) {
+                stoppService();
             }
         }
         requireActivity().recreate();
