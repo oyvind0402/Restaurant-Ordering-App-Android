@@ -6,42 +6,82 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
+    android:background="@color/beige"
     tools:context=".ForsideActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_sm"
-        android:background="@color/purple_200"
-        app:title="@string/app_name" />
+        android:background="@color/red_logo" >
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="@dimen/txt_width_lg"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_xl"
-        android:text="@string/restauranter"
-        android:background="@color/purple_200"
-        android:onClick="visRestauranter" />
+        <ImageView
+            android:layout_width="@dimen/txt_height_sm"
+            android:layout_height="@dimen/txt_height_sm"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:layout_gravity="start"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="@dimen/txt_width_lg"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_md"
-        android:text="@string/venner"
-        android:background="@color/purple_200"
-        android:onClick="visVenner" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="25sp"
+            android:textColor="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="@dimen/txt_width_lg"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_md"
-        android:text="@string/bestillinger"
-        android:background="@color/purple_200"
-        android:onClick="visBestillinger" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/banner"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="@dimen/txt_width_lg"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginBottom="@dimen/margin_md"
+            android:background="@color/blue_logo"
+            android:onClick="visRestauranter"
+            android:text="@string/restauranter"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_md" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="@dimen/txt_width_lg"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginBottom="@dimen/margin_md"
+            android:background="@color/blue_logo"
+            android:onClick="visVenner"
+            android:text="@string/venner"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_md" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="@dimen/txt_width_lg"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginBottom="@dimen/margin_md"
+            android:background="@color/blue_logo"
+            android:onClick="visBestillinger"
+            android:text="@string/bestillinger"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_md" />
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

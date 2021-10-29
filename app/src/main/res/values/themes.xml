@@ -18,6 +18,6 @@
     <style name="MenuOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/settingsicon</item>
         <item name="android:background">?android:attr/actionBarItemBackground</item>
-        <item name="android:contentDescription">"Lala"</item>
+        <item name="android:contentDescription">"Ikon for instillinger"</item>
     </style>
 </resources>

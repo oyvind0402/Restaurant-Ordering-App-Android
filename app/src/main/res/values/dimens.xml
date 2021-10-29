@@ -2,12 +2,17 @@
 <resources>
     <dimen name="btn_height">60dp</dimen>
     <dimen name="txt_height_sm">50dp</dimen>
-    <dimen name="txt_height_mmd">175dp</dimen>
-    <dimen name="txt_height_md">225dp</dimen>
+    <dimen name="txt_height_md">105dp</dimen>
+    <dimen name="txt_height_mmd">250dp</dimen>
     <dimen name="txt_height_lg">350dp</dimen>
-    <dimen name="txt_width_sm">150dp</dimen>
+    <dimen name="txt_width_sm">120dp</dimen>
+    <dimen name="txt_width_md">150dp</dimen>
     <dimen name="txt_width_lg">250dp</dimen>
     <dimen name="margin_sm">5dp</dimen>
     <dimen name="margin_md">10dp</dimen>
     <dimen name="margin_xl">100dp</dimen>
+    <dimen name="txt_size_sm">12sp</dimen>
+    <dimen name="txt_size_md">16sp</dimen>
+    <dimen name="txt_size_lg">18sp</dimen>
+    <dimen name="txt_size_xl">22sp</dimen>
 </resources>

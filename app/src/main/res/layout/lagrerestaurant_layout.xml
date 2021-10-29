@@ -1,81 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".restauranter.LagreRestaurantActivity">
+    tools:context=".restauranter.LagreRestaurantActivity"
+    android:background="@color/beige" >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_sm"
-        android:background="@color/purple_200"
-        app:title="@string/ny_restaurant" />
+        android:background="@color/red_logo">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/navn" />
+        <ImageView
+            android:layout_width="@dimen/txt_height_sm"
+            android:layout_height="@dimen/txt_height_sm"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:layout_gravity="start"/>
 
-    <EditText
-        android:id="@+id/innNavn"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lagre_restaurant"
+            android:textSize="@dimen/txt_size_lg"
+            android:textColor="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_sm"
-        android:hint="@string/navn"
-        android:inputType="text"
-        android:autofillHints="name" />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/adresse" />
+        android:src="@drawable/banner"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
 
-    <EditText
-        android:id="@+id/innAdresse"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_sm"
-        android:autofillHints="postalAddress"
-        android:hint="@string/adresse"
-        android:inputType="text" />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/telefon" />
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin_sm"
+        android:paddingEnd="@dimen/margin_sm" >
 
-    <EditText
-        android:id="@+id/innTelefon"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_sm"
-        android:autofillHints="phone"
-        android:hint="@string/telefon"
-        android:inputType="text" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navn"
+            android:paddingTop="@dimen/margin_md"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/type" />
+        <EditText
+            android:id="@+id/innNavn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/txt_height_sm"
+            android:hint="@string/navn"
+            android:inputType="text"
+            android:autofillHints="name" />
 
-    <EditText
-        android:id="@+id/innType"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_sm"
-        android:hint="@string/type"
-        android:inputType="text"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adresse"
+            android:paddingTop="@dimen/margin_md"/>
 
-    <Button
-        android:id="@+id/lagreRestaurant"
-        android:layout_width="@dimen/txt_width_sm"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_md"
-        android:text="@string/lagre"
-        app:backgroundTint="@color/purple_200"
-        android:onClick="lagreRestaurant" />
+        <EditText
+            android:id="@+id/innAdresse"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/txt_height_sm"
+            android:autofillHints="postalAddress"
+            android:hint="@string/adresse"
+            android:inputType="text" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/telefon"
+            android:paddingTop="@dimen/margin_md"/>
+
+        <EditText
+            android:id="@+id/innTelefon"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/txt_height_sm"
+            android:autofillHints="phone"
+            android:hint="@string/telefon"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/type"
+            android:paddingTop="@dimen/margin_md"/>
+
+        <EditText
+            android:id="@+id/innType"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/txt_height_sm"
+            android:hint="@string/type"
+            android:inputType="text" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/lagreRestaurant"
+            android:layout_width="@dimen/txt_width_lg"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_md"
+            android:text="@string/lagre"
+            android:textColor="@color/black"
+            android:background="@color/blue_logo"
+            android:onClick="lagreRestaurant" />
+
+    </LinearLayout>
 
 </LinearLayout>

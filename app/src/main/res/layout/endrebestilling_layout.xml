@@ -1,82 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bestillinger.EndreBestillingActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/beige" >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="@color/purple_200"
-        app:title="@string/endre_bestilling" />
+        android:background="@color/red_logo" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/restaurant" />
-    <Spinner
+        <ImageView
+            android:layout_width="@dimen/txt_height_sm"
+            android:layout_height="@dimen/txt_height_sm"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:layout_gravity="start"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/endre_bestilling"
+            android:textSize="@dimen/txt_size_lg"
+            android:textColor="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:id="@+id/innEndreBestillingRestaurant_dropdown"
-        android:spinnerMode="dropdown" />
+        android:src="@drawable/banner"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/venner" />
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxHeight="115dp"
-        android:id="@+id/innEndreBestillingVenneListe"
-        android:fadeScrollbars="false" />
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/margin_md"
+        android:paddingEnd="@dimen/margin_md" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dato" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/innEndreBestillingDato"
-        android:hint="@string/dato"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:inputType="none"
-        android:importantForAutofill="no" />
+        <TextView
+            android:paddingTop="@dimen/margin_md"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/restaurant" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:id="@+id/innEndreBestillingRestaurant_dropdown"
+            android:spinnerMode="dropdown" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tidspunkt" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/innEndreBestillingTidspunkt"
-        android:hint="@string/tidspunkt"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:inputType="none"
-        android:importantForAutofill="no" />
+        <TextView
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/venner" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/txt_height_md"
+            android:id="@+id/innEndreBestillingVenneListe"
+            android:fadeScrollbars="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/lagre_bestilling"
-        android:layout_width="250dp"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/endre"
-        android:background="@color/purple_200"
-        android:onClick="endreBestilling" />
+        <TextView
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dato" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/innEndreBestillingDato"
+            android:hint="@string/dato"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tidspunkt" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/innEndreBestillingTidspunkt"
+            android:hint="@string/tidspunkt"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:importantForAutofill="no" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/lagre_bestilling"
+            android:layout_width="@dimen/txt_width_lg"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_md"
+            android:text="@string/endre"
+            android:textColor="@color/black"
+            android:background="@color/blue_logo"
+            android:onClick="endreBestilling" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

@@ -1,56 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
-    tools:context=".venner.LagreVennActivity">
+    tools:context=".venner.LagreVennActivity"
+    android:background="@color/beige" >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_sm"
-        android:background="@color/purple_200"
-        app:title="@string/ny_venn" />
+        android:background="@color/red_logo" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/navn" />
+        <ImageView
+            android:layout_width="@dimen/txt_height_sm"
+            android:layout_height="@dimen/txt_height_sm"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:layout_gravity="start"/>
 
-    <EditText
-        android:id="@+id/innVennNavn"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ny_venn"
+            android:textSize="@dimen/txt_size_lg"
+            android:textColor="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_sm"
-        android:hint="@string/navn"
-        android:inputType="text" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/telefon" />
+        android:src="@drawable/banner"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
 
-    <EditText
-        android:id="@+id/innVennTelefon"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_sm"
-        android:autofillHints="phone"
-        android:hint="@string/telefon"
-        android:inputType="text" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/margin_md"
+        android:paddingStart="@dimen/margin_md" >
 
-    <Button
-        android:id="@+id/lagreRestaurant"
-        android:layout_width="@dimen/txt_width_sm"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_md"
-        android:text="@string/lagre"
-        app:backgroundTint="@color/purple_200"
-        android:onClick="lagreVenn" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/txt_height_lg"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/navn"
+                android:paddingTop="@dimen/margin_md"/>
+
+            <EditText
+                android:id="@+id/innVennNavn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/txt_height_sm"
+                android:hint="@string/navn"
+                android:inputType="text" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/telefon"
+                android:paddingTop="@dimen/margin_md"/>
+
+            <EditText
+                android:id="@+id/innVennTelefon"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/txt_height_sm"
+                android:autofillHints="phone"
+                android:hint="@string/telefon"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/lagreRestaurant"
+            android:layout_width="@dimen/txt_width_lg"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_md"
+            android:text="@string/lagre"
+            android:textColor="@color/black"
+            android:background="@color/blue_logo"
+            android:onClick="lagreVenn" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

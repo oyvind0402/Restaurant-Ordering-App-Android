@@ -3,63 +3,107 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/beige">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_sm"
-        android:background="@color/purple_200"
-        app:title="@string/bestillinger" />
+        android:background="@color/red_logo" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/aktive_bestillinger" />
+        <ImageView
+            android:layout_width="@dimen/txt_height_sm"
+            android:layout_height="@dimen/txt_height_sm"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:layout_gravity="start"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_mmd"
-        android:id="@+id/aktiveBestillinger"
-        android:fadeScrollbars="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aktive_bestillinger"
+            android:textSize="@dimen/txt_size_xl"
+            android:textColor="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/endre_bestilling_btn"
-        android:layout_width="@dimen/txt_width_lg"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:text="@string/endre_bestilling"
-        android:background="@color/purple_200"
-        android:onClick="endreBestilling" />
+    </androidx.appcompat.widget.Toolbar>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/slett_bestilling_btn"
-        android:layout_width="@dimen/txt_width_lg"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_sm"
-        android:text="@string/slett_bestilling"
-        android:background="@color/purple_200"
-        android:onClick="slettBestilling" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/lagre_bestilling_btn"
-        android:layout_width="@dimen/txt_width_lg"
-        android:layout_height="@dimen/btn_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_sm"
-        android:text="@string/ny_bestilling"
-        android:background="@color/purple_200"
-        android:onClick="lagreBestilling" />
-
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|end"
-        android:id="@+id/til_inaktive"
-        android:onClick="tilInaktive"
-        android:text="@string/til_inaktive_bestillinger"
-        />
+        android:src="@drawable/banner"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/txt_height_mmd"
+            android:id="@+id/aktiveBestillinger"
+            android:fadeScrollbars="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginBottom="@dimen/margin_sm" >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/endre_bestilling_btn"
+                android:layout_width="@dimen/txt_width_sm"
+                android:layout_height="@dimen/btn_height"
+                android:layout_gravity="center"
+                android:text="@string/endre_bestilling"
+                android:textColor="@color/black"
+                android:layout_marginEnd="@dimen/margin_sm"
+                android:background="@color/blue_logo"
+                android:onClick="endreBestilling" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/slett_bestilling_btn"
+                android:layout_width="@dimen/txt_width_sm"
+                android:layout_height="@dimen/btn_height"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_sm"
+                android:text="@string/slett_bestilling"
+                android:textColor="@color/black"
+                android:background="@color/blue_logo"
+                android:onClick="slettBestilling" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/lagre_bestilling_btn"
+            android:layout_width="@dimen/txt_width_lg"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_sm"
+            android:layout_marginBottom="@dimen/margin_md"
+            android:text="@string/ny_bestilling"
+            android:textColor="@color/beige"
+            android:background="@color/red_logo"
+            android:onClick="lagreBestilling" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:textAlignment="textEnd"
+            android:id="@+id/til_inaktive"
+            android:paddingStart="@dimen/margin_md"
+            android:paddingEnd="@dimen/margin_md"
+            android:onClick="tilInaktive"
+            android:textColor="@color/black"
+            android:text="@string/til_inaktive_bestillinger"
+            app:drawableEndCompat="@drawable/arrow_right"
+            app:drawableTint="@color/blue_logo" />
+
+    </LinearLayout>
 
 </LinearLayout>

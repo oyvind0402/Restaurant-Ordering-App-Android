@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/beige" >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_sm"
-        android:background="@color/purple_200"
-        app:title="@string/inaktive_bestillinger" />
+        android:background="@color/red_logo" >
 
-        <ListView
+        <ImageView
+            android:layout_width="@dimen/txt_height_sm"
+            android:layout_height="@dimen/txt_height_sm"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:layout_gravity="start"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inaktive_bestillinger"
+            android:textSize="@dimen/txt_size_lg"
+            android:textColor="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="@dimen/txt_height_lg"
         android:id="@+id/inaktiveBestillinger"
@@ -26,7 +39,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/margin_sm"
         android:text="@string/slett_bestilling"
-        android:background="@color/purple_200"
+        android:textColor="@color/black"
+        android:background="@color/blue_logo"
         android:onClick="slettBestillinger" />
 
 </LinearLayout>
