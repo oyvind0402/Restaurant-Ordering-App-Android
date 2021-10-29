@@ -45,10 +45,10 @@ public class LagreVennActivity extends AppCompatActivity {
                 Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som venn!", Toast.LENGTH_SHORT).show();
                 resetInput();
             } else {
-                Toast.makeText(this, "Feil input, prøv igjen med andre input som er gyldige!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Feil input, prøv igjen!", Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(this, "Du må skrive inn både navn og telefon for å lagre vennen!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_SHORT).show();
         }
     }
 

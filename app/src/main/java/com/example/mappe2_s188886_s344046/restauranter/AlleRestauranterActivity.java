@@ -110,9 +110,9 @@ public class AlleRestauranterActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AlleRestauranterActivity.class);
                 startActivity(intent);
                 finish();
-            }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + restaurant.getNavn() + " ikke vellykket.", Toast.LENGTH_SHORT).show()).create().show();
+            }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + restaurant.getNavn() + " avbrutt.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
-            Toast.makeText(this, "Du må velge en restaurant for å slette", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en restaurant", Toast.LENGTH_SHORT).show();
         }
    }
 
@@ -125,7 +125,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }  else {
-            Toast.makeText(this, "Du må velge en restaurant for å endre", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en restaurant", Toast.LENGTH_SHORT).show();
         }
    }
 

@@ -65,10 +65,10 @@ public class EndreRestaurantActivity extends AppCompatActivity {
                 db.oppdaterRestaurant(restaurant);
                 Toast.makeText(this, restaurant.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Feil input, prøv igjen med andre input som er gyldige!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Feil input, prøv igjen.", Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(this, "Du må fylle inn alle feltene for å oppdatere!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fyll inn alle feltene", Toast.LENGTH_SHORT).show();
         }
     }
 

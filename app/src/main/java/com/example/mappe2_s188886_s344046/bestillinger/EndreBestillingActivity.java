@@ -157,7 +157,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
             Toast.makeText(this, "Bestilling hos " + innEndreRestaurant.getSelectedItem() + " oppdatert!", Toast.LENGTH_SHORT).show();
             venneListe.clear();
         } else {
-            Toast.makeText(this, "Du må fylle inn alle feltene for å oppdatere!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_SHORT).show();
         }
     }
 
