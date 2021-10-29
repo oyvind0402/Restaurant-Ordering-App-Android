@@ -109,6 +109,26 @@ public class DBHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    public Restaurant finnRestaurant(String navn) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + TABLENAME + " WHERE " + NAME + " LIKE \"" + navn + "\" LIMIT 1;";
+        Cursor cursor = db.rawQuery(sql, null);
+        Restaurant restaurant = new Restaurant();
+        if(cursor.moveToFirst()) {
+            do {
+                restaurant.setId(cursor.getLong(0));
+                restaurant.setNavn(cursor.getString(1));
+                restaurant.setAdresse(cursor.getString(2));
+                restaurant.setTelefon(cursor.getString(3));
+                restaurant.setType(cursor.getString(4));
+            } while (cursor.moveToNext());
+            cursor.close();
+            return restaurant;
+        }
+        cursor.close();
+        return null;
+    }
+
     public void slettRestaurant(Long _id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLENAME, KEY_ID + " = ?", new String[]{Long.toString(_id)});

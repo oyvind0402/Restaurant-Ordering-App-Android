@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,12 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AlleRestauranterActivity extends AppCompatActivity {
 
@@ -55,9 +59,12 @@ public class AlleRestauranterActivity extends AppCompatActivity {
        if(restaurantListe.size() > 0) {
            endreRestaurant.setEnabled(true);
            slettRestaurant.setEnabled(true);
-           ArrayAdapter<Restaurant> restaurantAdapter = new ArrayAdapter<>(this, R.layout.restaurant_listview_layout, restaurantListe);
-           listView.setAdapter(restaurantAdapter);
-           listView.setOnItemClickListener((parent, view, i, id) -> restaurant = (Restaurant) listView.getItemAtPosition(i));
+           populateRestaurantListView(restaurantListe);
+           listView.setOnItemClickListener((parent, view, i, id) -> {
+               HashMap<String, String> hm = (HashMap<String, String>) listView.getItemAtPosition(i);
+               String restaurantNavn = hm.get("item");
+               restaurant = db.finnRestaurant(restaurantNavn) ;
+           });
        } else {
            endreRestaurant.setEnabled(false);
            slettRestaurant.setEnabled(false);
@@ -66,6 +73,28 @@ public class AlleRestauranterActivity extends AppCompatActivity {
            ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderList);
            listView.setAdapter(placeholderAdapter);
        }
+   }
+
+   public void populateRestaurantListView(List<Restaurant> list){
+       List<Map<String, String>> data = new ArrayList<>();
+       for (Restaurant r : list) {
+           Map<String, String> datum = new HashMap<>(2);
+
+           datum.put("item", r.getNavn());
+
+           StringBuilder subitemTxt = new StringBuilder();
+           subitemTxt.append(r.getAdresse()).append("\nTelefonnummer: ").append(r.getTelefon()).append("\nType: "). append(r.getType());
+           datum.put("subitem", subitemTxt.toString());
+
+           data.add(datum);
+       }
+
+       SimpleAdapter adapter = new SimpleAdapter(this, data,
+               R.layout.simple_list_item_2_single_choice,
+               new String[] {"item", "subitem"},
+               new int[] {R.id.text1,
+                       R.id.text2});
+       listView.setAdapter(adapter);
    }
 
    public void lagreRestaurant(View view){
