@@ -81,7 +81,8 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:inputType="none"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:drawableEnd="@drawable/endredato"/>
 
         <TextView
             android:layout_marginTop="@dimen/margin_md"
@@ -96,6 +97,7 @@
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
+            android:drawableEnd="@drawable/tidspunkt"
             android:focusableInTouchMode="false"
             android:inputType="none"
             android:importantForAutofill="no" />
@@ -109,6 +111,7 @@
             android:text="@string/endre"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
+            android:drawableTop="@android:drawable/ic_menu_edit"
             android:onClick="endreBestilling" />
 
     </LinearLayout>

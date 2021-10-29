@@ -55,7 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/txt_height_sm"
             android:hint="@string/navn"
-            android:inputType="text" />
+            android:inputType="text"
+            android:drawableEnd="@drawable/restauranticon" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/txt_height_sm"
             android:autofillHints="postalAddress"
+            android:drawableEnd="@drawable/lokasjon"
             android:hint="@string/adresse"
             android:inputType="text" />
 
@@ -83,6 +85,7 @@
             android:layout_height="@dimen/txt_height_sm"
             android:autofillHints="phone"
             android:hint="@string/telefon"
+            android:drawableEnd="@drawable/telefon"
             android:inputType="text" />
 
         <TextView
@@ -96,7 +99,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/txt_height_sm"
             android:hint="@string/type"
-            android:inputType="text" />
+            android:inputType="text"
+            android:drawableEnd="@drawable/type"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/lagreRestaurant"
@@ -107,7 +112,8 @@
             android:text="@string/endre"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
-            android:onClick="endreRestaurant" />
+            android:onClick="endreRestaurant"
+            android:drawableTop="@android:drawable/ic_menu_edit"/>
 
     </LinearLayout>
 

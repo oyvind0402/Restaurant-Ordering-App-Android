@@ -7,6 +7,7 @@
     <string name="avslutt">Avslutt</string>
     <string name="lagre">Lagre</string>
     <string name="endre">Endre</string>
+    <string name="slett">Slett</string>
     <string name="navn">Navn</string>
     <string name="telefon">Telefon</string>
     <string name="tom">Listen er tom</string>
@@ -50,8 +51,10 @@
     <!--    Instillinger ressurser-->
     <string name="endre_settings">Endre innstillinger</string>
     <string name="notisTittel">Push notifikasjoner</string>
-    <string name="settings">Instillinger</string>
-    <string name="notisTekst">Vil du skru push notifikasjoner av eller på?</string>
+    <string name="settings">Innstillinger</string>
+    <string name="notisTekst">Skru SMS / push notifikasjoner av eller på</string>
     <string name="sms">SMS</string>
-    <string name="smsTekst">Vil du skru SMS-sending av eller på?</string>
+    <string name="velgTidspunkt">Påminnelse om bestilling sendes klokken</string>
+    <string name="velgSms">Velg standard SMS som skal sendes</string>
+    <string name="tidOgMelding">Velg tidspunkt og standardmelding</string>
 </resources>

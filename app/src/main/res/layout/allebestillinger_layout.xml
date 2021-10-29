@@ -59,7 +59,8 @@
                 android:layout_width="@dimen/txt_width_sm"
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
-                android:text="@string/endre_bestilling"
+                android:drawableTop="@android:drawable/ic_menu_edit"
+                android:text="@string/endre"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:background="@color/blue_logo"
                 android:onClick="endreBestilling" />
@@ -70,7 +71,8 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/margin_sm"
-                android:text="@string/slett_bestilling"
+                android:drawableTop="@android:drawable/ic_menu_delete"
+                android:text="@string/slett"
                 android:background="@color/blue_logo"
                 android:onClick="slettBestilling" />
 
@@ -84,6 +86,10 @@
             android:layout_marginTop="@dimen/margin_sm"
             android:layout_marginBottom="@dimen/margin_md"
             android:text="@string/ny_bestilling"
+            android:drawableStart="@drawable/lagrebestilling"
+            android:paddingEnd="60dp"
+            android:paddingStart="60dp"
+            android:drawableTint="@color/beige"
             android:textColor="@color/beige"
             android:background="@color/red_logo"
             android:onClick="lagreBestilling" />

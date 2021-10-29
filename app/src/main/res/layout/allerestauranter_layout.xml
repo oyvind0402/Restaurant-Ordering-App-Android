@@ -59,7 +59,8 @@
                 android:layout_width="@dimen/txt_width_sm"
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
-                android:text="@string/endre_restaurant"
+                android:text="@string/endre"
+                android:drawableTop="@android:drawable/ic_menu_edit"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:background="@color/blue_logo"
@@ -72,7 +73,8 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:layout_marginEnd="@dimen/margin_sm"
-                android:text="@string/slett_restaurant"
+                android:text="@string/slett"
+                android:drawableTop="@android:drawable/ic_menu_delete"
                 android:background="@color/blue_logo"
                 android:onClick="slettRestaurant" />
 
@@ -84,6 +86,10 @@
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
             android:text="@string/ny_restaurant"
+            android:drawableStart="@drawable/lagrerestaurant"
+            android:paddingStart="40dp"
+            android:paddingEnd="50dp"
+            android:drawableTint="@color/beige"
             android:textColor="@color/beige"
             android:background="@color/red_logo"
             android:onClick="lagreRestaurant" />

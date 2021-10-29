@@ -62,7 +62,8 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:layout_marginStart="@dimen/margin_sm"
-                android:text="@string/endre_venner"
+                android:drawableTop="@android:drawable/ic_menu_edit"
+                android:text="@string/endre"
                 android:background="@color/blue_logo"
                 android:onClick="endreVenn" />
 
@@ -73,7 +74,8 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:layout_marginStart="@dimen/margin_sm"
-                android:text="@string/slett_venner"
+                android:drawableTop="@android:drawable/ic_menu_delete"
+                android:text="@string/slett"
                 android:background="@color/blue_logo"
                 android:onClick="slettVenn" />
 
@@ -86,6 +88,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_md"
             android:text="@string/ny_venn"
+            android:drawableStart="@drawable/lagrevenn"
+            android:paddingEnd="60dp"
+            android:paddingStart="40dp"
             android:textColor="@color/beige"
             android:background="@color/red_logo"
             android:onClick="lagreVenn" />

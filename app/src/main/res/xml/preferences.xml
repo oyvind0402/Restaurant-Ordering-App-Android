@@ -1,20 +1,24 @@
-<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory>
-        <ListPreference
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        app:summary="@string/notisTekst">
+        <SwitchPreference
             app:defaultValue="false"
-            app:entries="@array/av_paa_array"
-            app:entryValues="@array/av_paa_array_values"
             app:key="notifikasjon"
-            app:negativeButtonText="@string/avslutt"
-            app:title="@string/notisTittel"
-            app:summary="@string/notisTekst" />
-        <ListPreference
+            app:title="@string/notisTittel" />
+        <SwitchPreference
             app:defaultValue="false"
-            app:entries="@array/av_paa_array"
-            app:entryValues="@array/av_paa_array_values"
             app:key="sms"
-            app:negativeButtonText="@string/avslutt"
-            app:title="@string/sms"
-            app:summary="@string/smsTekst" />
+            app:title="@string/sms" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:summary="@string/tidOgMelding">
+        <Preference
+            app:key="velgTidspunkt"
+            app:title="@string/velgTidspunkt"
+            app:defaultValue="17:00"/>
+        <EditTextPreference
+            app:key="smsMelding"
+            app:title="@string/velgSms" />
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>

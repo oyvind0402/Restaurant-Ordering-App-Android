@@ -81,7 +81,8 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:inputType="none"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:drawableEnd="@drawable/velgdato" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -98,7 +99,8 @@
             android:id="@+id/innTidspunkt"
             android:hint="@string/tidspunkt"
             android:inputType="none"
-            android:importantForAutofill="no"/>
+            android:importantForAutofill="no"
+            android:drawableEnd="@drawable/tidspunkt"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/lagre_bestilling"
@@ -109,7 +111,11 @@
             android:text="@string/bestill"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
-            android:onClick="lagreBestilling" />
+            android:onClick="lagreBestilling"
+            android:drawableStart="@drawable/lagrebestilling"
+            android:paddingStart="40dp"
+            android:paddingEnd="60dp"
+            />
 
     </LinearLayout>
 

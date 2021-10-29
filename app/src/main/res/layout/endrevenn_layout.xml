@@ -57,7 +57,8 @@
                 android:id="@+id/innEndreVennNavn"
                 android:hint="@string/navn"
                 android:inputType="text"
-                android:autofillHints="name" />
+                android:autofillHints="name"
+                android:drawableEnd="@drawable/vennadd"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
                 android:id="@+id/innEndreVennTelefon"
                 android:hint="@string/telefon"
                 android:inputType="text"
-                android:autofillHints="phone" />
+                android:autofillHints="phone"
+                android:drawableEnd="@drawable/telefon"/>
 
         </LinearLayout>
 
@@ -81,6 +83,7 @@
             android:layout_marginTop="@dimen/margin_md"
             android:text="@string/endre"
             android:textColor="@color/black"
+            android:drawableTop="@android:drawable/ic_menu_edit"
             android:background="@color/blue_logo"
             android:onClick="endreVenn" />
 

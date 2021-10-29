@@ -60,7 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/txt_height_sm"
                 android:hint="@string/navn"
-                android:inputType="text" />
+                android:inputType="text"
+                android:drawableEnd="@drawable/vennadd"/>
 
 
             <TextView
@@ -75,7 +76,8 @@
                 android:layout_height="@dimen/txt_height_sm"
                 android:autofillHints="phone"
                 android:hint="@string/telefon"
-                android:inputType="text" />
+                android:inputType="text"
+                android:drawableEnd="@drawable/telefon"/>
 
         </LinearLayout>
 
@@ -88,7 +90,11 @@
             android:text="@string/lagre"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
-            android:onClick="lagreVenn" />
+            android:onClick="lagreVenn"
+            android:drawableStart="@drawable/lagrevenn"
+            android:drawableTint="@color/beige"
+            android:paddingStart="40dp"
+            android:paddingEnd="60dp"/>
 
     </LinearLayout>
 

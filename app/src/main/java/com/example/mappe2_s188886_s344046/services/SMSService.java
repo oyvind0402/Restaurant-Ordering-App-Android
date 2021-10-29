@@ -47,7 +47,6 @@ public class SMSService extends Service {
 
         if(orderIsToday(bestillingsListe, dagensDato, db)) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            SharedPreferences.Editor editor = sharedPreferences.edit();
             StringBuilder venneString = new StringBuilder();
             if(venner.size() > 0) {
                 for(Venn venn: venner) {
@@ -55,12 +54,9 @@ public class SMSService extends Service {
                 }
                 venneString.delete(venneString.length()-2, venneString.length());
             }
-            editor.putString("smsMessage", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venneString.toString() + ".");
-            editor.apply();
-
-            String notificationIsActivated = sharedPreferences.getString("notifikasjon", "false");
+            boolean notificationIsActivated = sharedPreferences.getBoolean("notifikasjon", false);
             //Sender notifikasjon hvis den ikke er skrudd av av brukeren i settings:
-            if(notificationIsActivated.equals("true")) {
+            if(notificationIsActivated) {
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
                 //For API versjoner 23 eller lavere
@@ -80,23 +76,19 @@ public class SMSService extends Service {
                 notificationManager.notify(0, notification);
             }
 
-            String smsIsActivated = sharedPreferences.getString("sms", "false");
+            boolean smsIsActivated = sharedPreferences.getBoolean("sms", false);
             //Sender sms hvis SMS er aktivert i settings og du har fått permissions av brukeren:
-            if(smsIsActivated.equals("true") && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-
+            if(smsIsActivated && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                 SmsManager sms = SmsManager.getDefault();
-                String message = sharedPreferences.getString("smsMessage", "");
+                String melding = sharedPreferences.getString("smsMelding", "Du har en restaurantbestilling i dag!\n" + "Restauranten "  + restaurantNavn + " har reservert bord til deg klokken " + tidspunkt + ".\nDet er også bestilt for " + venneString.toString() + ".");
                 for(int j = 0; j < bestillingsListe.size() ; j++) {
                     if(bestillingsListe.get(j).getDato().equals(dagensDato)) {
                         if(venner.size() > 0) {
-                            sms.sendTextMessage(venner.get(j).getTelefon(), null, message, null, null);
+                            sms.sendTextMessage(venner.get(j).getTelefon(), null, melding, null, null);
                         }
                     }
                 }
             }
-
-
-
         }
         return super.onStartCommand(intent, flags, startId);
     }

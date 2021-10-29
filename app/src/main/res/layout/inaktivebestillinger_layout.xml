@@ -38,7 +38,8 @@
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/margin_sm"
-        android:text="@string/slett_bestilling"
+        android:text="@string/slett"
+        android:drawableTop="@android:drawable/ic_menu_delete"
         android:background="@color/blue_logo"
         android:onClick="slettBestillinger" />
 

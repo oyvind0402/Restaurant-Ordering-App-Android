@@ -55,7 +55,8 @@
             android:layout_height="@dimen/txt_height_sm"
             android:hint="@string/navn"
             android:inputType="text"
-            android:autofillHints="name" />
+            android:autofillHints="name"
+            android:drawableEnd="@drawable/restauranticon"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
             android:layout_height="@dimen/txt_height_sm"
             android:autofillHints="postalAddress"
             android:hint="@string/adresse"
-            android:inputType="text" />
+            android:inputType="text"
+            android:drawableEnd="@drawable/lokasjon"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,7 +85,8 @@
             android:layout_height="@dimen/txt_height_sm"
             android:autofillHints="phone"
             android:hint="@string/telefon"
-            android:inputType="text" />
+            android:inputType="text"
+            android:drawableEnd="@drawable/telefon"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -96,7 +99,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/txt_height_sm"
             android:hint="@string/type"
-            android:inputType="text" />
+            android:inputType="text"
+            android:drawableEnd="@drawable/type"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/lagreRestaurant"
@@ -107,7 +111,10 @@
             android:text="@string/lagre"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
-            android:onClick="lagreRestaurant" />
+            android:onClick="lagreRestaurant"
+            android:drawableStart="@drawable/lagrerestaurant"
+            android:paddingStart="40dp"
+            android:paddingEnd="60dp"/>
 
     </LinearLayout>
 
