@@ -111,7 +111,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public Restaurant finnRestaurant(String navn) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT * FROM " + TABLENAME + " WHERE " + NAME + " LIKE " + navn + " LIMIT 1;";
+        String sql = "SELECT * FROM " + TABLENAME + " WHERE " + NAME + " LIKE \"" + navn + "\" LIMIT 1;";
         Cursor cursor = db.rawQuery(sql, null);
         Restaurant restaurant = new Restaurant();
         if(cursor.moveToFirst()) {
