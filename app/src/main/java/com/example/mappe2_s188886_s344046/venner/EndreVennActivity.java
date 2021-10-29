@@ -55,10 +55,10 @@ public class EndreVennActivity extends AppCompatActivity {
                 db.oppdaterVenn(venn);
                 Toast.makeText(this, venn.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Feil input, prøv igjen med andre input som er gyldige!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Feil input, prøv igjen!", Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(this, "Du må skrive inn både navn og telefon for å oppdatere!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_SHORT).show();
         }
     }
 

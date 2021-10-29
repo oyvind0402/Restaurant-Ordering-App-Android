@@ -2,7 +2,6 @@ package com.example.mappe2_s188886_s344046.bestillinger;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,14 +21,9 @@ import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.utils.Utilities;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 public class AlleBestillingerActivity extends AppCompatActivity {
     DBHandler db;
@@ -112,7 +106,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }  else {
-            Toast.makeText(this, "Må velge en bestilling", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en bestilling", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -125,7 +119,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
                 finish();
             }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av bestilling #" + bestilling.getId() + " ikke vellykket.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
-            Toast.makeText(this, "Du må velge en bestilling for å slette", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en bestilling", Toast.LENGTH_SHORT).show();
         }
     }
 

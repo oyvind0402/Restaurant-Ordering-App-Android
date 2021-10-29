@@ -201,7 +201,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
             Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
             venneListe.clear();
         } else {
-            Toast.makeText(this, "Du må velge dato, tidspunkt og restaurant!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_LONG).show();
         }
     }
 

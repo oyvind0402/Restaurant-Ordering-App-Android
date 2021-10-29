@@ -82,9 +82,9 @@ public class AlleVennerActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AlleVennerActivity.class);
                 startActivity(intent);
                 finish();
-            }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + venn.getNavn() + " ikke vellykket.", Toast.LENGTH_SHORT).show()).create().show();
+            }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + venn.getNavn() + " avbrutt.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
-            Toast.makeText(this, "Du må velge en venn for å slette!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en venn!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -97,7 +97,7 @@ public class AlleVennerActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            Toast.makeText(this, "Du må velge en venn for å oppdatere!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en venn!", Toast.LENGTH_SHORT).show();
         }
     }
 

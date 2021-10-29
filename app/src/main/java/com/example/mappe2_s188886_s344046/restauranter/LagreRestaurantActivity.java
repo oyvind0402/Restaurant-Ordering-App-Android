@@ -48,7 +48,7 @@ public class LagreRestaurantActivity extends AppCompatActivity {
                 List<Restaurant> restaurantListe = db.finnAlleRestauranter();
                 for(Restaurant r : restaurantListe) {
                     if(r.getNavn().equals(innNavn.getText().toString())) {
-                        Toast.makeText(this, "Det finnes allerede en restaurant med det navnet, prøv igjen!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Det finnes allerede en restaurant med det navnet, prøv igjen!", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -56,11 +56,11 @@ public class LagreRestaurantActivity extends AppCompatActivity {
                 Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som restaurant!", Toast.LENGTH_SHORT).show();
                 resetInput();
             } else {
-                Toast.makeText(this, "Feil input, prøv igjen med andre input som er gyldige!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Feil input, prøv igjen!", Toast.LENGTH_LONG).show();
             }
 
         } else {
-            Toast.makeText(this, "Du må skrive noe inn i alle feltene for å lagre en restaurant!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_SHORT).show();
         }
     }
 

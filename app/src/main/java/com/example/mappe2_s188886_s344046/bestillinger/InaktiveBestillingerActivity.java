@@ -1,6 +1,8 @@
 package com.example.mappe2_s188886_s344046.bestillinger;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -100,7 +102,7 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
                 finish();
             }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + antallValgte + " bestilling(er) avbrutt.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
-            Toast.makeText(this, "Velg en eller flere bestillinger", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Velg en eller flere bestillinger", Toast.LENGTH_SHORT).show();
         }
     }
 
