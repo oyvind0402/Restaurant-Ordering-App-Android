@@ -2,16 +2,16 @@
     <PreferenceCategory>
         <ListPreference
             app:defaultValue="false"
-            app:entries="@array/notifikasjon"
-            app:entryValues="@array/notifikasjonValues"
+            app:entries="@array/av_paa_array"
+            app:entryValues="@array/av_paa_array_values"
             app:key="notifikasjon"
             app:negativeButtonText="@string/avslutt"
             app:title="@string/notisTittel"
             app:summary="@string/notisTekst" />
         <ListPreference
             app:defaultValue="false"
-            app:entries="@array/sms"
-            app:entryValues="@array/smsValues"
+            app:entries="@array/av_paa_array"
+            app:entryValues="@array/av_paa_array_values"
             app:key="sms"
             app:negativeButtonText="@string/avslutt"
             app:title="@string/sms"

@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="notifikasjon">
+    <string-array name="av_paa_array">
         <item>På</item>
         <item>Av</item>
     </string-array>
-    <string-array name="notifikasjonValues">
-        <item>true</item>
-        <item>false</item>
-    </string-array>
-
-    <string-array name="sms">
-        <item>På</item>
-        <item>Av</item>
-    </string-array>
-    <string-array name="smsValues">
+    <string-array name="av_paa_array_values">
         <item>true</item>
         <item>false</item>
     </string-array>

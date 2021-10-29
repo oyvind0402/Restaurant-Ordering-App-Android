@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/venner"
-            android:textSize="@dimen/txt_size_lg"
+            android:textSize="@dimen/txt_size_xl"
             android:textColor="@color/white"/>
 
     </androidx.appcompat.widget.Toolbar>
@@ -63,7 +63,6 @@
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:text="@string/endre_venner"
-                android:textColor="@color/black"
                 android:background="@color/blue_logo"
                 android:onClick="endreVenn" />
 
@@ -75,7 +74,6 @@
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:text="@string/slett_venner"
-                android:textColor="@color/black"
                 android:background="@color/blue_logo"
                 android:onClick="slettVenn" />
 

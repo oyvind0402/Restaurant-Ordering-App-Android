@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/endre_restaurant"
-            android:textSize="@dimen/txt_size_lg"
+            android:textSize="@dimen/txt_size_xl"
             android:textColor="@color/white"/>
 
     </androidx.appcompat.widget.Toolbar>

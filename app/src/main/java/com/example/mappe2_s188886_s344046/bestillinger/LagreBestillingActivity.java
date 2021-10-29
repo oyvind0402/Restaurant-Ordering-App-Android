@@ -27,6 +27,7 @@ import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.utils.Utilities;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -134,56 +135,73 @@ public class LagreBestillingActivity extends AppCompatActivity {
         List<Restaurant> restaurantListe = db.finnAlleRestauranter();
 
         // Valgte en Map + Liste løsning, slik at nøkkel-verdiene er alltid paret (ingen fare for unsync)
-        Map<String, Long> map = new HashMap<>();
-        liste = new ArrayList<>();
-        for (int i = 0; i < restaurantListe.size(); i++) {
-            map.put(restaurantListe.get(i).getNavn(), restaurantListe.get(i).getId());
-            liste.add(restaurantListe.get(i).getNavn());
-        }
-        liste.add("Velg Restaurant");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(LagreBestillingActivity.this, android.R.layout.simple_spinner_item, liste) {
-            @Override
-            public int getCount() {
-                //Gjør så den siste verdien i listen ikke vises i dropdownlisten etter man har valgt noe annet
-                return liste.size() - 1;
+        if(restaurantListe.size() > 0) {
+            Map<String, Long> map = new HashMap<>();
+            liste = new ArrayList<>();
+            for (int i = 0; i < restaurantListe.size(); i++) {
+                map.put(restaurantListe.get(i).getNavn(), restaurantListe.get(i).getId());
+                liste.add(restaurantListe.get(i).getNavn());
             }
-        };
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                try {
-                    //Hvis det ikke er placeholder verdien så initialiserer vi noen variabler
-                    if(spinner.getSelectedItemPosition() != liste.size() - 1) {
-                        restaurantid = map.get(liste.get(i));
-                        Restaurant restaurant = db.finnRestaurant(restaurantid);
-
-                        if(toastMessage != null) {
-                            toastMessage.cancel();
-                        }
-
-                        toastMessage = Toast.makeText(getApplicationContext(), restaurant.toString(), Toast.LENGTH_LONG);
-                        toastMessage.show();
-                    }
-                } catch (NullPointerException e) {
-                    Toast.makeText(getApplicationContext(), "Feil ved å velge restaurant", Toast.LENGTH_SHORT).show();
+            liste.add("Velg Restaurant");
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(LagreBestillingActivity.this, android.R.layout.simple_spinner_item, liste) {
+                @Override
+                public int getCount() {
+                    //Gjør så den siste verdien i listen ikke vises i dropdownlisten etter man har valgt noe annet
+                    return liste.size() - 1;
                 }
-            }
+            };
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    try {
+                        //Hvis det ikke er placeholder verdien så initialiserer vi noen variabler
+                        if(spinner.getSelectedItemPosition() != liste.size() - 1) {
+                            restaurantid = map.get(liste.get(i));
+                            Restaurant restaurant = db.finnRestaurant(restaurantid);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+                            if(toastMessage != null) {
+                                toastMessage.cancel();
+                            }
 
-            }
-        });
-        //Setter Velg Restaurant som første valg i dropdown'en
-        spinner.setSelection(liste.size() - 1);
+                            toastMessage = Toast.makeText(getApplicationContext(), restaurant.toString(), Toast.LENGTH_LONG);
+                            toastMessage.show();
+                        }
+                    } catch (NullPointerException e) {
+                        Toast.makeText(getApplicationContext(), "Feil ved å velge restaurant", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+            //Setter Velg Restaurant som første valg i dropdown'en
+            spinner.setSelection(liste.size() - 1);
+        } else {
+            List<String> placeholderListe = new ArrayList<>();
+            placeholderListe.add("Ingen restauranter");
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(LagreBestillingActivity.this, android.R.layout.simple_spinner_item, placeholderListe);
+            spinner.setAdapter(adapter);
+            spinner.setEnabled(false);
+        }
+
     }
 
     public void populateFriendList() {
         List<Venn> venneListe2 = db.finnAlleVenner();
-        ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, venneListe2);
-        listView.setAdapter(vennAdapter);
+        if (venneListe2.size() > 0) {
+            ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, venneListe2);
+            listView.setAdapter(vennAdapter);
+        } else {
+            List<String> placeholderListe = new ArrayList<>();
+            placeholderListe.add("Ingen venner");
+            ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(LagreBestillingActivity.this, android.R.layout.simple_list_item_1, placeholderListe);
+            listView.setAdapter(placeholderAdapter);
+            listView.setEnabled(false);
+        }
     }
 
     public void lagreBestilling(View view) {

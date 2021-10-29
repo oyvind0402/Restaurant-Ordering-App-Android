@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/restauranter"
-            android:textSize="@dimen/txt_size_lg"
+            android:textSize="@dimen/txt_size_xl"
             android:textColor="@color/white" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -62,7 +62,6 @@
                 android:text="@string/endre_restaurant"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:layout_marginEnd="@dimen/margin_sm"
-                android:textColor="@color/black"
                 android:background="@color/blue_logo"
                 android:onClick="endreRestaurant" />
 
@@ -74,7 +73,6 @@
                 android:layout_marginStart="@dimen/margin_sm"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:text="@string/slett_restaurant"
-                android:textColor="@color/black"
                 android:background="@color/blue_logo"
                 android:onClick="slettRestaurant" />
 
