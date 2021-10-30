@@ -75,7 +75,7 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
             });
         } else {
             List<String> placeholderListe = new ArrayList<>();
-            placeholderListe.add("Ingen inaktive bestillinger lagt til enda!");
+            placeholderListe.add("Ingen inaktive bestillinger for øyeblikket!");
             int grey = getResources().getColor(R.color.gray_logo);
             slettInaktive.setEnabled(false);
             slettInaktive.setBackgroundColor(grey);
