@@ -2,9 +2,6 @@ package com.example.mappe2_s188886_s344046.venner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,9 +38,13 @@ public class LagreVennActivity extends AppCompatActivity {
         Venn venn = new Venn(innNavn.getText().toString(), innTelefon.getText().toString());
         if(!venn.getNavn().isEmpty() && !venn.getTelefon().isEmpty()) {
             if(validerInput()) {
-                db.leggTilVenn(venn);
-                Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som venn!", Toast.LENGTH_SHORT).show();
-                resetInput();
+                if(db.finnesVenn(venn)) {
+                    Toast.makeText(this, "Venn finnes allerede!", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.leggTilVenn(venn);
+                    Toast.makeText(this, "Lagret " + innNavn.getText().toString() + " som venn!", Toast.LENGTH_SHORT).show();
+                    resetInput();
+                }
             } else {
                 Toast.makeText(this, "Feil input, prøv igjen!", Toast.LENGTH_LONG).show();
             }

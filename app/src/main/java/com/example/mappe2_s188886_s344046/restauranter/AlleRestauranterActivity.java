@@ -80,9 +80,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
 
            datum.put("item", r.getNavn());
 
-           StringBuilder subitemTxt = new StringBuilder();
-           subitemTxt.append(r.getAdresse()).append("\nTelefonnummer: ").append(r.getTelefon()).append("\nType: "). append(r.getType());
-           datum.put("subitem", subitemTxt.toString());
+           datum.put("subitem", r.getAdresse() + "\nTelefon: " + r.getTelefon() + "\nType: " + r.getType());
 
            data.add(datum);
        }

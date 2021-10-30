@@ -49,11 +49,16 @@ public class EndreVennActivity extends AppCompatActivity {
         if(!innEndreTelefon.getText().toString().isEmpty() && !innEndreNavn.getText().toString().isEmpty()) {
             if(validerInput()) {
                 Venn venn = new Venn();
+
                 venn.setId(vennId);
                 venn.setNavn(innEndreNavn.getText().toString());
                 venn.setTelefon(innEndreTelefon.getText().toString());
-                db.oppdaterVenn(venn);
-                Toast.makeText(this, venn.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
+                if(db.finnesVenn(venn)) {
+                    Toast.makeText(this, "Venn finnes allerede!", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.oppdaterVenn(venn);
+                    Toast.makeText(this, venn.getNavn() + " oppdatert!", Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Toast.makeText(this, "Feil input, prøv igjen!", Toast.LENGTH_LONG).show();
             }

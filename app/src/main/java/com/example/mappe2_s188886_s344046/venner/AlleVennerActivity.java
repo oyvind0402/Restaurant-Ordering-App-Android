@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,7 +22,9 @@ import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AlleVennerActivity extends AppCompatActivity {
     private DBHandler db;
@@ -52,10 +55,13 @@ public class AlleVennerActivity extends AppCompatActivity {
         if (venneListe.size() > 0) {
             endreVenn.setEnabled(true);
             slettVenn.setEnabled(true);
-            ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, R.layout.allevenner_listview_layout, venneListe);
-            listView.setAdapter(vennAdapter);
+            populateVennListView(venneListe);
             listView.setOnItemClickListener((adapterView, view, i, l) -> {
-                venn = (Venn) listView.getItemAtPosition(i);
+                HashMap<String, String> hm = (HashMap<String, String>) listView.getItemAtPosition(i);
+                String venneNavn = hm.get("item");
+                String venneTelefonHm = hm.get("subitem");
+                String venneTelefon = venneTelefonHm.split(" ")[1];
+                venn = db.finnVenn(venneNavn, venneTelefon);
             });
         } else {
              endreVenn.setEnabled(false);
@@ -65,6 +71,24 @@ public class AlleVennerActivity extends AppCompatActivity {
              ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderList);
              listView.setAdapter(placeholderAdapter);
         }
+    }
+
+    public void populateVennListView(List<Venn> list) {
+        List<Map<String, String>> data = new ArrayList<>();
+        for(Venn venn: list) {
+            Map<String, String> datum = new HashMap<>(2);
+
+            datum.put("item", venn.getNavn());
+            datum.put("subitem","Telefon: " + venn.getTelefon());
+
+            data.add(datum);
+        }
+
+        SimpleAdapter adapter = new SimpleAdapter(this, data,
+                R.layout.simple_list_item_2_single_choice,
+                new String[]{"item", "subitem"},
+                new int[]{R.id.text1, R.id.text2});
+        listView.setAdapter(adapter);
     }
 
     public void lagreVenn(View view) {
