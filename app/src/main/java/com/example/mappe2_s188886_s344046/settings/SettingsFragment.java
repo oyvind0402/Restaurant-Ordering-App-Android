@@ -41,7 +41,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
             boolean pushIsActivated = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getBoolean("notifikasjon", false);
             boolean smsIsActivated = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getBoolean("sms", false);
-            //Starter servicen på nytt hvis brukeren endrer tidspunkt for sending av sms og notifikasjon
+            //Starter servicen på nytt hvis brukeren endrer tidspunkt for sending av sms og notifikasjon - bare hvis sms eller push er allerede aktivert
             if(pushIsActivated || smsIsActivated) {
                 startService();
             }
