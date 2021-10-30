@@ -111,7 +111,7 @@
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
             android:background="@color/red_logo"
-            android:drawableStart="@drawable/lagrerestaurant"
+            android:drawableStart="@drawable/lagrerestaurantbeige"
             android:onClick="lagreRestaurant"
             android:paddingStart="@dimen/margin_md"
             android:paddingEnd="@dimen/margin_md"
