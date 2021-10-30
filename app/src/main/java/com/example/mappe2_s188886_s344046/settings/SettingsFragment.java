@@ -55,6 +55,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         });
 
         smsMelding = (EditTextPreference) findPreference("smsMelding");
+        assert smsMelding != null;
+        smsMelding.setNegativeButtonText("Avslutt");
+        smsMelding.setPositiveButtonText("Ok");
+
         SharedPreferences sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String melding = sharedPreferences.getString("smsMelding", "Du har en bestilling i dag!");
         String tid = sharedPreferences.getString("velgTidspunkt", "17:00");
