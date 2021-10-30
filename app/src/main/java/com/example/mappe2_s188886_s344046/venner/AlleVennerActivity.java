@@ -1,9 +1,7 @@
 package com.example.mappe2_s188886_s344046.venner;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -23,9 +20,7 @@ import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AlleVennerActivity extends AppCompatActivity {
     private DBHandler db;
@@ -57,7 +52,7 @@ public class AlleVennerActivity extends AppCompatActivity {
         if (venneListe.size() > 0) {
             endreVenn.setEnabled(true);
             slettVenn.setEnabled(true);
-            ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, R.layout.restaurant_listview_layout, venneListe);
+            ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, R.layout.allevenner_listview_layout, venneListe);
             listView.setAdapter(vennAdapter);
             listView.setOnItemClickListener((adapterView, view, i, l) -> {
                 venn = (Venn) listView.getItemAtPosition(i);
