@@ -101,7 +101,7 @@
             android:layout_marginTop="@dimen/margin_sm"
             android:background="@color/red_logo"
             android:drawableStart="@drawable/vennadd"
-            android:drawableTint="@color/red_logo_light"
+            android:drawableTint="@color/beige"
             android:onClick="lagreVenn"
             android:paddingStart="@dimen/margin_md"
             android:paddingEnd="@dimen/margin_lg"

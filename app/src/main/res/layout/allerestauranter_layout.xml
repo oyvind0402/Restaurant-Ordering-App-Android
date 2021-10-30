@@ -94,7 +94,6 @@
             android:layout_gravity="center"
             android:background="@color/red_logo"
             android:drawableStart="@drawable/lagrerestaurant"
-            android:drawableTint="@color/beige"
             android:onClick="lagreRestaurant"
             android:paddingStart="@dimen/margin_md"
             android:paddingEnd="@dimen/margin_md"

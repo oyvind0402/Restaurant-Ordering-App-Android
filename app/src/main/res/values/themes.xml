@@ -21,5 +21,6 @@
         <item name="android:src">@drawable/settingsicon</item>
         <item name="android:background">?android:attr/actionBarItemBackground</item>
         <item name="android:contentDescription">"Ikon for instillinger"</item>
+        <item name="alpha">1</item>
     </style>
 </resources>
