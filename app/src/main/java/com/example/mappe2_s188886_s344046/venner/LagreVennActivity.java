@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.mappe2_s188886_s344046.ForsideActivity;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.R;
@@ -28,7 +29,6 @@ public class LagreVennActivity extends AppCompatActivity {
         setContentView(R.layout.lagrevenn_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        myToolbar.inflateMenu(R.menu.menu);
         myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
@@ -65,20 +65,17 @@ public class LagreVennActivity extends AppCompatActivity {
         innTelefon.setText("");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
+    public void tilForside(View view) {
+        Intent intent = new Intent(this, ForsideActivity.class);
+        //Legger til CLEAR_TOP intent flag for å fjerne alt på callstacken.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.settings_activity) {
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
-        }
-        return true;
+    public void tilSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -17,8 +17,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.mappe2_s188886_s344046.ForsideActivity;
 import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
+import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.utils.Utilities;
 import com.example.mappe2_s188886_s344046.venner.Venn;
@@ -50,7 +52,6 @@ public class EndreBestillingActivity extends AppCompatActivity {
         setContentView(R.layout.endrebestilling_layout);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        myToolbar.inflateMenu(R.menu.menu);
         myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
@@ -212,10 +213,24 @@ public class EndreBestillingActivity extends AppCompatActivity {
         }
     }
 
+    public void tilForside(View view) {
+        Intent intent = new Intent(this, ForsideActivity.class);
+        //Legger til CLEAR_TOP intent flag for å fjerne alt på callstacken.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    public void tilSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, AlleBestillingerActivity.class);
         startActivity(intent);
         finish();
     }
+
 }

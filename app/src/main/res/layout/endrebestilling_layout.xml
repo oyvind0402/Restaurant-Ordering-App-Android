@@ -3,30 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".bestillinger.EndreBestillingActivity"
     android:orientation="vertical"
-    android:background="@color/beige" >
+    android:background="@color/beige">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red_logo" >
+        android:background="@color/red_logo"
+        android:paddingEnd="@dimen/padding_toolbar"
+        android:paddingStart="@dimen/padding_toolbar"
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp">
 
-        <ImageView
+        <ImageButton
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
+            android:scaleType="fitCenter"
             android:layout_gravity="start"
-            android:contentDescription="@string/ikon_beskrivelse"
+            android:background="@null"
             android:src="@mipmap/ic_launcher_foreground"
-            tools:ignore="ImageContrastCheck" />
+            android:contentDescription="@string/ikon_beskrivelse"
+            tools:ignore="ImageContrastCheck"
+            android:onClick="tilForside"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/endre_bestilling"
+            android:text="@string/aktive_bestillinger"
             android:textSize="@dimen/txt_size_xl"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="end"
+            android:background="@null"
+            android:src="@drawable/settingsicon"
+            android:contentDescription="@string/settings"
+            android:onClick="tilSettings" />
 
     </androidx.appcompat.widget.Toolbar>
 

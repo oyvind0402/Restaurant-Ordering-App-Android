@@ -34,7 +34,6 @@ public class ForsideActivity extends AppCompatActivity {
         createNotificationChannel();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        myToolbar.inflateMenu(R.menu.menu);
         myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
 
@@ -67,22 +66,6 @@ public class ForsideActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.settings_activity) {
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
-        }
-        return true;
-    }
-
     public void visRestauranter(View view) {
         Intent intent = new Intent(this, AlleRestauranterActivity.class);
         startActivity(intent);
@@ -95,6 +78,11 @@ public class ForsideActivity extends AppCompatActivity {
 
     public void visBestillinger(View view) {
         Intent intent = new Intent(this, AlleBestillingerActivity.class);
+        startActivity(intent);
+    }
+
+    public void tilSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
