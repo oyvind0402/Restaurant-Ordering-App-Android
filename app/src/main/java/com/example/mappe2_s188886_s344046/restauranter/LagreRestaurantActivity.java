@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.bestillinger.LagreBestillingActivity;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
@@ -85,7 +86,17 @@ public class LagreRestaurantActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, AlleRestauranterActivity.class);
+        Intent intent;
+        try {
+            String tilbakeTil = getIntent().getExtras().getString("tilbaketil");
+            if (tilbakeTil.equals("LagreBestilling")) {
+                intent = new Intent(this, LagreBestillingActivity.class);
+            } else {
+                intent = new Intent(this, AlleRestauranterActivity.class);
+            }
+        } catch (NullPointerException e) {
+            intent = new Intent(this, AlleRestauranterActivity.class);
+        }
         startActivity(intent);
         finish();
     }

@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,10 +18,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mappe2_s188886_s344046.R;
+import com.example.mappe2_s188886_s344046.restauranter.LagreRestaurantActivity;
 import com.example.mappe2_s188886_s344046.restauranter.Restaurant;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
@@ -213,13 +216,25 @@ public class LagreBestillingActivity extends AppCompatActivity {
             }
         }
 
-        if(!innDato.getText().toString().isEmpty() && !innTidspunkt.getText().toString().isEmpty() && spinner.getSelectedItemPosition() != liste.size() -1) {
-            Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
-            db.leggTilBestilling(bestilling);
-            Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
-            venneListe.clear();
-        } else {
-            Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_LONG).show();
+        try {
+            if (!innDato.getText().toString().isEmpty() && !innTidspunkt.getText().toString().isEmpty() && spinner.getSelectedItemPosition() != liste.size() - 1) {
+                Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
+                db.leggTilBestilling(bestilling);
+                Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
+                venneListe.clear();
+            } else {
+                Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_LONG).show();
+            }
+        } catch (NullPointerException e) {
+            new AlertDialog.Builder(this).setTitle("Tom restaurantliste").setMessage("Vil du lagre en ny restaurant?").setPositiveButton("Ja", (dialogInterface, i) -> {
+                Intent intent = new Intent(getApplicationContext(), LagreRestaurantActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("tilbaketil", "LagreBestilling");
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            }).setNegativeButton("Nei", null).show();
+
         }
     }
 
