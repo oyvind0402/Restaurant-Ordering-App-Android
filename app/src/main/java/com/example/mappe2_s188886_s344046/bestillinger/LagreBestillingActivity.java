@@ -220,6 +220,11 @@ public class LagreBestillingActivity extends AppCompatActivity {
             if (!innDato.getText().toString().isEmpty() && !innTidspunkt.getText().toString().isEmpty() && spinner.getSelectedItemPosition() != liste.size() - 1) {
                 Bestilling bestilling = new Bestilling(restaurantid, innDato.getText().toString(), innTidspunkt.getText().toString(), venneListe);
                 db.leggTilBestilling(bestilling);
+                populateSpinner();
+                populateFriendList();
+                innDato.setText("");
+                innTidspunkt.setText("");
+
                 Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
                 venneListe.clear();
             } else {
