@@ -226,10 +226,10 @@ public class LagreBestillingActivity extends AppCompatActivity {
                 innTidspunkt.setText("");
 
                 Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
-                venneListe.clear();
             } else {
                 Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_LONG).show();
             }
+            venneListe.clear();
         } catch (NullPointerException e) {
             new AlertDialog.Builder(this).setTitle("Tom restaurantliste").setMessage("Vil du lagre en ny restaurant?").setPositiveButton("Ja", (dialogInterface, i) -> {
                 Intent intent = new Intent(getApplicationContext(), LagreRestaurantActivity.class);
