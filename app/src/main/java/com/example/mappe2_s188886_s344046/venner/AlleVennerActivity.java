@@ -57,7 +57,7 @@ public class AlleVennerActivity extends AppCompatActivity {
         if (venneListe.size() > 0) {
             endreVenn.setEnabled(true);
             slettVenn.setEnabled(true);
-            ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, venneListe);
+            ArrayAdapter<Venn> vennAdapter = new ArrayAdapter<>(this, R.layout.restaurant_listview_layout, venneListe);
             listView.setAdapter(vennAdapter);
             listView.setOnItemClickListener((adapterView, view, i, l) -> {
                 venn = (Venn) listView.getItemAtPosition(i);

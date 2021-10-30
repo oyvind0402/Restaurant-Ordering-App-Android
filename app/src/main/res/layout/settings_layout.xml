@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/settings_container"
@@ -14,8 +15,10 @@
         <ImageView
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
+            android:layout_gravity="start"
+            android:contentDescription="@string/ikon_beskrivelse"
             android:src="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="start"/>
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/banner_beskrivelse"/>
 
 </LinearLayout>
