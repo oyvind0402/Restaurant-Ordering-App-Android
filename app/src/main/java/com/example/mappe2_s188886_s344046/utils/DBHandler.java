@@ -193,24 +193,6 @@ public class DBHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    public Venn finnVenn(String navn) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "SELECT * FROM " + TABLENAME2 + " WHERE " + NAME2 + " LIKE \"" + navn + "\" LIMIT 1;";
-        Cursor cursor = db.rawQuery(sql, null);
-        Venn venn = new Venn();
-        if(cursor.moveToFirst()) {
-            do {
-                venn.setId(cursor.getLong(0));
-                venn.setNavn(cursor.getString(1));
-                venn.setTelefon(cursor.getString(2));
-            } while (cursor.moveToNext());
-            cursor.close();
-            return venn;
-        }
-        cursor.close();
-        return null;
-    }
-
     public void slettVenn(Long _id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLENAME2, KEY_ID2 + " = ?", new String[]{Long.toString(_id)});
