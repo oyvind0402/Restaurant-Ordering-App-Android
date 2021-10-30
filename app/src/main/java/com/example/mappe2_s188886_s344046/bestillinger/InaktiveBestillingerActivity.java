@@ -57,7 +57,9 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
 
         Utilities.populateBestillingList(db, allebestillinger, null, inaktiveBestillingerList);
         if (inaktiveBestillingerList.size() > 0) {
+            int blue = getResources().getColor(R.color.blue_logo);
             slettInaktive.setEnabled(true);
+            slettInaktive.setBackgroundColor(blue);
             Utilities.populateBestillingListView(this, db, inaktiveBestillinger, inaktiveBestillingerList, R.layout.simple_list_item_2_multiple_choice);
             valgteIndekser = new boolean[inaktiveBestillingerList.size()];
             Arrays.fill(valgteIndekser, false);
@@ -74,7 +76,9 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
         } else {
             List<String> placeholderListe = new ArrayList<>();
             placeholderListe.add("Ingen inaktive bestillinger lagt til enda!");
+            int grey = getResources().getColor(R.color.gray_logo);
             slettInaktive.setEnabled(false);
+            slettInaktive.setBackgroundColor(grey);
             ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderListe);
             inaktiveBestillinger.setAdapter(placeholderAdapter);
         }
