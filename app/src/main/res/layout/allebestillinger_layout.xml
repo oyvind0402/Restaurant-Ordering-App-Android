@@ -111,7 +111,7 @@
             android:layout_marginTop="@dimen/margin_xs"
             android:layout_marginBottom="@dimen/margin_sm"
             android:background="@color/red_logo"
-            android:drawableStart="@drawable/lagrebestilling"
+            android:drawableStart="@drawable/lagrebestillingbeige"
             android:onClick="lagreBestilling"
             android:paddingStart="@dimen/margin_md"
             android:paddingEnd="@dimen/margin_md"
