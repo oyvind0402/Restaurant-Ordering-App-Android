@@ -61,6 +61,7 @@ public class AlleVennerActivity extends AppCompatActivity {
             listView.setOnItemClickListener((adapterView, view, i, l) -> {
                 HashMap<String, String> hm = (HashMap<String, String>) listView.getItemAtPosition(i);
                 String venneNavn = hm.get("item");
+                venn = db.finnVenn(venneNavn);
             });
         } else {
              endreVenn.setEnabled(false);
