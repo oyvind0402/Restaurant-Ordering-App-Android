@@ -55,8 +55,11 @@ public class AlleRestauranterActivity extends AppCompatActivity {
    public void populateRestaurantList(){
        List<Restaurant> restaurantListe = db.finnAlleRestauranter();
        if(restaurantListe.size() > 0) {
+           int blue = getResources().getColor(R.color.blue_logo);
            endreRestaurant.setEnabled(true);
+           endreRestaurant.setBackgroundColor(blue);
            slettRestaurant.setEnabled(true);
+           endreRestaurant.setBackgroundColor(blue);
            populateRestaurantListView(restaurantListe);
            listView.setOnItemClickListener((parent, view, i, id) -> {
                HashMap<String, String> hm = (HashMap<String, String>) listView.getItemAtPosition(i);
@@ -64,8 +67,11 @@ public class AlleRestauranterActivity extends AppCompatActivity {
                restaurant = db.finnRestaurant(restaurantNavn) ;
            });
        } else {
+           int grey = getResources().getColor(R.color.gray_logo);
            endreRestaurant.setEnabled(false);
+           endreRestaurant.setBackgroundColor(grey);
            slettRestaurant.setEnabled(false);
+           slettRestaurant.setBackgroundColor(grey);
            List<String> placeholderList = new ArrayList<>();
            placeholderList.add("Ingen restauranter lagt til enda!");
            ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderList);

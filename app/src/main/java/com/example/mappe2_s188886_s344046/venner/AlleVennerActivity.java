@@ -53,8 +53,11 @@ public class AlleVennerActivity extends AppCompatActivity {
     public void populateFriendList() {
         List<Venn> venneListe = db.finnAlleVenner();
         if (venneListe.size() > 0) {
+            int blue = getResources().getColor(R.color.blue_logo);
             endreVenn.setEnabled(true);
+            endreVenn.setBackgroundColor(blue);
             slettVenn.setEnabled(true);
+            slettVenn.setBackgroundColor(blue);
             populateVennListView(venneListe);
             listView.setOnItemClickListener((adapterView, view, i, l) -> {
                 HashMap<String, String> hm = (HashMap<String, String>) listView.getItemAtPosition(i);
@@ -64,9 +67,12 @@ public class AlleVennerActivity extends AppCompatActivity {
                 venn = db.finnVenn(venneNavn, venneTelefon);
             });
         } else {
-             endreVenn.setEnabled(false);
-             slettVenn.setEnabled(false);
-             List<String> placeholderList = new ArrayList<>();
+            int grey = getResources().getColor(R.color.gray_logo);
+            endreVenn.setEnabled(false);
+            endreVenn.setBackgroundColor(grey);
+            slettVenn.setEnabled(false);
+            slettVenn.setBackgroundColor(grey);
+            List<String> placeholderList = new ArrayList<>();
              placeholderList.add("Ingen venner lagt til enda!");
              ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderList);
              listView.setAdapter(placeholderAdapter);

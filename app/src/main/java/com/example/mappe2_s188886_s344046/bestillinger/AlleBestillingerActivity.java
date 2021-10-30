@@ -60,8 +60,11 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         Utilities.populateBestillingList(db, allebestillinger, aktiveBestillingerList, inaktiveBestillingerList);
         Utilities.populateBestillingListView(this, db, aktiveBestillinger, aktiveBestillingerList, R.layout.simple_list_item_2_single_choice);
         if(aktiveBestillingerList.size() > 0) {
+            int blue = getResources().getColor(R.color.blue_logo);
             endreBestilling.setEnabled(true);
+            endreBestilling.setBackgroundColor(blue);
             slettBestilling.setEnabled(true);
+            slettBestilling.setBackgroundColor(blue);
             aktiveBestillinger.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             aktiveBestillinger.setOnItemClickListener((parent, view, position, id) -> {
                 HashMap<String, String> hm = (HashMap<String, String>) aktiveBestillinger.getItemAtPosition(position);
@@ -76,8 +79,11 @@ public class AlleBestillingerActivity extends AppCompatActivity {
             });
 
         } else {
+            int grey = getResources().getColor(R.color.gray_logo);
             endreBestilling.setEnabled(false);
+            endreBestilling.setBackgroundColor(grey);
             slettBestilling.setEnabled(false);
+            slettBestilling.setBackgroundColor(grey);
             List<String> placeholderListe = new ArrayList<>();
             placeholderListe.add("Ingen aktive bestillinger for øyeblikket!");
             ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderListe);
