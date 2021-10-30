@@ -41,14 +41,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin_md"
-        android:paddingEnd="@dimen/margin_md">
+        android:paddingStart="@dimen/margin_sm"
+        android:paddingEnd="@dimen/margin_sm">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/navn"
-            android:paddingTop="@dimen/margin_md"/>
+            android:paddingTop="@dimen/margin_sm"/>
 
         <EditText
             android:id="@+id/innEndreRestaurantNavn"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/adresse"
-            android:paddingTop="@dimen/margin_md"/>
+            android:paddingTop="@dimen/margin_sm"/>
 
         <EditText
             android:id="@+id/innEndreRestaurantAdresse"
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/telefon"
-            android:paddingTop="@dimen/margin_md"/>
+            android:paddingTop="@dimen/margin_sm"/>
 
         <EditText
             android:id="@+id/innEndreRestaurantTelefon"
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/type"
-            android:paddingTop="@dimen/margin_md"/>
+            android:paddingTop="@dimen/margin_sm"/>
 
         <EditText
             android:id="@+id/innEndreRestaurantType"
@@ -108,15 +108,16 @@
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:text="@string/endre"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
             android:onClick="endreRestaurant"
-            android:drawableTop="@android:drawable/ic_menu_edit"
-            android:paddingBottom="8dp"
-            android:paddingTop="5dp" />
+            android:drawableTop="@drawable/endre_generell"
+            android:paddingBottom="@dimen/margin_sm"
+            android:paddingTop="@dimen/margin_sm" />
 
     </LinearLayout>
 
 </LinearLayout>
+

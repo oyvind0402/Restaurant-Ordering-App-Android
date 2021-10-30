@@ -28,7 +28,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_height_lg"
+        android:layout_height="@dimen/txt_height_xl"
         android:id="@+id/inaktiveBestillinger"
         android:orientation="vertical" />
 
@@ -37,11 +37,11 @@
         android:layout_width="@dimen/txt_width_lg"
         android:layout_height="@dimen/btn_height"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_sm"
+        android:layout_marginTop="@dimen/margin_xs"
         android:text="@string/slett"
-        android:drawableTop="@android:drawable/ic_menu_delete"
-        android:paddingBottom="8dp"
-        android:paddingTop="5dp"
+        android:drawableTop="@drawable/slett"
+        android:paddingBottom="@dimen/margin_sm"
+        android:paddingTop="@dimen/margin_sm"
         android:background="@color/blue_logo"
         android:onClick="slettBestillinger" />
 

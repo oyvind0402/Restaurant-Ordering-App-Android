@@ -46,7 +46,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/txt_height_mmd"
+            android:layout_height="@dimen/txt_height_lg"
             android:id="@+id/aktiveBestillinger"
             android:fadeScrollbars="false" />
 
@@ -55,19 +55,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="@dimen/margin_md"
-            android:layout_marginBottom="@dimen/margin_sm" >
+            android:layout_marginTop="@dimen/margin_sm"
+            android:layout_marginBottom="@dimen/margin_xs" >
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/endre_bestilling_btn"
                 android:layout_width="@dimen/txt_width_sm"
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
-                android:drawableTop="@android:drawable/ic_menu_edit"
-                android:paddingTop="5dp"
-                android:paddingBottom="8dp"
+                android:drawableTop="@drawable/endre_generell"
+                android:paddingTop="@dimen/margin_sm"
+                android:paddingBottom="@dimen/margin_sm"
                 android:text="@string/endre"
-                android:layout_marginEnd="@dimen/margin_sm"
+                android:layout_marginEnd="@dimen/margin_xs"
                 android:background="@color/blue_logo"
                 android:onClick="endreBestilling" />
 
@@ -76,10 +76,10 @@
                 android:layout_width="@dimen/txt_width_sm"
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:paddingTop="5dp"
-                android:paddingBottom="8dp"
-                android:drawableTop="@android:drawable/ic_menu_delete"
+                android:layout_marginStart="@dimen/margin_xs"
+                android:paddingTop="@dimen/margin_sm"
+                android:paddingBottom="@dimen/margin_sm"
+                android:drawableTop="@drawable/slett"
                 android:text="@string/slett"
                 android:background="@color/blue_logo"
                 android:onClick="slettBestilling" />
@@ -91,13 +91,13 @@
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_sm"
-            android:layout_marginBottom="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_xs"
+            android:layout_marginBottom="@dimen/margin_sm"
             android:background="@color/red_logo"
             android:drawableStart="@drawable/lagrebestilling"
             android:onClick="lagreBestilling"
-            android:paddingStart="40dp"
-            android:paddingEnd="50dp"
+            android:paddingStart="@dimen/margin_md"
+            android:paddingEnd="@dimen/margin_md"
             android:text="@string/ny_bestilling"
             android:textColor="#FFF3E0" />
 
@@ -106,10 +106,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            android:minHeight="48dp"
+            android:minHeight="@dimen/txt_height_sm"
             android:onClick="tilInaktive"
-            android:paddingStart="@dimen/margin_md"
-            android:paddingEnd="@dimen/margin_md"
+            android:paddingStart="@dimen/margin_sm"
+            android:paddingEnd="@dimen/margin_sm"
             android:text="@string/til_inaktive_bestillinger"
             android:textColor="@color/black"
             android:gravity="center_vertical|end"

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_md" >
+    android:padding="@dimen/margin_sm" >
 
     <LinearLayout
         android:layout_width="match_parent"

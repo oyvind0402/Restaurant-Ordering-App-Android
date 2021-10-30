@@ -45,7 +45,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/txt_height_mmd"
+            android:layout_height="@dimen/txt_height_lg"
             android:id="@+id/restaurantListView"
             android:fadeScrollbars="false" />
 
@@ -53,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_md"
-            android:layout_marginBottom="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
+            android:layout_marginBottom="@dimen/margin_sm"
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -63,11 +63,11 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
                 android:text="@string/endre"
-                android:drawableTop="@android:drawable/ic_menu_edit"
-                android:paddingBottom="8dp"
-                android:paddingTop="5dp"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:layout_marginEnd="@dimen/margin_sm"
+                android:drawableTop="@drawable/endre_generell"
+                android:paddingBottom="@dimen/margin_sm"
+                android:paddingTop="@dimen/margin_sm"
+                android:layout_marginStart="@dimen/margin_xs"
+                android:layout_marginEnd="@dimen/margin_xs"
                 android:background="@color/blue_logo"
                 android:onClick="endreRestaurant" />
 
@@ -76,12 +76,12 @@
                 android:layout_width="@dimen/txt_width_sm"
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:layout_marginEnd="@dimen/margin_sm"
+                android:layout_marginStart="@dimen/margin_xs"
+                android:layout_marginEnd="@dimen/margin_xs"
                 android:text="@string/slett"
-                android:drawableTop="@android:drawable/ic_menu_delete"
-                android:paddingBottom="8dp"
-                android:paddingTop="5dp"
+                android:drawableTop="@drawable/slett"
+                android:paddingBottom="@dimen/margin_sm"
+                android:paddingTop="@dimen/margin_sm"
                 android:background="@color/blue_logo"
                 android:onClick="slettRestaurant" />
 
@@ -96,8 +96,8 @@
             android:drawableStart="@drawable/lagrerestaurant"
             android:drawableTint="@color/beige"
             android:onClick="lagreRestaurant"
-            android:paddingStart="40dp"
-            android:paddingEnd="50dp"
+            android:paddingStart="@dimen/margin_md"
+            android:paddingEnd="@dimen/margin_md"
             android:text="@string/ny_restaurant"
             android:textColor="#FFF3E0" />
 

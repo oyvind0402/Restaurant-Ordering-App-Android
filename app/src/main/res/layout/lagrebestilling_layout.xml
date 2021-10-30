@@ -42,14 +42,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin_md"
-        android:paddingEnd="@dimen/margin_md" >
+        android:paddingStart="@dimen/margin_sm"
+        android:paddingEnd="@dimen/margin_sm" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/restaurant"
-            android:paddingTop="@dimen/margin_md" />
+            android:paddingTop="@dimen/margin_sm" />
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/venner"
-            android:layout_marginTop="@dimen/margin_md"/>
+            android:layout_marginTop="@dimen/margin_sm"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="@dimen/txt_height_md"
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dato"
-            android:layout_marginTop="@dimen/margin_md"/>
+            android:layout_marginTop="@dimen/margin_sm"/>
 
         <EditText
             android:id="@+id/innDato"
@@ -87,13 +87,13 @@
             android:hint="@string/dato"
             android:importantForAutofill="no"
             android:inputType="none"
-            android:minHeight="48dp" />
+            android:minHeight="@dimen/txt_height_sm" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tidspunkt"
-            android:layout_marginTop="@dimen/margin_md"/>
+            android:layout_marginTop="@dimen/margin_sm"/>
 
         <EditText
             android:id="@+id/innTidspunkt"
@@ -107,21 +107,21 @@
             android:hint="@string/tidspunkt"
             android:importantForAutofill="no"
             android:inputType="none"
-            android:minHeight="48dp" />
+            android:minHeight="@dimen/txt_height_sm" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/lagre_bestilling"
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:text="@string/bestill"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
             android:onClick="lagreBestilling"
             android:drawableStart="@drawable/lagrebestilling"
-            android:paddingStart="40dp"
-            android:paddingEnd="60dp"
+            android:paddingStart="@dimen/margin_md"
+            android:paddingEnd="@dimen/margin_lg"
             />
 
     </LinearLayout>

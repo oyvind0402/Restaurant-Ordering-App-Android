@@ -39,12 +39,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin_md"
-        android:paddingEnd="@dimen/margin_md">
+        android:paddingStart="@dimen/margin_sm"
+        android:paddingEnd="@dimen/margin_sm">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/txt_height_lg"
+            android:layout_height="@dimen/txt_height_xl"
             android:orientation="vertical">
 
             <TextView
@@ -80,12 +80,14 @@
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:text="@string/endre"
             android:textColor="@color/black"
-            android:drawableTop="@android:drawable/ic_menu_edit"
-            android:paddingBottom="8dp"
-            android:paddingTop="5dp"
+            android:drawableTop="@drawable/endre_generell"
+            android:drawableTint="@color/blue_logo_light"
+            android:drawableTintMode="multiply"
+            android:paddingBottom="@dimen/margin_sm"
+            android:paddingTop="@dimen/margin_sm"
             android:background="@color/blue_logo"
             android:onClick="endreVenn" />
 

@@ -42,12 +42,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingEnd="@dimen/margin_md"
-        android:paddingStart="@dimen/margin_md">
+        android:paddingEnd="@dimen/margin_sm"
+        android:paddingStart="@dimen/margin_sm">
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/txt_height_mmd"
+            android:layout_height="@dimen/txt_height_lg"
             android:id="@+id/venneListView"
             android:fadeScrollbars="false"/>
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -63,11 +63,14 @@
                 android:layout_width="@dimen/txt_width_sm"
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/margin_sm"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:drawableTop="@android:drawable/ic_menu_edit"
-                android:paddingBottom="8dp"
-                android:paddingTop="5dp"
+                android:layout_marginEnd="@dimen/margin_xs"
+                android:layout_marginStart="@dimen/margin_xs"
+                android:drawableTop="@drawable/endre_generell"
+                android:drawableTint="@color/blue_logo_light"
+                android:paddingBottom="@dimen/margin_sm"
+                android:paddingTop="@dimen/margin_sm"
+                android:paddingStart="@dimen/margin_sm"
+                android:paddingEnd="@dimen/margin_sm"
                 android:text="@string/endre"
                 android:background="@color/blue_logo"
                 android:onClick="endreVenn" />
@@ -77,11 +80,13 @@
                 android:layout_width="@dimen/txt_width_sm"
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/margin_sm"
-                android:layout_marginStart="@dimen/margin_sm"
-                android:paddingTop="5dp"
-                android:paddingEnd="8dp"
-                android:drawableTop="@android:drawable/ic_menu_delete"
+                android:layout_marginEnd="@dimen/margin_xs"
+                android:layout_marginStart="@dimen/margin_xs"
+                android:paddingTop="@dimen/margin_sm"
+                android:paddingBottom="@dimen/margin_sm"
+                android:paddingStart="@dimen/margin_sm"
+                android:paddingEnd="@dimen/margin_sm"
+                android:drawableTop="@drawable/slett"
                 android:text="@string/slett"
                 android:background="@color/blue_logo"
                 android:onClick="slettVenn" />
@@ -93,12 +98,13 @@
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:background="@color/red_logo"
-            android:drawableStart="@drawable/lagrevenn"
+            android:drawableStart="@drawable/vennadd"
+            android:drawableTint="@color/red_logo_light"
             android:onClick="lagreVenn"
-            android:paddingStart="40dp"
-            android:paddingEnd="60dp"
+            android:paddingStart="@dimen/margin_md"
+            android:paddingEnd="@dimen/margin_lg"
             android:text="@string/ny_venn"
             android:textColor="#FFF3E0" />
 

@@ -43,7 +43,6 @@ public class PeriodicalService extends Service {
             cal.add(Calendar.DAY_OF_YEAR, 1);
         }
         //Servicen startes en gang om dagen:
-        Toast.makeText(this, "HEY", Toast.LENGTH_LONG).show();
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24, pendingIntent);
         return super.onStartCommand(intent, flags, startId);
     }

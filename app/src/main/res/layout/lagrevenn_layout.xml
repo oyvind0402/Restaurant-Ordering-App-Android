@@ -43,12 +43,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingEnd="@dimen/margin_md"
-        android:paddingStart="@dimen/margin_md" >
+        android:paddingEnd="@dimen/margin_sm"
+        android:paddingStart="@dimen/margin_sm" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/txt_height_lg"
+            android:layout_height="@dimen/txt_height_xl"
             android:orientation="vertical">
 
 
@@ -56,13 +56,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/navn"
-                android:paddingTop="@dimen/margin_md"/>
+                android:paddingTop="@dimen/margin_sm"/>
 
             <EditText
                 android:id="@+id/innVennNavn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/txt_height_sm"
-                android:drawableEnd="@drawable/vennadd"
+                android:drawableEnd="@drawable/navn"
                 android:hint="@string/navn"
                 android:autofillHints="name"
                 android:inputType="text"
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/telefon"
-                android:paddingTop="@dimen/margin_md"/>
+                android:paddingTop="@dimen/margin_sm"/>
 
             <EditText
                 android:id="@+id/innVennTelefon"
@@ -91,15 +91,14 @@
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:text="@string/lagre"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
             android:onClick="lagreVenn"
-            android:drawableStart="@drawable/lagrevenn"
-            android:drawableTint="@color/beige"
-            android:paddingStart="40dp"
-            android:paddingEnd="60dp"/>
+            android:drawableStart="@drawable/vennadd"
+            android:paddingStart="@dimen/margin_md"
+            android:paddingEnd="@dimen/margin_lg"/>
 
     </LinearLayout>
 

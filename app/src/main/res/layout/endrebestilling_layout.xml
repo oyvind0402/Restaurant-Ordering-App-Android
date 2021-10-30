@@ -43,11 +43,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/margin_md"
-        android:paddingEnd="@dimen/margin_md" >
+        android:paddingStart="@dimen/margin_sm"
+        android:paddingEnd="@dimen/margin_sm" >
 
         <TextView
-            android:paddingTop="@dimen/margin_md"
+            android:paddingTop="@dimen/margin_sm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/restaurant" />
@@ -60,7 +60,7 @@
             android:contentDescription="@string/dropdown_beskrivelse"/>
 
         <TextView
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/venner" />
@@ -71,7 +71,7 @@
             android:fadeScrollbars="false" />
 
         <TextView
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dato" />
@@ -88,11 +88,11 @@
             android:hint="@string/dato"
             android:importantForAutofill="no"
             android:inputType="none"
-            android:minHeight="48dp"
+            android:minHeight="@dimen/txt_height_sm"
             tools:ignore="TextContrastCheck" />
 
         <TextView
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tidspunkt" />
@@ -109,20 +109,20 @@
             android:hint="@string/tidspunkt"
             android:importantForAutofill="no"
             android:inputType="none"
-            android:minHeight="48dp" />
+            android:minHeight="@dimen/txt_height_sm" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/lagre_bestilling"
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginTop="@dimen/margin_sm"
             android:text="@string/endre"
             android:textColor="@color/black"
             android:background="@color/blue_logo"
-            android:drawableTop="@android:drawable/ic_menu_edit"
-            android:paddingBottom="8dp"
-            android:paddingTop="5dp"
+            android:drawableTop="@drawable/endre_generell"
+            android:paddingBottom="@dimen/margin_sm"
+            android:paddingTop="@dimen/margin_sm"
             android:onClick="endreBestilling" />
 
     </LinearLayout>

@@ -18,8 +18,6 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
         boolean pushIsActivated = sharedPreferences.getBoolean("notifikasjon", false);
         boolean smsIsActivated = sharedPreferences.getBoolean("sms", false);
 
-        Toast.makeText(context, "I BROADCAST" + pushIsActivated + " " + smsIsActivated, Toast.LENGTH_LONG).show();
-
         if(smsIsActivated || pushIsActivated) {
             Intent i = new Intent(context, PeriodicalService.class);
             context.startService(i);
