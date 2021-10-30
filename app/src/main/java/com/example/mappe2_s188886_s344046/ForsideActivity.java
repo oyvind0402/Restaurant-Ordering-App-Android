@@ -5,11 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -20,14 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
-import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
 import com.example.mappe2_s188886_s344046.restauranter.AlleRestauranterActivity;
-import com.example.mappe2_s188886_s344046.services.SMSService;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
-import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
-
-import java.util.List;
 
 public class ForsideActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "42";

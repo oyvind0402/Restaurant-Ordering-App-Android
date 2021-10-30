@@ -1,8 +1,5 @@
 package com.example.mappe2_s188886_s344046.bestillinger;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +16,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.mappe2_s188886_s344046.services.SMSService;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.R;

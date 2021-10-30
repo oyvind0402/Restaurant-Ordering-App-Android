@@ -12,8 +12,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.telephony.SmsManager;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -21,15 +19,12 @@ import androidx.preference.PreferenceManager;
 
 import com.example.mappe2_s188886_s344046.ForsideActivity;
 import com.example.mappe2_s188886_s344046.R;
-import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
 import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.utils.Utilities;
-import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;

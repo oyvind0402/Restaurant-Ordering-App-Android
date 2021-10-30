@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,7 +29,6 @@ import com.example.mappe2_s188886_s344046.utils.DBHandler;
 import com.example.mappe2_s188886_s344046.utils.Utilities;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -225,7 +223,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
                 innDato.setText("");
                 innTidspunkt.setText("");
 
-                Toast.makeText(this, "Bestilling av bord hos " + spinner.getSelectedItem() + " bekreftet.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Bestilling av bord hos " + db.finnRestaurant(restaurantid).getNavn() + " bekreftet.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_LONG).show();
             }

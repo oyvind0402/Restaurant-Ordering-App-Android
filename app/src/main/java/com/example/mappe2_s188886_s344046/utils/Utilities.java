@@ -66,7 +66,7 @@ public class Utilities {
             StringBuilder subitemTxt = new StringBuilder();
             try {
                 String restaurantNavn = db.finnRestaurant(bestilling.getRestaurantid()).getNavn();
-                itemTxt = String.format("Bestilling #%d hos %s", bestilling.getId(), restaurantNavn);
+                itemTxt = String.format(Locale.getDefault(), "Bestilling #%d hos %s", bestilling.getId(), restaurantNavn);
                 subitemTxt = new StringBuilder(String.format("%s %s", bestilling.getDato(), bestilling.getTidspunkt()));
 
                 int antallVenner = (bestilling).getVenner().size();
@@ -86,7 +86,7 @@ public class Utilities {
                     }
                 }
             } catch (NullPointerException e){
-                itemTxt = String.format("Bestilling #%d er ugyldig.", bestilling.getId());
+                itemTxt = String.format(Locale.getDefault(), "Bestilling #%d er ugyldig.", bestilling.getId());
                 subitemTxt.append("Den valgte restauranten har blitt slettet");
             }
 

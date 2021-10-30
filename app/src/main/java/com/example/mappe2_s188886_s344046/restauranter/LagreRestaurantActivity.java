@@ -18,7 +18,6 @@ import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
 
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LagreRestaurantActivity extends AppCompatActivity {

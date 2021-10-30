@@ -17,7 +17,7 @@ public class CheckedLinearLayout extends LinearLayout implements Checkable {
 
     @Override
     public boolean isChecked() {
-        return checkedView == null ? false : checkedView.isChecked();
+        return checkedView != null && checkedView.isChecked();
     }
 
     @Override
