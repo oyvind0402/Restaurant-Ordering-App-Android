@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/aktive_bestillinger"
+            android:text="@string/endre_bestilling"
             android:textSize="@dimen/txt_size_xl"
             android:textColor="@color/white" />
 
