@@ -41,6 +41,6 @@ public class Venn {
     @NonNull
     @Override
     public String toString() {
-        return this.navn + " - " + this.telefon;
+        return "Navn: " + this.navn + "\nTelefon: " + this.telefon;
     }
 }
