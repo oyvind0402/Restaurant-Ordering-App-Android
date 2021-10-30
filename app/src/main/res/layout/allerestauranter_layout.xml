@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,8 +15,10 @@
         <ImageView
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
+            android:layout_gravity="start"
+            android:contentDescription="@string/ikon_beskrivelse"
             android:src="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="start"/>
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +34,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/banner_beskrivelse"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,6 +64,8 @@
                 android:layout_gravity="center"
                 android:text="@string/endre"
                 android:drawableTop="@android:drawable/ic_menu_edit"
+                android:paddingBottom="8dp"
+                android:paddingTop="5dp"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:background="@color/blue_logo"
@@ -75,6 +80,8 @@
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:text="@string/slett"
                 android:drawableTop="@android:drawable/ic_menu_delete"
+                android:paddingBottom="8dp"
+                android:paddingTop="5dp"
                 android:background="@color/blue_logo"
                 android:onClick="slettRestaurant" />
 
@@ -85,14 +92,14 @@
             android:layout_width="@dimen/txt_width_lg"
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
-            android:text="@string/ny_restaurant"
+            android:background="@color/red_logo"
             android:drawableStart="@drawable/lagrerestaurant"
+            android:drawableTint="@color/beige"
+            android:onClick="lagreRestaurant"
             android:paddingStart="40dp"
             android:paddingEnd="50dp"
-            android:drawableTint="@color/beige"
-            android:textColor="@color/beige"
-            android:background="@color/red_logo"
-            android:onClick="lagreRestaurant" />
+            android:text="@string/ny_restaurant"
+            android:textColor="#FFF3E0" />
 
     </LinearLayout>
 

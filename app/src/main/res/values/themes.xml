@@ -13,6 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:actionOverflowButtonStyle">@style/MenuOverflow</item>
+        <!-- Text hint color. -->
+        <item name="android:textColorHint">@color/gray</item>
     </style>
 
     <style name="MenuOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">

@@ -113,7 +113,9 @@
             android:textColor="@color/black"
             android:background="@color/blue_logo"
             android:onClick="endreRestaurant"
-            android:drawableTop="@android:drawable/ic_menu_edit"/>
+            android:drawableTop="@android:drawable/ic_menu_edit"
+            android:paddingBottom="8dp"
+            android:paddingTop="5dp" />
 
     </LinearLayout>
 

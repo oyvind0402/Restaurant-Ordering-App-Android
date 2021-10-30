@@ -24,18 +24,18 @@ import com.example.mappe2_s188886_s344046.R;
 import com.example.mappe2_s188886_s344046.bestillinger.AlleBestillingerActivity;
 import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
+import com.example.mappe2_s188886_s344046.utils.Utilities;
 import com.example.mappe2_s188886_s344046.venner.Venn;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class SMSService extends Service {
-    private String restaurantNavn;
-    private String tidspunkt;
-    private List<Venn> venner;
+    List<Bestilling> aktiveBestillinger;
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -50,14 +50,8 @@ public class SMSService extends Service {
 
         if(orderIsToday(bestillingsListe, dagensDato, db)) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            StringBuilder venneString = new StringBuilder();
-            if(venner.size() > 0) {
-                for(Venn venn: venner) {
-                    venneString.append(venn.getNavn()).append(", ");
-                }
-                venneString.delete(venneString.length()-2, venneString.length());
-            }
             boolean notificationIsActivated = sharedPreferences.getBoolean("notifikasjon", false);
+
             //Sender notifikasjon hvis den ikke er skrudd av av brukeren i settings:
             if(notificationIsActivated) {
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -84,10 +78,10 @@ public class SMSService extends Service {
             if(smsIsActivated && ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                 SmsManager sms = SmsManager.getDefault();
                 String melding = sharedPreferences.getString("smsMelding", "Du har en bestilling i dag!");
-                for(int j = 0; j < bestillingsListe.size() ; j++) {
-                    if(bestillingsListe.get(j).getDato().equals(dagensDato)) {
-                        if(bestillingsListe.get(j).getVenner().size() > 0) {
-                            for(int i = 0; i < bestillingsListe.get(j).getVenner().size(); i++) {
+                for(int j = 0; j < aktiveBestillinger.size() ; j++) {
+                    if(aktiveBestillinger.get(j).getDato().equals(dagensDato)) {
+                        if(aktiveBestillinger.get(j).getVenner().size() > 0) {
+                            for(int i = 0; i < aktiveBestillinger.get(j).getVenner().size(); i++) {
                                 sms.sendTextMessage(bestillingsListe.get(j).getVenner().get(i).getTelefon(), null, melding, null, null);
                             }
                         }
@@ -98,18 +92,14 @@ public class SMSService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    //Metode for å sjekke om det er en bestilling i dag - og om bestillingen er i fremtiden eller fortiden:
     public boolean orderIsToday(List<Bestilling> bestillingsListe, String dato, DBHandler db) {
-        for (Bestilling bestilling : bestillingsListe) {
+        aktiveBestillinger = new ArrayList<>();
+        List<Bestilling> inAktiveBestillinger = new ArrayList<>();
+        Utilities.populateBestillingList(db, bestillingsListe, aktiveBestillinger, inAktiveBestillinger);
+        for (Bestilling bestilling : aktiveBestillinger) {
             if (bestilling.getDato().equals(dato)) {
-                try {
-                    restaurantNavn = db.finnRestaurant(bestilling.getRestaurantid()).getNavn();
-                    tidspunkt = bestilling.getTidspunkt();
-                    venner = bestilling.getVenner();
-                    return true;
-
-                } catch (NullPointerException e) {
-                    return false;
-                }
+                return true;
             }
         }
         return false;

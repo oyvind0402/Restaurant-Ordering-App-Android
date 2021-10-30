@@ -17,10 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mappe2_s188886_s344046.R;
-import com.example.mappe2_s188886_s344046.bestillinger.Bestilling;
 import com.example.mappe2_s188886_s344046.settings.SettingsActivity;
 import com.example.mappe2_s188886_s344046.utils.DBHandler;
-import com.example.mappe2_s188886_s344046.venner.AlleVennerActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,7 +110,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
                 finish();
             }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + restaurant.getNavn() + " avbrutt.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
-            Toast.makeText(this, "Velg en restaurant", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en restaurant!", Toast.LENGTH_SHORT).show();
         }
    }
 
@@ -125,7 +123,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }  else {
-            Toast.makeText(this, "Velg en restaurant", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en restaurant!", Toast.LENGTH_SHORT).show();
         }
    }
 

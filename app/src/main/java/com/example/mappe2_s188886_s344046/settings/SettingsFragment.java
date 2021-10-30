@@ -39,6 +39,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).edit();
             editor.putString("velgTidspunkt", tidspunkt);
             editor.apply();
+
+            boolean pushIsActivated = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getBoolean("notifikasjon", false);
+            boolean smsIsActivated = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).getBoolean("sms", false);
+            //Starter servicen på nytt hvis brukeren endrer tidspunkt for sending av sms og notifikasjon
+            if(pushIsActivated || smsIsActivated) {
+                startService();
+            }
         };
         velgTidspunkt.setOnPreferenceClickListener(preference -> {
             TimePickerDialog dialog = new TimePickerDialog(getContext(), tidspunktDialogLytter, Calendar.HOUR_OF_DAY, Calendar.MINUTE, true);

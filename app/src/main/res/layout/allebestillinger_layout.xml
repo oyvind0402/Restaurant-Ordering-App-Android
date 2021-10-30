@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,8 +16,10 @@
         <ImageView
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
+            android:layout_gravity="start"
             android:src="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="start"/>
+            android:contentDescription="@string/ikon_beskrivelse"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,6 +35,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/banner_beskrivelse"
         android:scaleType="centerCrop" />
 
     <LinearLayout
@@ -60,6 +64,8 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
                 android:drawableTop="@android:drawable/ic_menu_edit"
+                android:paddingTop="5dp"
+                android:paddingBottom="8dp"
                 android:text="@string/endre"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:background="@color/blue_logo"
@@ -71,6 +77,8 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/margin_sm"
+                android:paddingTop="5dp"
+                android:paddingBottom="8dp"
                 android:drawableTop="@android:drawable/ic_menu_delete"
                 android:text="@string/slett"
                 android:background="@color/blue_logo"
@@ -85,26 +93,26 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_sm"
             android:layout_marginBottom="@dimen/margin_md"
-            android:text="@string/ny_bestilling"
-            android:drawableStart="@drawable/lagrebestilling"
-            android:paddingEnd="60dp"
-            android:paddingStart="60dp"
-            android:drawableTint="@color/beige"
-            android:textColor="@color/beige"
             android:background="@color/red_logo"
-            android:onClick="lagreBestilling" />
+            android:drawableStart="@drawable/lagrebestilling"
+            android:onClick="lagreBestilling"
+            android:paddingStart="40dp"
+            android:paddingEnd="50dp"
+            android:text="@string/ny_bestilling"
+            android:textColor="#FFF3E0" />
 
         <TextView
+            android:id="@+id/til_inaktive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            android:textAlignment="textEnd"
-            android:id="@+id/til_inaktive"
+            android:minHeight="48dp"
+            android:onClick="tilInaktive"
             android:paddingStart="@dimen/margin_md"
             android:paddingEnd="@dimen/margin_md"
-            android:onClick="tilInaktive"
-            android:textColor="@color/black"
             android:text="@string/til_inaktive_bestillinger"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|end"
             app:drawableEndCompat="@drawable/arrow_right"
             app:drawableTint="@color/blue_logo" />
 

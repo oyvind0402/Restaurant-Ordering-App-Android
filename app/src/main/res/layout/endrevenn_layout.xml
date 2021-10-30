@@ -84,6 +84,8 @@
             android:text="@string/endre"
             android:textColor="@color/black"
             android:drawableTop="@android:drawable/ic_menu_edit"
+            android:paddingBottom="8dp"
+            android:paddingTop="5dp"
             android:background="@color/blue_logo"
             android:onClick="endreVenn" />
 

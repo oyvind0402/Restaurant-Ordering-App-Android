@@ -40,6 +40,8 @@
         android:layout_marginTop="@dimen/margin_sm"
         android:text="@string/slett"
         android:drawableTop="@android:drawable/ic_menu_delete"
+        android:paddingBottom="8dp"
+        android:paddingTop="5dp"
         android:background="@color/blue_logo"
         android:onClick="slettBestillinger" />
 

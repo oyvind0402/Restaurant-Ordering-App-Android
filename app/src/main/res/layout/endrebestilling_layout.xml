@@ -16,8 +16,10 @@
         <ImageView
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
+            android:layout_gravity="start"
+            android:contentDescription="@string/ikon_beskrivelse"
             android:src="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="start"/>
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +35,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/banner_beskrivelse"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +56,8 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
             android:id="@+id/innEndreBestillingRestaurant_dropdown"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:contentDescription="@string/dropdown_beskrivelse"/>
 
         <TextView
             android:layout_marginTop="@dimen/margin_md"
@@ -71,36 +75,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dato" />
+
         <EditText
+            android:id="@+id/innEndreBestillingDato"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/innEndreBestillingDato"
-            android:hint="@string/dato"
             android:clickable="false"
             android:cursorVisible="false"
+            android:drawableEnd="@drawable/endredato"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="none"
+            android:hint="@string/dato"
             android:importantForAutofill="no"
-            android:drawableEnd="@drawable/endredato"/>
+            android:inputType="none"
+            android:minHeight="48dp"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:layout_marginTop="@dimen/margin_md"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tidspunkt" />
+
         <EditText
+            android:id="@+id/innEndreBestillingTidspunkt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/innEndreBestillingTidspunkt"
-            android:hint="@string/tidspunkt"
             android:clickable="false"
             android:cursorVisible="false"
-            android:focusable="false"
             android:drawableEnd="@drawable/tidspunkt"
+            android:focusable="false"
             android:focusableInTouchMode="false"
+            android:hint="@string/tidspunkt"
+            android:importantForAutofill="no"
             android:inputType="none"
-            android:importantForAutofill="no" />
+            android:minHeight="48dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/lagre_bestilling"
@@ -112,6 +121,8 @@
             android:textColor="@color/black"
             android:background="@color/blue_logo"
             android:drawableTop="@android:drawable/ic_menu_edit"
+            android:paddingBottom="8dp"
+            android:paddingTop="5dp"
             android:onClick="endreBestilling" />
 
     </LinearLayout>

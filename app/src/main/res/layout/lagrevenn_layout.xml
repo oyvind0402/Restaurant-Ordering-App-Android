@@ -16,8 +16,10 @@
         <ImageView
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
+            android:layout_gravity="start"
+            android:contentDescription="@string/ikon_beskrivelse"
             android:src="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="start"/>
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +35,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/banner_beskrivelse"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,10 +62,11 @@
                 android:id="@+id/innVennNavn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/txt_height_sm"
+                android:drawableEnd="@drawable/vennadd"
                 android:hint="@string/navn"
+                android:autofillHints="name"
                 android:inputType="text"
-                android:drawableEnd="@drawable/vennadd"/>
-
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,9 +79,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/txt_height_sm"
                 android:autofillHints="phone"
+                android:drawableEnd="@drawable/telefon"
                 android:hint="@string/telefon"
                 android:inputType="text"
-                android:drawableEnd="@drawable/telefon"/>
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
         </LinearLayout>
 
@@ -97,6 +102,5 @@
             android:paddingEnd="60dp"/>
 
     </LinearLayout>
-
 
 </LinearLayout>

@@ -110,7 +110,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }  else {
-            Toast.makeText(this, "Velg en bestilling", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en bestilling!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -123,7 +123,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
                 finish();
             }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av bestilling #" + bestilling.getId() + " ikke vellykket.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
-            Toast.makeText(this, "Velg en bestilling", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Velg en bestilling!", Toast.LENGTH_SHORT).show();
         }
     }
 

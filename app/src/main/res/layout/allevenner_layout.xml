@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,8 +15,10 @@
         <ImageView
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
+            android:layout_gravity="start"
+            android:contentDescription="@string/ikon_beskrivelse"
             android:src="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="start"/>
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +34,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/banner_beskrivelse"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,6 +66,8 @@
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:layout_marginStart="@dimen/margin_sm"
                 android:drawableTop="@android:drawable/ic_menu_edit"
+                android:paddingBottom="8dp"
+                android:paddingTop="5dp"
                 android:text="@string/endre"
                 android:background="@color/blue_logo"
                 android:onClick="endreVenn" />
@@ -74,6 +79,8 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="@dimen/margin_sm"
                 android:layout_marginStart="@dimen/margin_sm"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
                 android:drawableTop="@android:drawable/ic_menu_delete"
                 android:text="@string/slett"
                 android:background="@color/blue_logo"
@@ -87,13 +94,13 @@
             android:layout_height="@dimen/btn_height"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_md"
-            android:text="@string/ny_venn"
-            android:drawableStart="@drawable/lagrevenn"
-            android:paddingEnd="60dp"
-            android:paddingStart="40dp"
-            android:textColor="@color/beige"
             android:background="@color/red_logo"
-            android:onClick="lagreVenn" />
+            android:drawableStart="@drawable/lagrevenn"
+            android:onClick="lagreVenn"
+            android:paddingStart="40dp"
+            android:paddingEnd="60dp"
+            android:text="@string/ny_venn"
+            android:textColor="#FFF3E0" />
 
     </LinearLayout>
 

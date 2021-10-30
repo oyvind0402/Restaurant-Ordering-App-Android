@@ -1,6 +1,8 @@
 <resources>
     <!--    Generelle ressurser-->
     <string name="app_name">BestillR</string>
+    <string name="ikon_beskrivelse">Ikonet for appen</string>
+    <string name="banner_beskrivelse">Et banner med samme forgekombinasjon som bannerne på ikonet</string>
 
     <!--    Delte ressurser-->
     <string name="fortsett">Fortsett</string>
@@ -53,9 +55,10 @@
     <string name="notisTittel">Push notifikasjoner</string>
     <string name="settings">Innstillinger</string>
     <string name="notisTekst">Skru SMS / push notifikasjoner av eller på</string>
-    <string name="sms">SMS</string>
+    <string name="sms">SMS varsling</string>
     <string name="velgTidspunkt">Påminnelse om bestilling sendes klokken</string>
     <string name="velgSms">Velg standard SMS som skal sendes</string>
     <string name="tidOgMelding">Velg tidspunkt og standardmelding</string>
     <string name="smsMelding">Du har en bestilling i dag!</string>
+    <string name="dropdown_beskrivelse">En dropdownliste med restaurant som verdi</string>
 </resources>

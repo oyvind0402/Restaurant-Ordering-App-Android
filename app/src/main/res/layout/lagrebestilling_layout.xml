@@ -17,7 +17,8 @@
             android:layout_width="@dimen/txt_height_sm"
             android:layout_height="@dimen/txt_height_sm"
             android:src="@mipmap/ic_launcher_foreground"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            android:contentDescription="@string/ikon_beskrivelse"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/banner"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/banner_beskrivelse"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +55,8 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
             android:id="@+id/restaurant_dropdown"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:contentDescription="@string/dropdown_beskrivelse"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,36 +74,40 @@
             android:layout_height="wrap_content"
             android:text="@string/dato"
             android:layout_marginTop="@dimen/margin_md"/>
+
         <EditText
+            android:id="@+id/innDato"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/innDato"
-            android:hint="@string/dato"
             android:clickable="false"
             android:cursorVisible="false"
+            android:drawableEnd="@drawable/velgdato"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="none"
+            android:hint="@string/dato"
             android:importantForAutofill="no"
-            android:drawableEnd="@drawable/velgdato" />
+            android:inputType="none"
+            android:minHeight="48dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tidspunkt"
             android:layout_marginTop="@dimen/margin_md"/>
+
         <EditText
+            android:id="@+id/innTidspunkt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="false"
             android:cursorVisible="false"
+            android:drawableEnd="@drawable/tidspunkt"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:id="@+id/innTidspunkt"
             android:hint="@string/tidspunkt"
-            android:inputType="none"
             android:importantForAutofill="no"
-            android:drawableEnd="@drawable/tidspunkt"/>
+            android:inputType="none"
+            android:minHeight="48dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/lagre_bestilling"
