@@ -77,7 +77,9 @@ public class SMSService extends Service {
                     if(aktiveBestillinger.get(j).getDato().equals(dagensDato)) {
                         if(aktiveBestillinger.get(j).getVenner().size() > 0) {
                             for(int i = 0; i < aktiveBestillinger.get(j).getVenner().size(); i++) {
-                                sms.sendTextMessage(bestillingsListe.get(j).getVenner().get(i).getTelefon(), null, melding, null, null);
+                                if(aktiveBestillinger.get(j).getVenner().get(i) != null) {
+                                    sms.sendTextMessage(bestillingsListe.get(j).getVenner().get(i).getTelefon(), null, melding, null, null);
+                                }
                             }
                         }
                     }
