@@ -15,7 +15,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
 import com.example.mappe2_s188886_s344046.R;
-import com.example.mappe2_s188886_s344046.services.SMSService;
+import com.example.mappe2_s188886_s344046.services.NotifikasjonService;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -30,6 +30,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         addPreferencesFromResource(R.xml.preferences);
         velgTidspunkt = (Preference) findPreference("velgTidspunkt");
         assert velgTidspunkt != null;
+        //Lager en lytter for når tiden blir satt i TimePickerDialog objectet, lagrer verdien av tidspunktet i sharedpreferences for tidspunkt:
         tidspunktDialogLytter = (timePicker, time, minutt) -> {
             DecimalFormat format = new DecimalFormat("00");
             String minuttFormat = format.format(minutt);
@@ -46,6 +47,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 startService();
             }
         };
+        //Setter er lytter for når preferansen for tidspunkt blir trykket på, den vil lage en ny TimePickerDialog for å velge tiden:
         velgTidspunkt.setOnPreferenceClickListener(preference -> {
             TimePickerDialog dialog = new TimePickerDialog(getContext(), tidspunktDialogLytter, Calendar.HOUR_OF_DAY, Calendar.MINUTE, true);
             dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
@@ -117,7 +119,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     }
 
     public void stoppService() {
-        Intent i = new Intent(getContext(), SMSService.class);
+        Intent i = new Intent(getContext(), NotifikasjonService.class);
         PendingIntent pendingIntent = PendingIntent.getService(getContext(), 0, i, 0);
         AlarmManager alarm = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
 

@@ -21,6 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utilities {
+    //Metode for å formatere en dato:
     public static void formatDate(Calendar cal, int year, int month, int day, Integer hour, Integer min){
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.MONTH, month);
@@ -31,6 +32,7 @@ public class Utilities {
         }
     }
 
+    //Metode for å legge inaktive bestillinger i en liste, aktive bestillinger i en annen liste:
     public static void populateBestillingList(DBHandler db, List<Bestilling> allebestillinger, List<Bestilling> aktiveBestillingerList, List<Bestilling> inaktiveBestillingerList){
         for (Bestilling bestilling: allebestillinger) {
             try {
@@ -39,12 +41,14 @@ public class Utilities {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
                 valgtDato.setTime(Objects.requireNonNull(df.parse(bestilling.getDato() + " " + bestilling.getTidspunkt())));
 
+                //Hvis bestillingens dato er før dagens dato er den inaktiv:
                 if (valgtDato.before(dagensDato)){
                     inaktiveBestillingerList.add(bestilling);
                 } else {
                     try {
                         String restaurantNavn = db.finnRestaurant(bestilling.getRestaurantid()).getNavn();
                         if (aktiveBestillingerList != null) aktiveBestillingerList.add(bestilling);
+                    //Hvis restauranten ikke finnes lenger (har blitt slettet) skal vi legge bestillingen i inaktive bestillinger:
                     }  catch (NullPointerException e) {
                         inaktiveBestillingerList.add(bestilling);
                     }
@@ -56,9 +60,12 @@ public class Utilities {
         }
     }
 
+    //Metode for å legge verdier fra en bestilling i en adapter og sette den i et listview:
     //  Basert på: https://stackoverflow.com/questions/7916834/adding-listview-sub-item-text-in-android
     public static void populateBestillingListView(Context context, DBHandler db, ListView lv, List<Bestilling> list, int layout){
         List<Map<String, String>> data = new ArrayList<>();
+        //For hver bestilling skal vi legge bestillingsnummer og restaurant navn i item delen av et hashmap
+        //Vi skal også legge vennene i en bestilling som subitem i et hashmap:
         for (Bestilling bestilling : list) {
             Map<String, String> datum = new HashMap<>(2);
 
@@ -92,6 +99,7 @@ public class Utilities {
 
             datum.put("item", itemTxt);
             datum.put("subitem", subitemTxt.toString());
+            //Hashmap'et blir lagt inn i listen av hashmap som skal brukes til adapteren for listviewet, for å kunne ha to items i et listview under hverandre:
             data.add(datum);
         }
 
@@ -103,6 +111,7 @@ public class Utilities {
         lv.setAdapter(adapter);
     }
 
+    //Metode for å ta ut ID'en fra "item" delen av et hashmap:
     public static long extractId(String s) throws Exception {
         Pattern p = Pattern.compile("#[0-9]+");
         Matcher matcher = p.matcher(s);

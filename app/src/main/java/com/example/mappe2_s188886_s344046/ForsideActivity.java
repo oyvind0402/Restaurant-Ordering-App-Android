@@ -41,6 +41,7 @@ public class ForsideActivity extends AppCompatActivity {
         startService();
     }
 
+    //Lager notifikasjonskanal:
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "SMSNotifChannel";
@@ -51,12 +52,14 @@ public class ForsideActivity extends AppCompatActivity {
         }
     }
 
+    //Starter service når man åpner app'en:
     public void startService() {
         Intent intent = new Intent();
         intent.setAction("com.example.mappe2_s188886_s344046.broadcast");
         sendBroadcast(intent);
     }
 
+    //Metode for å spørre om tilgang til sms / lese telefondata:
     private void giTilgang() {
         MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);

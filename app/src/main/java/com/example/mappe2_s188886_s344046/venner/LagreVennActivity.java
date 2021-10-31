@@ -38,6 +38,7 @@ public class LagreVennActivity extends AppCompatActivity {
         Venn venn = new Venn(innNavn.getText().toString(), innTelefon.getText().toString());
         if(!venn.getNavn().isEmpty() && !venn.getTelefon().isEmpty()) {
             if(validerInput()) {
+                //Hvis vennen har samme telefonnummer og navn som en venn som allerede finnes skal vi ikke lagre vennen:
                 if(db.finnesVenn(venn)) {
                     Toast.makeText(this, "Venn finnes allerede!", Toast.LENGTH_SHORT).show();
                 } else {

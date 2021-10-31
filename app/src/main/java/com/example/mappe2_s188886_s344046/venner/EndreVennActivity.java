@@ -37,6 +37,7 @@ public class EndreVennActivity extends AppCompatActivity {
         innEndreNavn = (EditText) findViewById(R.id.innEndreVennNavn);
         innEndreTelefon = (EditText) findViewById(R.id.innEndreVennTelefon);
 
+        //Finner vennen fra AlleVenner aktiviteten gjennom nøkkel-verdi paret og setter verdiene inn i edittextviewene:
         Bundle bundle = getIntent().getExtras();
         vennId = bundle.getLong("vennId");
         Venn venn = db.finnVenn(vennId);
@@ -53,6 +54,7 @@ public class EndreVennActivity extends AppCompatActivity {
                 venn.setId(vennId);
                 venn.setNavn(innEndreNavn.getText().toString());
                 venn.setTelefon(innEndreTelefon.getText().toString());
+                //Hvis vennen har samme navn og telefonnummer som en venn som allerede finnes skal den ikke lagres:
                 if(db.finnesVenn(venn)) {
                     Toast.makeText(this, "Venn finnes allerede!", Toast.LENGTH_SHORT).show();
                 } else {

@@ -56,10 +56,12 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
         List<Bestilling> inaktiveBestillingerList = new ArrayList<>();
 
         Utilities.populateBestillingList(db, allebestillinger, null, inaktiveBestillingerList);
+        //Hvis det finnes noen inaktive bestillinger:
         if (inaktiveBestillingerList.size() > 0) {
             int blue = getResources().getColor(R.color.blue_logo);
             slettInaktive.setEnabled(true);
             slettInaktive.setBackgroundColor(blue);
+            //Legger de inaktive bestillingene i en liste som blir lagt i en adapter og satt i listviewet:
             Utilities.populateBestillingListView(this, db, inaktiveBestillinger, inaktiveBestillingerList, R.layout.simple_list_item_2_multiple_choice);
             valgteIndekser = new boolean[inaktiveBestillingerList.size()];
             Arrays.fill(valgteIndekser, false);
@@ -73,6 +75,7 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
                     antallValgte--;
                 }
             });
+        //Hvis det ikke finnes noen bestillinger som er inaktive:
         } else {
             List<String> placeholderListe = new ArrayList<>();
             placeholderListe.add("Ingen inaktive bestillinger for øyeblikket!");
@@ -82,13 +85,13 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
             ArrayAdapter<String> placeholderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeholderListe);
             inaktiveBestillinger.setAdapter(placeholderAdapter);
         }
-
     }
 
     public void slettBestillinger(View view){
         if (antallValgte > 0) {
             new AlertDialog.Builder(this).setTitle("Sletting av " + antallValgte + " bestilling(er)").setMessage("Er du sikker på at du vil slette de valgte bestillingene?").setPositiveButton("Ja", (dialogInterface, i) -> {
                 for (int j = 0; j < valgteIndekser.length; j++){
+                    //Hvis en indeks har blitt krysset av:
                     if (valgteIndekser[j]) {
                         HashMap<String, String> hm = (HashMap<String, String>) inaktiveBestillinger.getItemAtPosition(j);
                         try {
@@ -98,6 +101,7 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
                         }
                     }
                 }
+                //Restarter activity når man sletter for å oppdatere med en gang:
                 Intent intent = new Intent(getApplicationContext(), InaktiveBestillingerActivity.class);
                 startActivity(intent);
                 finish();

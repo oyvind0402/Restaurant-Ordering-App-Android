@@ -50,8 +50,10 @@ public class AlleVennerActivity extends AppCompatActivity {
         populateFriendList();
     }
 
+    //Metode for å legge venner inn i listviewet:
     public void populateFriendList() {
         List<Venn> venneListe = db.finnAlleVenner();
+        //Hvis det finnes venner:
         if (venneListe.size() > 0) {
             int blue = getResources().getColor(R.color.blue_logo);
             endreVenn.setEnabled(true);
@@ -66,6 +68,7 @@ public class AlleVennerActivity extends AppCompatActivity {
                 String venneTelefon = venneTelefonHm.split(" ")[1];
                 venn = db.finnVenn(venneNavn, venneTelefon);
             });
+        //Hvis det ikke finnes venner:
         } else {
             int grey = getResources().getColor(R.color.gray_logo);
             endreVenn.setEnabled(false);
@@ -79,6 +82,7 @@ public class AlleVennerActivity extends AppCompatActivity {
         }
     }
 
+    //Metode for å legge et item og et subitem inni et hashmap for å kunne ha to forskjellige items for layouten til listviewet:
     public void populateVennListView(List<Venn> list) {
         List<Map<String, String>> data = new ArrayList<>();
         for(Venn venn: list) {
@@ -104,6 +108,7 @@ public class AlleVennerActivity extends AppCompatActivity {
     }
 
     public void slettVenn(View view) {
+        //Hvis noe er valgt skal vi lage en AlertDialog boks som spør om brukeren faktisk vil slette vennen:
         if(venn != null) {
             new AlertDialog.Builder(this).setTitle("Sletting av " + venn.getNavn()).setMessage("Er du sikker på at du vil slette " + venn.getNavn() + "?").setPositiveButton("Ja", (dialogInterface, i) -> {
                 db.slettVenn(venn.getId());
@@ -117,6 +122,7 @@ public class AlleVennerActivity extends AppCompatActivity {
     }
 
     public void endreVenn(View view) {
+        //Hvis noe er valgt legger vi informasjon om vennen som er valgt inn i intenten og sender den til endrevennactivity:
         if(venn != null) {
             Intent intent = new Intent(this, EndreVennActivity.class);
             Bundle bundle = new Bundle();

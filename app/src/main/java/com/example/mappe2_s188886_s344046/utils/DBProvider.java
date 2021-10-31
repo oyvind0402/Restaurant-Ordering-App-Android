@@ -49,6 +49,7 @@ public class DBProvider extends ContentProvider{
         }
     }
 
+    //Metode for å legge inn restaurant / venn:
     @Override
     public Uri insert (Uri uri, ContentValues values) {
         if(uriMatcher.match(uri) == alleRestauranter) {
@@ -70,6 +71,7 @@ public class DBProvider extends ContentProvider{
         }
     }
 
+    //Metode for å spørre mot en eller flere restauranter / venner:
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor cursor;
@@ -85,6 +87,7 @@ public class DBProvider extends ContentProvider{
         return cursor;
     }
 
+    //Metode for å oppdatere en eller flere restauranter / venner:
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         if(uriMatcher.match(uri) == enRestaurant) {
@@ -110,6 +113,7 @@ public class DBProvider extends ContentProvider{
         return 0;
     }
 
+    //Metode for å slette en eller flere restauranter / venner:
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         if(uriMatcher.match(uri) == enRestaurant) {

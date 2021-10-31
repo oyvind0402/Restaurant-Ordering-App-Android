@@ -52,6 +52,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
         populateBestilling();
     }
 
+    //Metode for å legge aktive bestillinger i en liste og vise de i en listview via en adapter:
     public void populateBestilling(){
         List<Bestilling> allebestillinger = db.finnALleBestillinger();
         List<Bestilling> aktiveBestillingerList = new ArrayList<>();
@@ -59,6 +60,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
 
         Utilities.populateBestillingList(db, allebestillinger, aktiveBestillingerList, inaktiveBestillingerList);
         Utilities.populateBestillingListView(this, db, aktiveBestillinger, aktiveBestillingerList, R.layout.simple_list_item_2_single_choice);
+        //Hvis det finnest noen aktive bestillinger:
         if(aktiveBestillingerList.size() > 0) {
             int blue = getResources().getColor(R.color.blue_logo);
             endreBestilling.setEnabled(true);
@@ -77,7 +79,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
                     aktiveBestillinger.setItemChecked(position, false);
                 }
             });
-
+        //Hvis det ikke finnes noen aktive bestillinger:
         } else {
             int grey = getResources().getColor(R.color.gray_logo);
             endreBestilling.setEnabled(false);

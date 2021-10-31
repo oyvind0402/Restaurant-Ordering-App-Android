@@ -63,6 +63,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
         innEndreTidspunkt = (EditText) findViewById(R.id.innEndreBestillingTidspunkt);
         innEndreVenner.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
+        //Finner verdiene fra bestillingen som ble valgt i allebestillinger:
         Bundle bundle = getIntent().getExtras();
         bestillingId = bundle.getLong("bestillingId");
         bestilling = db.finnBestilling(bestillingId);
@@ -74,8 +75,11 @@ public class EndreBestillingActivity extends AppCompatActivity {
         tidspunktKalender = Calendar.getInstance();
         datoKalender = Calendar.getInstance();
 
+        //En lytter for dialogboksen for dato som setter datoen som blir valgt som teksten til edittextviewet.
+        //Den fjerner også verdien i tidspunkt edittextviewet, fordi man kan ha byttet til dagens dato og hvis tidspunktet er i fortiden plutselig så gjør vi slik at brukeren må velge tidspunktet på nytt:
         datoDialogLytter = (view, year, month, day) -> oppdaterDato(year, month, day);
 
+        //En lytter for edittextviewet for dato - en DatePickerDialog blir lagd og kjørt:
         innEndreDato.setOnClickListener(view -> {
             DatePickerDialog dialog = new DatePickerDialog(EndreBestillingActivity.this, datoDialogLytter, datoKalender.get(Calendar.YEAR), datoKalender.get(Calendar.MONTH), datoKalender.get(Calendar.DAY_OF_MONTH));
             dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
@@ -86,6 +90,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
             dialog.show();
         });
 
+        //Lytteren for når TimePickerDialog boksen får satt et tidspunkt, den setter tidspunktet i edittextviewet til det tidspunktet:
         tidspunktDialogLytter = (view, hourOfDay, minute) -> {
             String[] valgt = innEndreDato.getText().toString().split("-");
             try {
@@ -115,6 +120,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
             }
         };
 
+        //Edittextviewet til tidspunkt sin onclick lytter som lager en ny TimePickerDialog boks:
         innEndreTidspunkt.setOnClickListener(view -> {
             int time = tidspunktKalender.get(Calendar.HOUR_OF_DAY);
             int minutt = tidspunktKalender.get(Calendar.MINUTE);
@@ -126,6 +132,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
 
     }
 
+    //Her settes verdien i dato edittext:
     public void oppdaterDato(int year, int month, int day) {
         datoKalender.set(Calendar.YEAR, year);
         datoKalender.set(Calendar.MONTH, month);
@@ -142,6 +149,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
         if (!innEndreDato.getText().toString().isEmpty() && !innEndreTidspunkt.getText().toString().isEmpty()) {
             SparseBooleanArray checkedItemPositions = innEndreVenner.getCheckedItemPositions();
             venneListe.clear();
+            //Finner alle vennene som har blitt krysset av i listen:
             for(int i = 0; i < checkedItemPositions.size(); i++) {
                 if(checkedItemPositions.valueAt(i)) {
                     Venn venn = (Venn) innEndreVenner.getItemAtPosition(i);
@@ -162,6 +170,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
         }
     }
 
+    //Metode for å sette restauranten sitt navn inn i spinneren:
     public void lasteRestaurant(){
         int selectedRestaurant = -1;
         List<Restaurant> restaurantListe = db.finnAlleRestauranter();
@@ -181,6 +190,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
         innEndreRestaurant.setEnabled(false);
     }
 
+    //Metode for å legge venner som bestillingen har inn i listviewet:
     public void lasteVenner() {
         boolean displayAlert = false;
         if (bestilling.getVenner() != null) {
@@ -201,8 +211,7 @@ public class EndreBestillingActivity extends AppCompatActivity {
             } catch (NullPointerException e) {
                 displayAlert = true;
             }
-
-
+            //Hvis noen av vennene i bestillingen har blitt slettet etter at bestillingen ble lagret:
             if (displayAlert) new AlertDialog.Builder(this)
                         .setTitle("Denne ordren inkluderer venner som har blitt slettet")
                         .setMessage("Hvis du fortsetter med å endre bestillingen, alle referanser til disse venner vil bli fjernet.")

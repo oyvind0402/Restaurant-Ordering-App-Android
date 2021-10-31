@@ -28,7 +28,7 @@ public class PeriodicalService extends Service {
         Calendar cal = Calendar.getInstance(Locale.getDefault());
         Calendar checkCal = Calendar.getInstance(Locale.getDefault());
         cal.setTime(dato);
-        Intent i = new Intent(this, SMSService.class);
+        Intent i = new Intent(this, NotifikasjonService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, i, 0);
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         //Skaffer tidspunktet for å starte servicen, default verdi 17:00

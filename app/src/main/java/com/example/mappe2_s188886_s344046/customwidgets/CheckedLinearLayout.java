@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.Checkable;
 import android.widget.LinearLayout;
 
-// Source: https://stackoverflow.com/questions/7759437/css-floatright-property-equivalent-in-linearlayout-on-android
+// Kode tatt fra:
+// Kilde: https://stackoverflow.com/questions/7759437/css-floatright-property-equivalent-in-linearlayout-on-android
 public class CheckedLinearLayout extends LinearLayout implements Checkable {
 
     private Checkable checkedView;

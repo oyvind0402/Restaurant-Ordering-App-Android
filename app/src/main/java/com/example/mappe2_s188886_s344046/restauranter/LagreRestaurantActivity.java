@@ -45,6 +45,7 @@ public class LagreRestaurantActivity extends AppCompatActivity {
         Restaurant restaurant = new Restaurant(innNavn.getText().toString(), innAdresse.getText().toString(), innTelefon.getText().toString(), innType.getText().toString());
         if(!restaurant.getNavn().isEmpty() && !restaurant.getAdresse().isEmpty() && !restaurant.getTelefon().isEmpty() && !restaurant.getType().isEmpty()) {
             if(validerInput()) {
+                //Hvis restauranten allerede finnes så skal vi gi brukeren beskjed om det (ikke flere restauranter med samme navn):
                 if(db.finnesRestaurant(restaurant)) {
                     Toast.makeText(this, "Restaurant finnes allerede!", Toast.LENGTH_LONG).show();
                 } else {
@@ -96,10 +97,13 @@ public class LagreRestaurantActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent;
         try {
+            //Hvis du kom fra LagreBestilling så skal vi tilbake dit når du trykker tilbake:
             String tilbakeTil = getIntent().getExtras().getString("tilbaketil");
             if (tilbakeTil.equals("LagreBestilling")) {
                 intent = new Intent(this, LagreBestillingActivity.class);
-            } else {
+            }
+            //Ellers går du tilbake til alle restauranter:
+            else {
                 intent = new Intent(this, AlleRestauranterActivity.class);
             }
         } catch (NullPointerException e) {

@@ -52,8 +52,10 @@ public class AlleRestauranterActivity extends AppCompatActivity {
         populateRestaurantList();
    }
 
+   //Metode for å liste alle restaurantene i listviewet og for å lage lytteren til hvilken restaurant som er valg i listviewet:
    public void populateRestaurantList(){
        List<Restaurant> restaurantListe = db.finnAlleRestauranter();
+       //Hvis det finnes noen restauranter:
        if(restaurantListe.size() > 0) {
            int blue = getResources().getColor(R.color.blue_logo);
            endreRestaurant.setEnabled(true);
@@ -66,6 +68,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
                String restaurantNavn = hm.get("item");
                restaurant = db.finnRestaurant(restaurantNavn) ;
            });
+       //Ingen restauranter:
        } else {
            int grey = getResources().getColor(R.color.gray_logo);
            endreRestaurant.setEnabled(false);
@@ -79,6 +82,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
        }
    }
 
+   //Metode for å legge verdier i listen av restauranter og for å lage adapteren som listen skal settes i:
    public void populateRestaurantListView(List<Restaurant> list){
        List<Map<String, String>> data = new ArrayList<>();
        for (Restaurant r : list) {
@@ -106,6 +110,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
    }
 
    public void slettRestaurant(View view){
+        //Hvis noe er valgt gir vi brukeren mulighet til å si ja eller nei om de vil slette:
         if (restaurant != null) {
             new AlertDialog.Builder(this).setTitle("Sletting av " + restaurant.getNavn()).setMessage("Er du sikker på at du vil slette " + restaurant.getNavn() + "?").setPositiveButton("Ja", (dialogInterface, i) -> {
                 db.slettRestaurant(restaurant.getId());
@@ -119,6 +124,7 @@ public class AlleRestauranterActivity extends AppCompatActivity {
    }
 
    public void endreRestaurant(View view){
+        //Hvis noe er valgt legger vi restaurantId'en i et nøkkel-verdipar:
         if (restaurant != null) {
             Intent intent = new Intent(this, EndreRestaurantActivity.class);
             Bundle bundle = new Bundle();

@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class SMSService extends Service {
+public class NotifikasjonService extends Service {
     List<Bestilling> aktiveBestillinger;
 
     @Override
@@ -43,6 +43,7 @@ public class SMSService extends Service {
         List<Bestilling> bestillingsListe = db.finnALleBestillinger();
         String dagensDato = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
+        //Hvis du har en aktiv bestilling i dag (altså at bestillingen er i fremtiden) så kjører vi koden:
         if(orderIsToday(bestillingsListe, dagensDato, db)) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             boolean notificationIsActivated = sharedPreferences.getBoolean("notifikasjon", false);
@@ -78,7 +79,7 @@ public class SMSService extends Service {
                         if(aktiveBestillinger.get(j).getVenner().size() > 0) {
                             for(int i = 0; i < aktiveBestillinger.get(j).getVenner().size(); i++) {
                                 if(aktiveBestillinger.get(j).getVenner().get(i) != null) {
-                                    sms.sendTextMessage(bestillingsListe.get(j).getVenner().get(i).getTelefon(), null, melding, null, null);
+                                    sms.sendTextMessage(aktiveBestillinger.get(j).getVenner().get(i).getTelefon(), null, melding, null, null);
                                 }
                             }
                         }

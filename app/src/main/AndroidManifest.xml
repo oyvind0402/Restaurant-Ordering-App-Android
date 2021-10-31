@@ -36,13 +36,14 @@
         <activity android:name=".venner.LagreVennActivity" />
         <activity android:name=".venner.EndreVennActivity" />
         <service android:name=".services.PeriodicalService" />
-        <service android:name=".services.SMSService" />
-        <receiver android:name=".broadcast.SMSBroadcastReceiver"
+        <service android:name=".services.NotifikasjonService" />
+        <receiver android:name=".broadcast.BestillingBroadcastReceiver"
             android:exported="true"
             android:enabled="true">
             <intent-filter>
                 <action android:name="com.example.mappe2_s188886_s344046.broadcast" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
         <provider

@@ -75,11 +75,14 @@ public class LagreBestillingActivity extends AppCompatActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         populateFriendList();
 
+        //Lager to kalendere for tidspunkt og dato:
         tidspunktKalender = Calendar.getInstance();
         datoKalender = Calendar.getInstance();
 
+        //Setter lytteren for når en dato blir valgt i DatePickerDialog boksen:
         datoDialogLytter = (view, year, month, day) -> oppdaterDato(year, month, day);
 
+        //Setter onclick lytter for edittextviewet for dato, den lager en ny DatePickerDialog boks:
         innDato.setOnClickListener(view -> {
             DatePickerDialog dialog = new DatePickerDialog(LagreBestillingActivity.this, datoDialogLytter, datoKalender.get(Calendar.YEAR), datoKalender.get(Calendar.MONTH), datoKalender.get(Calendar.DAY_OF_MONTH));
             dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", dialog);
@@ -91,6 +94,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
         });
     }
 
+    //Her settes verdien i dato edittext:
     public void oppdaterDato(int year, int month, int day) {
         datoKalender.set(Calendar.YEAR, year);
         datoKalender.set(Calendar.MONTH, month);
@@ -102,6 +106,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
         aktivereTid(year, month, day);
     }
 
+    //Metode for å sette lytteren til edittextviewet til tidspunkt, og for OnTimeSet lytteren til TimePickerDialog boksen som startes når man trykker på edittextviewet:
     public void aktivereTid(int year, int month, int day) {
         innTidspunkt.setHint("Tidspunkt");
 
@@ -132,6 +137,8 @@ public class LagreBestillingActivity extends AppCompatActivity {
         });
     }
 
+    //Metode for å sette verdier til spinneren - spesifikt restaurant navn -
+    // den setter også en lytter for spinneren sin OnItemSelected som lager en ny restaurant ut ifra det navnet som er valgt:
     public void populateSpinner() {
         List<Restaurant> restaurantListe = db.finnAlleRestauranter();
 
@@ -157,7 +164,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     try {
-                        //Hvis det ikke er placeholder verdien så initialiserer vi noen variabler
+                        //Hvis det ikke er placeholder verdien som er valgt så initialiserer vi noen variabler
                         if(spinner.getSelectedItemPosition() != liste.size() - 1) {
                             restaurantid = map.get(liste.get(i));
                             Restaurant restaurant = db.finnRestaurant(restaurantid);
@@ -191,6 +198,7 @@ public class LagreBestillingActivity extends AppCompatActivity {
 
     }
 
+    //Metode for å legge venner inn i listviewet for venner:
     public void populateFriendList() {
         List<Venn> venneListe2 = db.finnAlleVenner();
         if (venneListe2.size() > 0) {
@@ -228,6 +236,8 @@ public class LagreBestillingActivity extends AppCompatActivity {
                 Toast.makeText(this, "Fyll inn alle feltene!", Toast.LENGTH_LONG).show();
             }
             venneListe.clear();
+        //Hvis det er en tom restaurantliste gir vi brukeren mulighet til å gå rett til lagre restaurant ved bruk av en AlertDialog boks.
+        //Sender med en et verdipar slik at onBackPressed metoden i LagreRestaurant vil gå tilbake til riktig aktivitet hvis vi kom fra LagreBestilling:
         } catch (NullPointerException e) {
             new AlertDialog.Builder(this).setTitle("Tom restaurantliste").setMessage("Vil du lagre en ny restaurant?").setPositiveButton("Ja", (dialogInterface, i) -> {
                 Intent intent = new Intent(getApplicationContext(), LagreRestaurantActivity.class);
