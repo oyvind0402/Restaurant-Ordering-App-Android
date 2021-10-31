@@ -87,7 +87,7 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
 
     public void slettBestillinger(View view){
         if (antallValgte > 0) {
-            new AlertDialog.Builder(this).setTitle("Sletting av " + antallValgte + " bestilling(er)").setMessage("Er du sikker på at du vil slette de valgte bestillinger?").setPositiveButton("Ja", (dialogInterface, i) -> {
+            new AlertDialog.Builder(this).setTitle("Sletting av " + antallValgte + " bestilling(er)").setMessage("Er du sikker på at du vil slette de valgte bestillingene?").setPositiveButton("Ja", (dialogInterface, i) -> {
                 for (int j = 0; j < valgteIndekser.length; j++){
                     if (valgteIndekser[j]) {
                         HashMap<String, String> hm = (HashMap<String, String>) inaktiveBestillinger.getItemAtPosition(j);
@@ -103,7 +103,7 @@ public class InaktiveBestillingerActivity extends AppCompatActivity {
                 finish();
             }).setNegativeButton("Nei", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "Sletting av " + antallValgte + " bestilling(er) avbrutt.", Toast.LENGTH_SHORT).show()).create().show();
         } else {
-                Toast.makeText(this, "Velg en eller flere bestillinger", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Velg en eller flere bestillinger!", Toast.LENGTH_SHORT).show();
         }
     }
 

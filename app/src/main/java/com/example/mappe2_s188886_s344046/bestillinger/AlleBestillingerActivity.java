@@ -72,7 +72,7 @@ public class AlleBestillingerActivity extends AppCompatActivity {
                     long bestillingId = Utilities.extractId(hm.get("item"));
                     bestilling = db.finnBestilling(bestillingId);
                 } catch (Exception e) {
-                    Toast.makeText(this, "Feil ved henting av bestilling data", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Feil ved henting av bestillingsdata", Toast.LENGTH_LONG).show();
                     bestilling = null;
                     aktiveBestillinger.setItemChecked(position, false);
                 }
